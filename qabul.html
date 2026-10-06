@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+<script>if(localStorage.getItem("theme")==="dark")document.documentElement.classList.add("dark-early");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bo'stonliq tumani Ixtisoslashtirilgan Maktabi</title>
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<link rel="apple-touch-icon" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+  /* ===== CRITICAL OVERRIDES ===== */
+  .top-strip { 
+    display: block !important; 
+    padding: 0 !important; 
+    background: linear-gradient(90deg, #0f172a, #1e3a8a) !important;
+  }
+  nav.bg-white { 
+    background: white !important; 
+    position: sticky !important; 
+    top: 0 !important;
+    z-index: 50 !important;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1) !important;
+  }
+  /* ========================== */
+  :root{--primary:#1e3a8a;--primary-2:#1e40af;--accent:#fbbf24;--accent-2:#f59e0b;--light:#f8fafc;--dark:#0f172a;--bg:#f8fafc;--surface:#ffffff;--surface-2:#f1f5f9;--text:#0f172a;--text-muted:#64748b;--border:#e2e8f0;}
+  body.dark{--primary:#3b82f6;--primary-2:#60a5fa;--bg:#0b1220;--surface:#111827;--surface-2:#1f2937;--text:#e5e7eb;--text-muted:#9ca3af;--border:#1f2937;}
+  body.dark .bg-white{background-color:var(--surface)!important;}
+  body.dark nav.bg-white{background-color:var(--surface)!important;border-bottom:1px solid var(--border);}
+  body.dark .nav-link{color:var(--text);}
+  .lang-btn{padding:2px 8px;border-radius:6px;font-weight:700;font-size:12px;color:#cbd5e1;transition:all .2s;cursor:pointer;border:none;background:transparent;outline:none;}
+  .lang-btn.active{background:var(--accent);color:#0f172a;}
+  .lang-btn:hover:not(.active){color:#fff;}
+  .theme-toggle{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);color:#fbbf24;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;border:1px solid rgba(255,255,255,.15);}
+  .theme-toggle:hover{background:rgba(251,191,36,.2);transform:rotate(15deg);}
+  .top-strip{background:linear-gradient(90deg,#0f172a 0%,#1e3a8a 100%);position:relative;z-index:60;}
+  footer{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);}
+  body.dark footer{background:linear-gradient(135deg,#0a0f1e 0%,#0f172a 100%);}
+  .nav-link{position:relative;font-weight:600;color:#0f172a;transition:all .3s;font-size:.85rem;white-space:nowrap;}
+  .nav-link::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:3px;background:var(--accent);transition:all .3s;transform:translateX(-50%);border-radius:3px;}
+  .nav-link:hover{color:var(--primary);}
+  .nav-link:hover::after,.nav-link.active-page::after{width:100%;}
+  .nav-link.active-page{color:var(--primary);}
+  .navbar{background:white!important;}
+  .mobile-menu{transform:translateX(100%);transition:transform .4s;}
+  @media (min-width:1280px){.mobile-menu{display:none !important;}}
+  .mobile-menu.open{transform:translateX(0);}
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber: #f59e0b;
+      --amber-dark: #d97706;
+      --orange: #ea580c;
+      --emerald: #10b981;
+      --teal: #0d9488;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-600: #475569;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+      --red-400: #f87171;
+      --indigo: #4f46e5;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--slate-900);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── CUSTOM CURSOR (disabled) ── */
+    #cursor-dot, #cursor-ring { display: none; }
+
+    /* ── PAGE LOAD ── */
+    @keyframes pageFade { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+    body { animation: pageFade .7s ease both; }
+
+    /* top-strip: see standard styles above */
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--slate-900);
+      box-shadow: 0 4px 30px rgba(0,0,0,.2);
+      transition: padding .3s, box-shadow .3s;
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 40px rgba(245,158,11,.15), 0 2px 8px rgba(0,0,0,.3);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--amber), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(245,158,11,.3);
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+    }
+    .nav-logo:hover .nav-logo-icon { transform: rotate(15deg) scale(1.1); box-shadow: 0 6px 24px rgba(245,158,11,.5); }
+    .nav-logo-icon svg { width: 20px; height: 20px; color: white; }
+    .nav-logo-text { color: white; font-weight: 700; font-size: 13px; line-height: 1.3; }
+    .nav-cta {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, var(--amber), var(--orange));
+      color: white; font-weight: 700; font-size: 14px;
+      border-radius: 10px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(245,158,11,.25);
+    }
+    .nav-cta::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: skewX(-20deg);
+      transition: left .5s;
+    }
+    .nav-cta:hover::after { left: 160%; }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba(245,158,11,.5); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 100px 32px 90px;
+      background: var(--slate-900);
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      animation: blobFloat 8s ease-in-out infinite alternate;
+    }
+    @keyframes blobFloat { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(30px,20px) scale(1.1)} }
+    .hero-blob-1 { width: 350px; height: 350px; background: rgba(79,70,229,.25); top: 10%; left: -100px; animation-delay: 0s; }
+    .hero-blob-2 { width: 300px; height: 300px; background: rgba(245,158,11,.15); bottom: 10%; right: -80px; animation-delay: -4s; }
+    .hero-blob-3 { width: 200px; height: 200px; background: rgba(16,185,129,.1); top: 50%; left: 50%; margin: -100px; animation-delay: -2s; }
+
+    .hero-particles { position: absolute; inset: 0; pointer-events: none; }
+    .particle {
+      position: absolute; width: 4px; height: 4px;
+      background: rgba(245,158,11,.5); border-radius: 50%;
+      animation: floatUp var(--dur,3s) var(--delay,0s) infinite ease-in-out;
+    }
+    @keyframes floatUp { 0%,100%{transform:translateY(0);opacity:0} 50%{transform:translateY(-40px);opacity:1} }
+
+    /* Animated grid lines in hero */
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none; opacity: .04;
+      background-image: linear-gradient(var(--amber) 1px, transparent 1px), linear-gradient(90deg, var(--amber) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridSlide 20s linear infinite;
+    }
+    @keyframes gridSlide { from{background-position:0 0} to{background-position:60px 60px} }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: 999px;
+      background: rgba(245,158,11,.1); border: 1px solid rgba(245,158,11,.25);
+      color: var(--amber); font-size: 13px; font-weight: 600; margin-bottom: 20px;
+      animation: heroBadgeIn .8s .2s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes heroBadgeIn { from{opacity:0;transform:translateY(-16px) scale(.9)} to{opacity:1;transform:none} }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(26px, 5vw, 48px); font-weight: 900;
+      color: white; line-height: 1.2; position: relative;
+      animation: heroH1In .9s .4s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes heroH1In { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+
+    .hero h1 .grad-text {
+      color: var(--amber);
+    }
+
+    .hero p {
+      margin-top: 16px; color: var(--slate-400); font-size: 17px;
+      max-width: 520px; margin-inline: auto; line-height: 1.7;
+      animation: heroParaIn 1s .6s ease both;
+    }
+    @keyframes heroParaIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+    .hero-inner { position: relative; z-index: 5; max-width: 760px; margin: auto; }
+
+    /* Floating orbs */
+    .hero-orb {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      animation: orbFloat var(--od,6s) var(--odl,0s) ease-in-out infinite alternate;
+    }
+    @keyframes orbFloat { 0%{transform:translate(0,0)} 100%{transform:translate(var(--ox,15px),var(--oy,-20px))} }
+
+    /* ── ADMISSION SECTION ── */
+    .admission {
+      padding: 96px 32px;
+      background: linear-gradient(180deg, var(--slate-50), white, var(--slate-50));
+      position: relative;
+      overflow: hidden;
+    }
+    .admission-blob-1 { position: absolute; width: 320px; height: 320px; background: rgba(245,158,11,.08); border-radius: 50%; filter: blur(80px); top: -80px; left: -80px; pointer-events: none; }
+    .admission-blob-2 { position: absolute; width: 320px; height: 320px; background: rgba(79,70,229,.07); border-radius: 50%; filter: blur(80px); bottom: -80px; right: -80px; pointer-events: none; }
+
+    .section-inner { position: relative; z-index: 5; max-width: 1100px; margin: auto; }
+
+    .section-head { text-align: center; margin-bottom: 56px; }
+    .section-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 20px; border-radius: 999px;
+      background: linear-gradient(90deg, #fef3c7, #ffedd5);
+      border: 1px solid #fde68a; color: #92400e;
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 16px;
+      animation: pulse-badge 2.5s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(245,158,11,.4);
+    }
+    @keyframes pulse-badge {
+      0%,100%{transform:scale(1); box-shadow:0 0 0 0 rgba(245,158,11,.4)}
+      50%{transform:scale(1.04); box-shadow:0 0 0 8px rgba(245,158,11,0)}
+    }
+    .section-head h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(24px, 4vw, 44px);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-head p { color: var(--slate-600); font-size: 16px; max-width: 560px; margin: auto; line-height: 1.7; }
+
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .adm-card {
+      border-radius: 24px; overflow: hidden; border: 1.5px solid;
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+      transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s;
+      opacity: 0; transform: translateY(40px);
+      will-change: transform;
+      position: relative;
+    }
+    .adm-card::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+    }
+    .adm-card:hover::after { opacity: 1; }
+    .adm-card.visible { animation: slideUp .6s forwards; }
+    .adm-card:nth-child(2).visible { animation-delay: .15s; }
+    @keyframes slideUp { to { opacity:1; transform:translateY(0); } }
+    .adm-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 24px 64px rgba(0,0,0,.14); }
+
+    /* Amber card */
+    .adm-card.amber { border-color: #fde68a; background: linear-gradient(135deg, #fffbeb, #fff7ed); }
+    .adm-card.amber .card-top { background: linear-gradient(90deg, var(--amber), var(--orange)); }
+
+    /* Emerald card */
+    .adm-card.emerald { border-color: #a7f3d0; background: linear-gradient(135deg, #ecfdf5, #f0fdfa); }
+    .adm-card.emerald .card-top { background: linear-gradient(90deg, var(--emerald), var(--teal)); }
+
+    .card-top {
+      padding: 10px 20px;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-body { padding: 24px; }
+    .card-direction {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      flex-shrink: 0;
+      animation: wobble 4s ease-in-out infinite;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+    }
+    .card-icon.amber-icon { background: linear-gradient(135deg, var(--amber), var(--orange)); }
+    .card-icon.emerald-icon { background: linear-gradient(135deg, var(--emerald), var(--teal)); }
+    .card-icon svg { width: 28px; height: 28px; }
+    @keyframes wobble { 0%,100%{transform:rotate(0)} 25%{transform:rotate(5deg)} 75%{transform:rotate(-5deg)} }
+
+    .direction-info h4 { font-weight: 800; font-size: 18px; color: var(--slate-900); }
+    .direction-info p { font-size: 12px; color: var(--slate-400); margin-top: 2px; }
+
+    .exam-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--slate-400);
+      margin-bottom: 8px;
+    }
+
+    .subject-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.65);
+      border: 1px solid rgba(226,232,240,.8);
+      margin-bottom: 8px;
+    }
+    .subject-item .check { flex-shrink: 0; width: 20px; height: 20px; color: #22c55e; margin-top: 1px; }
+    .subject-item strong { font-size: 14px; color: var(--slate-900); display: block; }
+    .subject-item span { font-size: 12px; color: var(--slate-400); }
+
+    .exam-note {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.4);
+      border: 1px dashed var(--slate-200);
+      font-size: 12px;
+      color: var(--slate-600);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    .exam-note svg { flex-shrink: 0; width: 16px; height: 16px; color: var(--amber); margin-top: 1px; }
+
+    /* Dark banner */
+    .dark-banner {
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--slate-900), #1e1b4b, var(--slate-900));
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 16px 64px rgba(0,0,0,.2);
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .dark-banner.visible { animation: slideUp .7s .3s forwards; }
+    .banner-sparkles { position: absolute; inset: 0; pointer-events: none; }
+    .sparkle-dot {
+      position: absolute;
+      width: 6px; height: 6px;
+      background: var(--amber);
+      border-radius: 50%;
+      animation: sparkle var(--sd, 2s) var(--sdl, 0s) infinite ease-in-out;
+    }
+    @keyframes sparkle { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:1;transform:scale(2)} }
+
+    .banner-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+      align-items: center;
+    }
+    .banner-extra-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      color: var(--amber);
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .banner-extra h4 { color: white; font-weight: 800; font-size: 17px; margin-bottom: 4px; }
+    .banner-extra p { color: var(--slate-400); font-size: 13px; line-height: 1.6; }
+
+    .urgent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 16px;
+      background: rgba(239,68,68,.1);
+      border: 1px solid rgba(248,113,113,.3);
+      color: var(--red-400);
+      font-weight: 800;
+      font-size: 14px;
+      animation: pulse-urgent 1.5s ease-in-out infinite;
+      text-align: center;
+    }
+    @keyframes pulse-urgent { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
+    .apply-btn-wrap { text-align: right; }
+    .apply-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--amber), var(--orange));
+      color: white;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(245,158,11,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .apply-btn:hover { transform: scale(1.07); box-shadow: 0 10px 28px rgba(245,158,11,.45); }
+    .apply-btn svg { width: 20px; height: 20px; }
+    .apply-sub { font-size: 11px; color: var(--slate-400); margin-top: 6px; text-align: right; }
+    @media (max-width: 600px) { .apply-btn-wrap, .apply-sub { text-align: center; } .banner-grid { grid-template-columns: 1fr; } }
+
+    /* Phone numbers */
+    .phones-section { text-align: center; opacity: 0; transform: translateY(20px); }
+    .phones-section.visible { animation: slideUp .5s .4s forwards; }
+    .phones-label { font-size: 14px; color: var(--slate-400); margin-bottom: 20px; }
+    .phones-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    /* ── NEW PHONE CARD ── */
+    .phone-card {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 24px;
+      border-radius: 20px;
+      background: white;
+      border: 2px solid var(--slate-200);
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      text-decoration: none;
+      color: var(--slate-900);
+      font-weight: 700;
+      font-size: 16px;
+      overflow: hidden;
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, border-color .25s;
+      cursor: pointer;
+    }
+    /* Ripple fill on hover */
+    .phone-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+      opacity: 0;
+      transition: opacity .3s;
+      z-index: 0;
+    }
+    .phone-card:hover::before { opacity: 1; }
+    .phone-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 12px 36px rgba(16,185,129,.18);
+      border-color: #6ee7b7;
+    }
+    .phone-card:active { transform: scale(.97); }
+
+    /* Ringing icon wrapper */
+    .phone-icon {
+      position: relative;
+      z-index: 1;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4ade80, var(--emerald));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(16,185,129,.35);
+      transition: transform .3s;
+    }
+    .phone-card:hover .phone-icon { animation: ring 0.5s ease-in-out 2; }
+    @keyframes ring {
+      0%   { transform: rotate(0deg) scale(1); }
+      20%  { transform: rotate(-15deg) scale(1.15); }
+      40%  { transform: rotate(15deg) scale(1.15); }
+      60%  { transform: rotate(-10deg) scale(1.1); }
+      80%  { transform: rotate(10deg) scale(1.05); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+    .phone-icon svg { width: 20px; height: 20px; color: white; }
+
+    /* Number text with typewriter effect on hover */
+    .phone-text {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+    .phone-num {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--slate-900);
+      font-family: 'Montserrat', monospace;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+    .phone-card:hover .phone-num { color: #065f46; }
+    .phone-hint {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate-400);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .25s .1s, transform .25s .1s;
+    }
+    .phone-hint svg { width: 10px; height: 10px; }
+    .phone-card:hover .phone-hint { opacity: 1; transform: translateY(0); }
+
+    /* Pulse rings around icon */
+    .phone-pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(16,185,129,.5);
+      opacity: 0;
+      z-index: 0;
+    }
+    .phone-card:hover .phone-pulse { animation: pulseRing .8s ease-out forwards 2; }
+    @keyframes pulseRing {
+      0%   { transform: scale(1); opacity: .7; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    /* Call now chip that appears on hover */
+    .call-chip {
+      position: absolute;
+      top: -10px; right: -10px;
+      z-index: 5;
+      background: linear-gradient(135deg, var(--emerald), var(--teal));
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: .04em;
+      box-shadow: 0 2px 8px rgba(16,185,129,.4);
+      opacity: 0;
+      transform: scale(.6) translateY(4px);
+      transition: opacity .2s .05s, transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .phone-card:hover .call-chip { opacity: 1; transform: scale(1) translateY(0); }
+
+    /* ── FAQ SECTION ── */
+    .faq-section {
+      padding: 96px 32px;
+      background: linear-gradient(180deg, white, var(--slate-50), white);
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-blob-1 { position: absolute; width: 300px; height: 300px; background: rgba(245,158,11,.07); border-radius: 50%; filter: blur(80px); top: 0; right: -80px; pointer-events: none; }
+    .faq-blob-2 { position: absolute; width: 260px; height: 260px; background: rgba(79,70,229,.06); border-radius: 50%; filter: blur(80px); bottom: 0; left: -60px; pointer-events: none; }
+
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+
+    .faq-item {
+      border-radius: 18px;
+      border: 1.5px solid var(--slate-200);
+      background: white;
+      box-shadow: 0 4px 18px rgba(0,0,0,.05);
+      overflow: hidden;
+      opacity: 0; transform: translateY(24px);
+      transition: box-shadow .3s, border-color .3s;
+    }
+    .faq-item.visible { animation: slideUp .5s forwards; }
+    .faq-item:nth-child(2).visible { animation-delay: .07s; }
+    .faq-item:nth-child(3).visible { animation-delay: .14s; }
+    .faq-item:nth-child(4).visible { animation-delay: .21s; }
+    .faq-item:nth-child(5).visible { animation-delay: .28s; }
+    .faq-item:nth-child(6).visible { animation-delay: .35s; }
+    .faq-item:nth-child(7).visible { animation-delay: .42s; }
+    .faq-item.open { border-color: #fde68a; box-shadow: 0 8px 32px rgba(245,158,11,.12); }
+
+    .faq-q {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 20px 24px;
+      background: none; border: none;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+      color: var(--slate-900); text-align: left;
+      cursor: pointer; transition: background .2s;
+    }
+    .faq-q:hover { background: #fffbeb; }
+    .faq-item.open .faq-q { background: #fffbeb; color: #92400e; }
+
+    .faq-icon {
+      flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #fef3c7, #ffedd5);
+      border: 1.5px solid #fde68a;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .3s, background .3s;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: linear-gradient(135deg, var(--amber), var(--orange));
+      border-color: var(--orange);
+    }
+    .faq-icon svg { width: 16px; height: 16px; color: var(--amber-dark); transition: color .3s; }
+    .faq-item.open .faq-icon svg { color: white; }
+
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s;
+      padding: 0 24px;
+      font-size: 14px; color: var(--slate-600); line-height: 1.75;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding: 0 24px 20px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--slate-900);
+      color: var(--slate-400);
+      padding: 36px 32px;
+      text-align: center;
+    }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; }
+    .footer-logo-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--amber), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo-icon svg { width: 16px; height: 16px; color: white; }
+    footer p { font-size: 13px; }
+    footer .copy { font-size: 11px; color: var(--slate-600); margin-top: 6px; }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; z-index: 9997;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--amber), var(--orange), #facc15);
+      transition: width .1s linear;
+      box-shadow: 0 0 8px rgba(245,158,11,.6);
+    }
+
+    /* ── SECTION HEAD entrance ── */
+    .section-head {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .section-head.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Card stagger delays ── */
+    .adm-card:nth-child(1).visible { animation-delay: 0s; }
+    .adm-card:nth-child(2).visible { animation-delay: .18s; }
+
+    /* ── Tilt effect on cards ── */
+    .adm-card { perspective: 800px; }
+
+    /* ── Shine sweep on apply button ── */
+    .apply-btn {
+      position: relative; overflow: hidden;
+    }
+    .apply-btn::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+      transform: skewX(-20deg);
+      animation: btnShine 3s ease-in-out infinite;
+    }
+    @keyframes btnShine { 0%,60%{left:-100%} 80%{left:160%} 100%{left:160%} }
+
+    /* ── Floating label on hero ── */
+    .hero-float-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.7); font-size: 12px; font-weight: 600;
+      margin-top: 28px;
+      animation: heroParaIn 1s .8s ease both;
+    }
+    .hero-float-label span { color: var(--amber); }
+
+    /* ── Card subject-item hover ── */
+    .subject-item {
+      transition: background .25s, transform .2s, box-shadow .2s;
+    }
+    .subject-item:hover {
+      background: rgba(255,255,255,.95);
+      transform: translateX(4px);
+      box-shadow: 0 4px 14px rgba(0,0,0,.07);
+    }
+
+    /* ── Urgent badge pulse glow ── */
+    @keyframes pulse-urgent {
+      0%,100%{transform:scale(1); box-shadow:0 0 0 0 rgba(248,113,113,.3)}
+      50%{transform:scale(1.04); box-shadow:0 0 0 10px rgba(248,113,113,0)}
+    }
+    #back-top {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      z-index: 100;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber), var(--orange));
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 6px 20px rgba(245,158,11,.35);
+      opacity: 0;
+      transform: scale(.5);
+      transition: opacity .3s, transform .3s;
+    }
+    #back-top.show { opacity: 1; transform: scale(1); }
+    #back-top:hover { transform: scale(1.1); }
+    #back-top svg { width: 20px; height: 20px; }
+  
+  /* ===== DARK MODE FIXES: prevent invisible text ===== */
+  body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark h6{color:var(--text);}
+  body.dark p:not([class*="text-"]):not([style]){color:var(--text-muted);}
+  body.dark .text-slate-800,body.dark .text-slate-900{color:var(--text)!important;}
+  body.dark .text-gray-800,body.dark .text-gray-900{color:var(--text)!important;}
+  body.dark .text-black{color:var(--text)!important;}
+  body.dark .text-slate-600,body.dark .text-slate-700,body.dark .text-gray-600,body.dark .text-gray-700{color:var(--text-muted)!important;}
+  body.dark [style*="color:#0f172a"],[style*="color: #0f172a"]{color:var(--text)!important;}
+  body.dark [style*="color:var(--text)"]{color:var(--text)!important;}
+  body.dark .bg-white,[class*="bg-slate-50"],[class*="bg-slate-100"]{background-color:var(--surface);}
+  body.dark section:not(.hero){background:var(--bg);}
+  body.dark .bg-slate-50{background-color:var(--bg)!important;}
+  body.dark .bg-slate-100{background-color:var(--surface-2)!important;}
+  body.dark .contact-card h3,body.dark .dir-card h3{color:var(--text)!important;}
+  body.dark .contact-card p,body.dark .dir-card p{color:var(--text-muted)!important;}
+  body.dark .border-slate-100,body.dark .border-slate-200,body.dark .border-gray-100,body.dark .border-gray-200{border-color:var(--border)!important;}
+  body.dark input,body.dark textarea,body.dark select{background:var(--surface-2);color:var(--text);border-color:var(--border);}
+  body.dark .text-indigo-600,body.dark .text-purple-600,body.dark .text-pink-600{opacity:0.9;}
+  body.dark .bg-white\/80{background-color:rgba(17,24,39,0.8)!important;}
+  body.dark .bg-white\/70{background-color:rgba(17,24,39,.55)!important;}
+  body.dark [style*="background:linear-gradient(135deg,#ecfdf5"]{background:linear-gradient(135deg,#052e1f,#042f2e)!important;border-color:#065f46!important;}
+  body.dark [style*="background:linear-gradient(135deg,#eff6ff,#f5f3ff"]{background:linear-gradient(135deg,#0c1a3a,#1a1240)!important;border-color:#1e3a8a!important;}
+  body.dark [style*="background:linear-gradient(135deg,#f5f3ff,#fdf4ff"]{background:linear-gradient(135deg,#1a1240,#2a1035)!important;border-color:#4c1d95!important;}
+  body.dark [style*="background:linear-gradient(135deg,#eff6ff,#eef2ff"]{background:linear-gradient(135deg,#0c1a3a,#161235)!important;border-color:#1e3a8a!important;}
+  body.dark [style*="background:linear-gradient(135deg,#fffbeb,#fff7ed"]{background:linear-gradient(135deg,#3a2a0c,#3a220c)!important;border-color:#78350f!important;}
+  body.dark .bg-slate-100{background-color:var(--surface-2)!important;}
+  body.dark .tab-btn{background:var(--surface-2);color:var(--text);}
+  body.dark .tab-btn.active{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;}
+  body.dark [class*="text-slate-5"]{color:var(--text-muted)!important;}
+  body.dark [class*="text-slate-4"]{color:var(--text-muted)!important;}
+  /* Fix hardcoded color in style attribute */
+  body.dark .underline-title{color:#60a5fa;}
+  body.dark .section-title{color:var(--text)!important;}
+  /* Fix mobile menu in dark mode */
+  body.dark #mobileMenu{background:var(--surface);color:var(--text);}
+  body.dark #mobileMenu a{color:var(--text);}
+  body.dark #mobileMenu .border-b{border-color:var(--border);}
+
+  /* ===== VISIBILITY OVERRIDE: ensure all content shows ===== */
+  .reveal, .reveal-d1, .reveal-d2 { opacity: 1 !important; transform: none !important; }
+  .manzil-item { opacity: 1 !important; transform: none !important; }
+  .map-wrapper { opacity: 1 !important; transform: none !important; }
+  footer .grid > div { opacity: 1 !important; transform: none !important; }
+  .team-card { opacity: 1 !important; transform: none !important; }
+  .leader-card { opacity: 1 !important; transform: none !important; }
+  .stagger-item { opacity: 1 !important; transform: none !important; }
+  .stat-item { opacity: 1 !important; transform: none !important; }
+  .dir-card { opacity: 1 !important; }
+  .contact-card { opacity: 1 !important; }
+  [class*="anim-"] { opacity: 1 !important; }
+
+  /* ===== Admission wide rows ===== */
+  .adm-row{display:flex;align-items:flex-start;gap:24px;border-radius:24px;padding:32px;margin-bottom:20px;transition:transform .25s;}
+  .adm-row:hover{transform:translateY(-3px);}
+  .adm-row-num{width:36px;height:36px;border-radius:50%;color:#fff;font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+  .adm-row-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+  .adm-row-body{flex:1;min-width:0;}
+  .adm-row-label{font-weight:800;font-size:.85rem;letter-spacing:.03em;}
+  @media (max-width:767px){
+    .adm-row{flex-direction:column;padding:24px;gap:14px;}
+    .adm-row-num{position:absolute;margin-top:-6px;margin-left:-6px;}
+  }
+
+  .dropdown-item:hover{background:var(--surface-2, #f1f5f9);}
+
+  /* ===== Hero photo carousel (big image + thumbnail strip) ===== */
+  .pc-wrap{max-width:900px;margin:0 auto;}
+  .pc-main{position:relative;border-radius:1.5rem;overflow:hidden;height:420px;background:#0f172a;box-shadow:0 20px 50px rgba(0,0,0,.15);}
+  .pc-main img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:opacity .25s;}
+  .pc-main-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.92);color:#0f172a;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,transform .2s;z-index:3;}
+  .pc-main-nav:hover{background:#fbbf24;transform:translateY(-50%) scale(1.08);}
+  .pc-main-prev{left:16px;} .pc-main-next{right:16px;}
+  .pc-counter{position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,.55);color:#fff;font-size:.75rem;font-weight:700;padding:.3rem .8rem;border-radius:9999px;z-index:3;}
+  .pc-thumbs-wrap{display:flex;align-items:center;gap:8px;margin-top:14px;}
+  .pc-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;padding:2px;flex:1;scrollbar-width:none;}
+  .pc-thumbs::-webkit-scrollbar{display:none;}
+  .pc-thumb{width:84px;height:64px;object-fit:cover;border-radius:.7rem;cursor:pointer;flex:0 0 auto;opacity:.55;transition:opacity .2s,box-shadow .2s;box-shadow:0 0 0 2px transparent;}
+  .pc-thumb:hover{opacity:.85;}
+  .pc-thumb.active{opacity:1;box-shadow:0 0 0 3px var(--amber,#f59e0b);}
+  .pc-thumb-nav{width:34px;height:34px;border-radius:50%;background:var(--surface,#fff);border:1px solid var(--border,#e2e8f0);color:var(--text,#0f172a);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto;transition:background .2s;}
+  .pc-thumb-nav:hover{background:var(--amber,#fbbf24);color:#fff;}
+  @media (max-width:639px){
+    .pc-main{height:230px;border-radius:1rem;}
+    .pc-main-nav{width:38px;height:38px;font-size:.95rem;}
+    .pc-thumb{width:64px;height:48px;}
+  }
+  .pc-caption{margin-top:10px;font-size:.9rem;font-weight:600;text-align:center;color:var(--text,#0f172a);min-height:1.3em;}
+  #pcLightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;}
+  #pcLightbox.open{opacity:1;visibility:visible;}
+  #pcLightbox img{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+  #pcLightbox .pclb-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;border:none;}
+  #pcLightbox .pclb-close:hover{background:rgba(251,191,36,.8);}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<div class="top-strip text-white text-sm">
+  <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center flex-wrap gap-2">
+    <div class="hidden md:flex items-center gap-6">
+      <span><i class="fa-solid fa-location-dot text-yellow-400 mr-2"></i><span data-i18n="topAddress">Toshkent viloyati, Bo'stonliq tumani</span>
+      <span><i class="fa-solid fa-clock text-yellow-400 mr-2"></i><span data-i18n="topHours">Dush-Shan: 08:00 - 17:00</span>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <a href="tel:+998977848522" class="hidden sm:inline hover:text-yellow-400 transition"><i class="fa-solid fa-phone mr-1"></i> +998 97 784 85 22</a>
+      <div class="flex items-center gap-1 ml-2 pl-3 border-l border-white/20">
+        <button class="lang-btn active" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button id="themeToggle" class="theme-toggle" title="Mavzu"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+    </div>
+  </div>
+</div>
+<!-- NAVBAR -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="https://i.ibb.co/mVQz8Qh9/logo.jpg" alt="Logo" style="width:40px;height:40px;object-fit:contain;flex-shrink:0;background:transparent" onerror="this.style.display='none'">
+      <div>
+        <div class="font-extrabold text-lg leading-tight" style="color:var(--primary)" data-i18n="logoLine1">Bo'stonliq tumani</div>
+        <div class="text-xs text-gray-500 font-medium" data-i18n="logoLine2">Ixtisoslashtirilgan maktabi</div>
+      </div>
+    </a>
+    <ul class="hidden xl:flex items-center gap-4 2xl:gap-6">
+      <li><a href="index.html" class="nav-link" data-i18n="navHome">Bosh sahifa</a></li>
+      <li><a href="rahbariyat.html" class="nav-link" data-i18n="navLeadership">Rahbariyat</a></li>
+      <li><a href="oqituvchilar.html" class="nav-link" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+      <li><a href="iqtidorli-oquvchilar.html" class="nav-link" data-i18n="navIqtidorli">Iqtidorli o'quvchilar</a></li>
+      <li><a href="qabul.html" class="nav-link active-page" data-i18n="navQabul">Qabul jarayonlari</a></li>
+      <li><a href="yangiliklar.html" class="nav-link" data-i18n="navNews">E'lonlar</a></li>
+      <li><a href="aloqa.html" class="nav-link" data-i18n="navContact">Aloqa</a></li>
+      <li class="relative">
+        <button type="button" id="moreDropdownBtn" class="nav-link flex items-center gap-1" aria-expanded="false">
+          <span data-i18n="navMore">Ko'proq</span> <i class="fa-solid fa-chevron-down text-[10px]" id="moreChevron" style="transition:transform .2s;"></i>
+        </button>
+        <div id="moreDropdownMenu" class="absolute left-0 mt-3 w-52 rounded-xl shadow-xl border py-2 z-50" style="background:var(--surface);border-color:var(--border);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .2s,visibility .2s,transform .2s;">
+        <a href="ecoschool.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navEco">Eco School</a>
+        <a href="maktab-hayoti.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navMaktabHayoti">Maktab hayoti</a>
+        <a href="loyiha-ishlari.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navLoyiha">Loyiha ishlari</a>
+        <a href="sertifikatlar.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navSertifikat">Sertifikatlar</a>
+        <a href="galereya.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navGallery">Galereya</a>
+        <a href="memorandumlar.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navMemorandum">Memorandumlar</a>
+        </div>
+      </li>
+  </ul>
+    <a href="tel:+998977848522" class="hidden 2xl:inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-semibold text-sm" style="background:linear-gradient(135deg,var(--primary),var(--primary-2));"><i class="fa-solid fa-phone text-xs"></i><span data-i18n="navCta">Qo'ng'iroq qilish</span></a>
+    <button id="menuBtn" class="xl:hidden text-2xl" style="color:var(--primary)"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[60] p-6">
+  <div class="flex justify-between items-center mb-8">
+    <span class="font-bold text-lg" style="color:var(--primary)" data-i18n="mobileMenuLabel">Menyu</span>
+    <button id="closeMenu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <ul class="flex flex-col gap-4">
+    <li><a href="index.html" class="block py-2 font-semibold border-b" data-i18n="navHome">Bosh sahifa</a></li>
+    <li><a href="maktab-hayoti.html" class="block py-2 font-semibold border-b" data-i18n="navMaktabHayoti">Maktab hayoti</a></li>
+    <li><a href="rahbariyat.html" class="block py-2 font-semibold border-b" data-i18n="navLeadership">Rahbariyat</a></li>
+    <li><a href="oqituvchilar.html" class="block py-2 font-semibold border-b" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+    <li><a href="iqtidorli-oquvchilar.html" class="block py-2 font-semibold border-b" data-i18n="navIqtidorli">Iqtidorli o'quvchilar</a></li>
+    <li><a href="loyiha-ishlari.html" class="block py-2 font-semibold border-b" data-i18n="navLoyiha">Loyiha ishlari</a></li>
+    <li><a href="sertifikatlar.html" class="block py-2 font-semibold border-b" data-i18n="navSertifikat">Sertifikatlar</a></li>
+    <li><a href="galereya.html" class="block py-2 font-semibold border-b" data-i18n="navGallery">Galereya</a></li>
+    <li><a href="ecoschool.html" class="block py-2 font-semibold border-b" data-i18n="navEco">Eco School</a></li>
+    <li><a href="memorandumlar.html" class="block py-2 font-semibold border-b" data-i18n="navMemorandum">Memorandumlar</a></li>
+    <li><a href="qabul.html" class="block py-2 font-semibold border-b active-page" data-i18n="navQabul">Qabul jarayonlari</a></li>
+    <li><a href="yangiliklar.html" class="block py-2 font-semibold border-b" data-i18n="navNews">E'lonlar</a></li>
+    <li><a href="aloqa.html" class="block py-2 font-semibold" data-i18n="navContact">Aloqa</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-blob hero-blob-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg style="width:16px;height:16px" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+      <span data-i18n="heroBadge">Ta'lim — kelajak kaliti</span>
+    </div>
+    <h1 data-i18n="qabu2026heroTitle">Bo'stonliq tumani&nbsp;<span class="grad-text">Ixtisoslashtirilgan maktabi</span></h1>
+    <p data-i18n="qabu2026heroSub">Bilim, tarbiya va zamonaviy ta'lim uyg'unligi — bizning farzandlarimiz uchun yorqin kelajak yaratish yo'lida har kuni mehnat qilamiz.</p>
+    <div class="hero-float-label">
+      <svg style="width:13px;height:13px" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Qabul <span>2027–2028</span> o'quv yili uchun ochiq
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSION INFO (2026-2027) -->
+<section class="admission" id="admission" style="background:var(--bg);padding:80px 0;">
+  <div class="section-inner" style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <!-- Header -->
+    <div class="section-head observe-me text-center" style="margin-bottom:56px;">
+      <div class="section-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.1);color:var(--emerald);padding:9px 20px;border-radius:999px;font-weight:700;font-size:.85rem;margin-bottom:20px;">
+        <i class="fa-solid fa-graduation-cap"></i> <span data-i18n="qb_admBadge">2026–2027-o'quv yili</span>
+      </div>
+      <h2 class="font-black text-slate-900" style="font-size:2.4rem;line-height:1.15;" data-i18n="qb_admTitle">Ixtisoslashtirilgan maktab va<br class="hidden md:block"> maktab-internatlarga <span style="color:var(--amber)">qabul</span></h2>
+      <p class="text-slate-600 mt-4 max-w-2xl mx-auto text-lg" data-i18n="qb_admSubtitle">Ixtisoslashtirilgan ta'lim muassasalari agentligi tomonidan o'tkazilgan qabul jarayoni bosqichlari va natijalari</p>
+    </div>
+
+    <!-- Row 1: Hujjat topshirish muddati -->
+    <div class="adm-row observe-me" style="background:linear-gradient(135deg,#ecfdf5,#f0fdfa);border:1px solid #d1fae5;">
+      <div class="adm-row-num" style="background:linear-gradient(135deg,#10b981,#059669);">1</div>
+      <div class="adm-row-icon" style="background:rgba(16,185,129,.14);color:var(--emerald)"><i class="fa-solid fa-calendar-days"></i></div>
+      <div class="adm-row-body">
+        <div class="adm-row-label" style="color:var(--emerald)" data-i18n="qb_row1Label">HUJJAT TOPSHIRISH MUDDATI</div>
+        <div class="flex flex-wrap items-center gap-x-10 gap-y-3 mt-2">
+          <div class="font-black text-slate-900" style="font-size:1.9rem;line-height:1.1;" data-i18n="qb_row1Date">1-IYUN – 20-IYUN 2026-YIL</div>
+          <div class="text-slate-600 text-sm max-w-sm"><span data-i18n="qb_row1Text">Hujjatlar onlayn tarzda qabul qilindi:</span><br>
+            <a href="https://my.gov.uz" target="_blank" class="font-semibold" style="color:var(--emerald)"><i class="fa-solid fa-globe mr-1"></i>my.gov.uz</a> &nbsp;•&nbsp;
+            <a href="https://ariza.piima.uz" target="_blank" class="font-semibold" style="color:var(--emerald)"><i class="fa-solid fa-globe mr-1"></i>ariza.piima.uz</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Qaysi sinflarga qabul -->
+    <div class="adm-row observe-me" style="background:linear-gradient(135deg,#eff6ff,#f5f3ff);border:1px solid #dbeafe;">
+      <div class="adm-row-num" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">2</div>
+      <div class="adm-row-icon" style="background:rgba(37,99,235,.12);color:#2563eb"><i class="fa-solid fa-layer-group"></i></div>
+      <div class="adm-row-body">
+        <div class="adm-row-label" style="color:#2563eb" data-i18n="qb_row2Label">QAYSI SINFLARGA QABUL?</div>
+        <div class="grid sm:grid-cols-2 gap-4 mt-3 max-w-2xl">
+          <div class="rounded-2xl bg-white/70 border border-blue-100 p-4 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-blue-600 bg-blue-50 text-lg"><i class="fa-solid fa-calculator"></i></div>
+            <div>
+              <div class="text-[11px] font-bold text-slate-500 tracking-wide" data-i18n="qb_row2Dir1">ANIQ FANLAR YO'NALISHI</div>
+              <div class="font-black text-slate-900 text-lg" data-i18n="qb_row2Grades1">5–10-SINFLAR</div>
+            </div>
+          </div>
+          <div class="rounded-2xl bg-white/70 border border-emerald-100 p-4 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 text-emerald-600 bg-emerald-50 text-lg"><i class="fa-solid fa-leaf"></i></div>
+            <div>
+              <div class="text-[11px] font-bold text-slate-500 tracking-wide" data-i18n="qb_row2Dir2">TABIIY FANLAR YO'NALISHI</div>
+              <div class="font-black text-slate-900 text-lg" data-i18n="qb_row2Grades2">7–10-SINFLAR</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-sm text-slate-600 mt-3 flex items-center gap-2"><i class="fa-solid fa-user-group text-blue-600"></i> <span data-i18n="qb_row2Note">Kirish imtihonlari bir bosqichda o'tkazildi.</span></div>
+      </div>
+    </div>
+
+    <!-- Row 3: Kirish imtihonlari -->
+    <div class="adm-row observe-me" style="background:linear-gradient(135deg,#f5f3ff,#fdf4ff);border:1px solid #ede9fe;">
+      <div class="adm-row-num" style="background:linear-gradient(135deg,#7c3aed,#6d28d9);">3</div>
+      <div class="adm-row-icon" style="background:rgba(124,58,237,.12);color:#7c3aed"><i class="fa-solid fa-calendar-check"></i></div>
+      <div class="adm-row-body">
+        <div class="adm-row-label" style="color:#7c3aed" data-i18n="qb_row3Label">KIRISH IMTIHONLARI</div>
+        <div class="flex flex-wrap items-center gap-x-10 gap-y-3 mt-2">
+          <div>
+            <div class="font-black text-slate-900" style="font-size:1.9rem;line-height:1.1;" data-i18n="qb_row3Date">7–9-IYUL 2026-YIL</div>
+            <div class="text-xs text-slate-500 mt-1" data-i18n="qb_row3Shift">3 smenada o'tkazildi</div>
+          </div>
+          <div class="rounded-2xl bg-white/70 border border-purple-100 p-4 text-sm text-slate-600 max-w-md flex items-start gap-3">
+            <i class="fa-regular fa-clock text-purple-600 mt-0.5"></i>
+            <span data-i18n="qb_row3Time">Test topshiriqlarini bajarish uchun <strong class="text-slate-900">105 daqiqa</strong> vaqt berildi. Javoblar varaqasini belgilash uchun alohida qo'shimcha vaqt berilmadi.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4: Kerakli hujjatlar -->
+    <div class="adm-row observe-me" style="background:linear-gradient(135deg,#eff6ff,#eef2ff);border:1px solid #dbeafe;">
+      <div class="adm-row-num" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">4</div>
+      <div class="adm-row-icon" style="background:rgba(37,99,235,.12);color:#2563eb"><i class="fa-solid fa-folder-open"></i></div>
+      <div class="adm-row-body">
+        <div class="adm-row-label" style="color:#2563eb" data-i18n="qb_row4Label">KERAKLI HUJJATLAR</div>
+        <div class="grid sm:grid-cols-2 gap-3 mt-3">
+          <div class="flex items-center gap-3 bg-white/70 border border-blue-100 rounded-xl px-4 py-3 text-sm text-slate-700"><i class="fa-solid fa-file-lines text-blue-600"></i> <span data-i18n="qb_doc1">Tug'ilganlik to'g'risidagi guvohnoma</span></div>
+          <div class="flex items-center gap-3 bg-white/70 border border-blue-100 rounded-xl px-4 py-3 text-sm text-slate-700"><i class="fa-solid fa-image text-blue-600"></i> <span data-i18n="qb_doc2">Oxirgi 2 oyda olingan fotosurat</span></div>
+          <div class="flex items-center gap-3 bg-white/70 border border-blue-100 rounded-xl px-4 py-3 text-sm text-slate-700"><i class="fa-solid fa-id-card text-blue-600"></i> <span data-i18n="qb_doc3">Ota-ona/vakilning pasport ma'lumotlari</span></div>
+          <div class="flex items-center gap-3 bg-white/70 border border-blue-100 rounded-xl px-4 py-3 text-sm text-slate-700"><i class="fa-solid fa-phone text-blue-600"></i> <span data-i18n="qb_doc4">Ota-ona/vakilning amaldagi telefon raqami</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5: Imtihon ruxsatnomasi -->
+    <div class="adm-row observe-me" style="background:linear-gradient(135deg,#fffbeb,#fff7ed);border:1px solid #fde68a;">
+      <div class="adm-row-num" style="background:linear-gradient(135deg,#f59e0b,#ea580c);">5</div>
+      <div class="adm-row-icon" style="background:rgba(245,158,11,.15);color:var(--amber-dark)"><i class="fa-solid fa-ticket"></i></div>
+      <div class="adm-row-body">
+        <div class="adm-row-label" style="color:var(--amber-dark)" data-i18n="qb_row5Label">IMTIHON RUXSATNOMASI</div>
+        <p class="text-slate-700 mt-2 max-w-2xl" data-i18n="qb_row5P1">Imtihon joyi va vaqti ko'rsatilgan ruxsatnoma talabgorning shaxsiy kabinetiga joylashtirildi.</p>
+        <p class="text-sm text-slate-500 mt-1 flex items-center gap-2"><i class="fa-solid fa-comment-sms text-amber-600"></i> <span data-i18n="qb_row5P2">Bu haqda arizada ko'rsatilgan telefon raqamiga SMS yuborildi.</span></p>
+      </div>
+    </div>
+
+    <!-- Row 6: Qabul jarayoni bosqichlari -->
+    <div class="adm-row observe-me flex-col md:flex-row" style="background:linear-gradient(135deg,#eff6ff,#ecfdf5);border:1px solid #dbeafe;">
+      <div class="flex items-center gap-4 md:gap-0 md:flex-col shrink-0">
+        <div class="adm-row-num" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">6</div>
+      </div>
+      <div class="adm-row-icon md:mt-0" style="background:rgba(37,99,235,.12);color:#2563eb"><i class="fa-solid fa-route"></i></div>
+      <div class="adm-row-body w-full">
+        <div class="adm-row-label" style="color:#2563eb" data-i18n="qb_row6Label">QABUL JARAYONI BOSQICHLARI</div>
+        <div class="flex items-center justify-between text-center mt-4 max-w-2xl overflow-x-auto pb-1">
+          <div class="flex-1 min-w-[70px]">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white mb-2 shadow-md" style="background:#10b981"><i class="fa-solid fa-laptop"></i></div>
+            <div class="text-xs font-bold text-slate-700" data-i18n="qb_step1">QABUL</div>
+            <div class="text-[10px] text-slate-400" data-i18n="qb_step1sub">1–20 iyun</div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs mx-1"></i>
+          <div class="flex-1 min-w-[70px]">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white mb-2 shadow-md" style="background:#2563eb"><i class="fa-solid fa-file-circle-check"></i></div>
+            <div class="text-xs font-bold text-slate-700" data-i18n="qb_step2">HUJJAT</div>
+            <div class="text-[10px] text-slate-400" data-i18n="qb_step2sub">Tekshirildi</div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs mx-1"></i>
+          <div class="flex-1 min-w-[70px]">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white mb-2 shadow-md" style="background:#7c3aed"><i class="fa-solid fa-pen"></i></div>
+            <div class="text-xs font-bold text-slate-700" data-i18n="qb_step3">IMTIHON</div>
+            <div class="text-[10px] text-slate-400" data-i18n="qb_step3sub">7–9 iyul</div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs mx-1"></i>
+          <div class="flex-1 min-w-[70px]">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white mb-2 shadow-md" style="background:#f59e0b"><i class="fa-solid fa-chart-column"></i></div>
+            <div class="text-xs font-bold text-slate-700" data-i18n="qb_step4">NATIJA</div>
+            <div class="text-[10px] text-slate-400" data-i18n="qb_step4sub">E'lon qilindi</div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-300 text-xs mx-1"></i>
+          <div class="flex-1 min-w-[70px]">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white mb-2 shadow-md" style="background:#10b981"><i class="fa-solid fa-school"></i></div>
+            <div class="text-xs font-bold text-slate-700" data-i18n="qb_step5">QABUL</div>
+            <div class="text-[10px] text-slate-400" data-i18n="qb_step5sub">Ro'yxat asosida</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATIJALAR -->
+    <div class="dark-banner observe-me" style="background:linear-gradient(135deg,var(--slate-900),var(--slate-800));border-radius:28px;padding:48px 40px;margin-top:32px;position:relative;overflow:hidden;">
+      <div style="position:absolute;width:280px;height:280px;background:rgba(16,185,129,.15);border-radius:50%;filter:blur(60px);top:-100px;right:-60px;"></div>
+      <h3 class="text-white font-black text-center relative" style="font-size:1.6rem;" data-i18n="qb_resultsTitle">2026–2027-o'quv yilidagi qabul natijalari</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto text-center mt-10 mb-6 relative">
+        <div class="rounded-2xl py-6" style="background:rgba(255,255,255,.04);">
+          <div class="text-emerald-400 font-black" style="font-size:2.6rem;">21 567</div>
+          <div class="text-slate-400 text-sm mt-2" data-i18n="qb_stat1">nafar talabgor<br>ro'yxatdan o'tdi</div>
+        </div>
+        <div class="rounded-2xl py-6" style="background:rgba(255,255,255,.04);">
+          <div class="text-blue-400 font-black" style="font-size:2.6rem;">13 325</div>
+          <div class="text-slate-400 text-sm mt-2" data-i18n="qb_stat2">nafar talabgor<br>imtihonda ishtirok etdi</div>
+        </div>
+        <div class="rounded-2xl py-6" style="background:rgba(255,255,255,.04);">
+          <div class="text-purple-400 font-black" style="font-size:2.6rem;">4 913</div>
+          <div class="text-slate-400 text-sm mt-2" data-i18n="qb_stat3">nafar o'quvchi<br>qabul qilindi</div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-slate-500 relative"><i class="fa-solid fa-star text-amber-400"></i> <span data-i18n="qb_statsNote">Ko'rsatkichlar barcha ixtisoslashtirilgan maktab va maktab-internatlar bo'yicha</span></p>
+    </div>
+
+    <!-- CONTACT + MUHIM -->
+    <div class="grid md:grid-cols-3 gap-5 mt-8 observe-me">
+      <div class="bg-white rounded-2xl shadow border border-slate-100 p-6 flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style="background:rgba(37,99,235,.1);color:#2563eb"><i class="fa-solid fa-headset text-xl"></i></div>
+        <div>
+          <div class="text-[11px] font-bold text-slate-500" data-i18n="qb_contactLabel1">MUROJAAT UCHUN</div>
+          <a href="tel:+998712074048" class="font-black text-slate-900 text-lg">+998 71 207 4048</a>
+          <div class="text-[11px] text-slate-400 mt-0.5" data-i18n="qb_contactAgency">Ixtisoslashtirilgan ta'lim muassasalari agentligi</div>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl shadow border border-slate-100 p-6 flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style="background:rgba(16,185,129,.1);color:var(--emerald)"><i class="fa-solid fa-phone-volume text-xl"></i></div>
+        <div>
+          <div class="text-[11px] font-bold text-slate-500" data-i18n="qb_contactLabel2">QABUL BO'YICHA CALL-MARKAZ</div>
+          <a href="tel:1206" class="font-black text-slate-900 text-2xl">1206</a>
+        </div>
+      </div>
+      <div class="rounded-2xl p-6 flex items-start gap-3" style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25)">
+        <i class="fa-solid fa-circle-info mt-0.5" style="color:var(--amber-dark)"></i>
+        <div class="text-xs text-slate-600"><strong class="text-slate-900" data-i18n="qb_importantLabel">MUHIM!</strong> <span data-i18n="qb_important">Yuqoridagi ma'lumotlar aynan 2026–2027-o'quv yili qabuliga oid. Hozirgi 2027–2028 qabul sanalari bilan aralashtirmaslik kerak.</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IMTIHON JARAYONIDAN FOTO LAVHALAR -->
+<section class="py-20" style="background:var(--surface);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-10 observe-me">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-4" style="background:rgba(245,158,11,.12);color:var(--amber-dark)">
+        <i class="fa-solid fa-camera"></i> <span data-i18n="qb_photoBadge">Fotolavhalar</span>
+      </span>
+      <h2 class="text-3xl md:text-4xl font-black text-slate-900" data-i18n="qb_photoTitle">Imtihon jarayonidan foto lavhalar</h2>
+      <p class="text-slate-500 mt-3" data-i18n="qb_photoSub">Kirish imtihonlari va qabul jarayonining turli bosqichlaridan lavhalar</p>
+    </div>
+
+    <div class="pc-wrap observe-me">
+      <div class="pc-main">
+        <button class="pc-main-nav pc-main-prev" id="pcPrev-qb" aria-label="Oldingi"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="pcMain-qb" src="https://i.ibb.co/whH2YR4m/image.png" alt="Qabul jarayoni lavhasi">
+        <button class="pc-main-nav pc-main-next" id="pcNext-qb" aria-label="Keyingi"><i class="fa-solid fa-chevron-right"></i></button>
+        <span class="pc-counter" id="pcCounter-qb">1 / 23</span>
+      </div>
+      <div class="pc-thumbs-wrap">
+        <button class="pc-thumb-nav" id="pcThumbPrev-qb" aria-label="Oldingi"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="pc-thumbs" id="pcThumbs-qb"></div>
+        <button class="pc-thumb-nav" id="pcThumbNext-qb" aria-label="Keyingi"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <script>
+      initPhotoCarousel('qb', [
+        'https://i.ibb.co/whH2YR4m/image.png','https://i.ibb.co/mrjv12Dt/image.png','https://i.ibb.co/k6z1vDPd/image.png',
+        'https://i.ibb.co/FkJzv9Ty/image.png','https://i.ibb.co/63kRV4C/image.png','https://i.ibb.co/S4qtQ3n1/image.png',
+        'https://i.ibb.co/YBtv5DkJ/image.png','https://i.ibb.co/ynJ2T7bx/image.png','https://i.ibb.co/TD3dnMZn/image.png',
+        'https://i.ibb.co/wFnzp1GL/image.png','https://i.ibb.co/2YMGNHLR/image.png','https://i.ibb.co/mCQzyppf/image.png',
+        'https://i.ibb.co/BVw3RhrX/image.png','https://i.ibb.co/hRSb5H25/image.png','https://i.ibb.co/6c2LkwMK/image.png',
+        'https://i.ibb.co/VWKbdJdg/image.png','https://i.ibb.co/Y4przm1b/image.png','https://i.ibb.co/VpH1F67R/image.png',
+        'https://i.ibb.co/d4m6Tkp9/image.png','https://i.ibb.co/j9hpgcnY/image.png','https://i.ibb.co/x0LcSfh/image.png',
+        'https://i.ibb.co/G4NHHm0c/image.png','https://i.ibb.co/v4hMrdFp/image.png'
+      ]);
+    </script>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-blob-1"></div>
+  <div class="faq-blob-2"></div>
+  <div class="section-inner">
+    <div class="section-head observe-me">
+      <div class="section-badge">
+        <svg style="width:16px;height:16px" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Ko'p beriladigan savollar
+      </div>
+      <h2>Sizning <span style="color:var(--amber)">savollaringiz</span> — bizning javoblarimiz</h2>
+      <p>Ota-onalar va o'quvchilar ko'p so'raydigan savollarga to'liq javoblar.</p>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Maktabga qabul qilish jarayoni qanday amalga oshiriladi?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Maktabga qabul qilish har yili iyun–iyul oylarida amalga oshiriladi. Hujjatlar topshirish uchun passport va tug'ilganlik haqidagi guvohnoma talab etiladi. Batafsil ma'lumot uchun maktab ma'muriyatiga murojaat qiling.</div>
+      </div>
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Maktabda qanday qo'shimcha darslar mavjud?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Maktabimizda sport to'garaklari, musiqa, san'at, roboto-texnika, shaxmat va fan to'garaklari mavjud. Barcha to'garaklar bepul. Ro'yxatdan o'tish uchun sinf rahbariga murojaat qiling.</div>
+      </div>
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Maktab ish soatlari qanday?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Dars kunlari dushanba–juma (shanba kuni majburiy emas) soat 08:00 dan 17:00 gacha ishlaydi. Dam olish kuni — yakshanba.</div>
+      </div>
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Ota-onalar uchun uchrashuvlar qachon bo'ladi?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Ota-onalar yig'ilishi har chorak oxirida o'tkaziladi. Qo'shimcha uchrashuvlar zarurat bo'lganda tashkil etiladi. SMS orqali xabar beriladi.</div>
+      </div>
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Maktabda ovqatlanish xizmati bormi?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Ha, maktabda oshxona mavjud. Tushlik vaqti: 11:45 – 12:30.</div>
+      </div>
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Maktabda xavfsizlik choralari qanday?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Maktabda 24/7 qo'riqlash xizmati, kamera kuzatuvi va elektron kirish tizimi bilan ta'minlangan. Barcha mehmonlar ro'yxatdan o'tishi shart. Favqulodda vaziyatlar uchun tibbiy xona mavjud.</div>
+      </div>
+
+      <div class="faq-item observe-me">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>Transport xizmati mavjudmi?</span>
+          <div class="faq-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg></div>
+        </button>
+        <div class="faq-a">Hozircha maktab avtobusi yo'q, lekin yaqin orada transport xizmati tashkil etilishi rejalashtirilgan. Hozir ko'pchilik o'quvchilar piyoda yoki ota-onalar bilan kelishadi.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+</button>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<script>
+  // Particles in hero
+  const hp = document.getElementById('heroParticles');
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.className = 'particle';
+    d.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*3}s;--delay:${Math.random()*2}s`;
+    hp.appendChild(d);
+  }
+
+  // Sparkles in dark banner
+  const bs = document.getElementById('bannerSparkles');
+  for (let i = 0; i < 12; i++) {
+    const d = document.createElement('div');
+    d.className = 'sparkle-dot';
+    d.style.cssText = `left:${10+Math.random()*80}%;top:${10+Math.random()*80}%;--sd:${1.5+Math.random()}s;--sdl:${i*0.25}s`;
+    bs.appendChild(d);
+  }
+
+  // ── PHONE CARDS with typewriter ──
+  const phones = [
+    { raw: '+998994056412', display: '+998 99 405 64 12' },
+    { raw: '+998935668780', display: '+998 93 566 87 80' },
+    { raw: '+998990911518', display: '+998 99 091 15 18' },
+  ];
+  const phoneSVG = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>`;
+  const callSVG = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+  const grid = document.getElementById('phonesGrid');
+
+  phones.forEach(({ raw, display }, idx) => {
+    const a = document.createElement('a');
+    a.href = `tel:${raw}`;
+    a.className = 'phone-card';
+    a.style.animationDelay = `${idx * 0.1}s`;
+    a.innerHTML = `
+      <span class="call-chip">Qo'ng'iroq</span>
+      <div style="position:relative">
+        <div class="phone-pulse"></div>
+        <div class="phone-icon">${phoneSVG}</div>
+      </div>
+      <div class="phone-text">
+        <span class="phone-num" data-full="${display}"></span>
+        <span class="phone-hint">${callSVG} Bosing — avtomatik teriladi</span>
+      </div>`;
+    grid.appendChild(a);
+
+    // Typewriter on load (staggered)
+    const numEl = a.querySelector('.phone-num');
+    const full = display;
+    let i = 0;
+    const type = () => {
+      if (i <= full.length) { numEl.textContent = full.slice(0, i++); setTimeout(type, 38); }
+    };
+    setTimeout(type, 600 + idx * 350);
+
+    // Re-typewriter on hover
+    a.addEventListener('mouseenter', () => {
+      numEl.textContent = '';
+      let j = 0;
+      const retype = () => { if (j <= full.length) { numEl.textContent = full.slice(0, j++); setTimeout(retype, 30); } };
+      retype();
+    });
+  });
+
+  // Scroll observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.observe-me').forEach(el => observer.observe(el));
+
+  // Back to top
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => { bt.classList.toggle('show', window.scrollY > 500); }, { passive: true });
+
+  // Mobile menu (hamburger)
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenuBtn = document.getElementById('closeMenu');
+  const mobileMenuEl = document.getElementById('mobileMenu');
+  if (menuBtn && closeMenuBtn && mobileMenuEl) {
+    menuBtn.addEventListener('click', () => mobileMenuEl.classList.add('open'));
+    closeMenuBtn.addEventListener('click', () => mobileMenuEl.classList.remove('open'));
+    document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => mobileMenuEl.classList.remove('open')));
+  }
+
+  // ── NAVBAR SCROLL ──
+  const navbar = document.querySelector('.navbar');
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    // Scroll progress
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+  }, { passive: true });
+
+  // ── FAQ TOGGLE ──
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function animateValue(el, start, end, duration) {
+    let startTime = null;
+    const step = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      el.textContent = Math.floor(progress * (end - start) + start);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+</script>
+
+<!-- FOOTER -->
+<footer class="text-white pt-16 pb-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.ibb.co/mVQz8Qh9/logo.jpg" alt="logo" class="w-10 h-10" onerror="this.style.display='none'">
+          <div class="font-extrabold text-lg" data-i18n="footerLogo">Bo'stonliq IM</div>
+        </div>
+        <p class="text-blue-100 text-sm leading-relaxed" data-i18n="footerAbout">Bo'stonliq tumani Ixtisoslashtirilgan maktabi — bilim va tarbiya makoni.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerLinks">Tezkor havolalar</h4>
+        <ul class="space-y-2 text-sm text-blue-100">
+          <li><a href="index.html" class="hover:text-yellow-400" data-i18n="navHome">Bosh sahifa</a></li>
+          <li><a href="maktab-hayoti.html" class="hover:text-yellow-400"><i class="fa-solid fa-book-open mr-1"></i>Maktab hayoti</a></li>
+          <li><a href="rahbariyat.html" class="hover:text-yellow-400" data-i18n="navLeadership">Rahbariyat</a></li>
+          <li><a href="oqituvchilar.html" class="hover:text-yellow-400" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+          <li><a href="iqtidorli-oquvchilar.html" class="hover:text-yellow-400"><i class="fa-solid fa-medal mr-1"></i>Iqtidorli o'quvchilar</a></li>
+          <li><a href="loyiha-ishlari.html" class="hover:text-yellow-400"><i class="fa-solid fa-diagram-project mr-1"></i>Loyiha ishlari</a></li>
+          <li><a href="sertifikatlar.html" class="hover:text-yellow-400" data-i18n="navSertifikat">Sertifikatlar</a></li>
+          <li><a href="galereya.html" class="hover:text-yellow-400" data-i18n="navGallery">Galereya</a></li>
+          <li><a href="qabul.html" class="hover:text-yellow-400" data-i18n="navQabul">Qabul jarayonlari</a></li>
+          <li><a href="yangiliklar.html" class="hover:text-yellow-400" data-i18n="navNews">E'lonlar</a></li>
+  </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerContact">Aloqa</h4>
+        <ul class="space-y-2 text-sm text-blue-100">
+          <li><i class="fa-solid fa-phone mr-2"></i>+998 97 784 85 22</li>
+          <li><i class="fa-solid fa-phone mr-2"></i>+998 97 363 41 53</li>
+          <li class="break-all"><i class="fa-solid fa-envelope mr-2"></i>sardorbekramatjonov@gmail.com</li>
+          <li class="break-all"><i class="fa-solid fa-envelope mr-2"></i>sardorbekramatjonov@bustanlikim.org</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerSocial">Ijtimoiy tarmoqlar</h4>
+        <div class="flex gap-3">
+          <a href="https://t.me/Bustanlikspecializedschool" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-yellow-400 hover:text-slate-900 text-white flex items-center justify-center transition"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-center text-sm text-blue-100">
+      <span data-i18n="footerCopy">© 2026 Bo'stonliq tumani Ixtisoslashtirilgan maktabi. Barcha huquqlar himoyalangan.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const I18N={uz:{topAddress:"Toshkent viloyati, Bo'stonliq tumani",topHours:"Dush-Shan: 08:00 - 17:00",navHome:"Bosh sahifa",navLeadership:"Rahbariyat",navTeachers:"Pedagogik jamoa",navNews:"E'lonlar",navGallery:"Galereya",navContact:"Aloqa",navCta:"Qo'ng'iroq qilish",navQabul:"Qabul jarayonlari",navSertifikat:"Sertifikatlar",
+      heroBadge:"Ta'lim — kelajak kaliti",
+      qabu2026badge:"Qabul 2027–2028",
+      qabu2026heading:"Yangi o'quv yili uchun qabul e'lon qilamiz!",
+      qabu2026subheading:"Bo'stonliq tumani ixtisoslashtirilgan maktabi 2027-2028 o'quv yili uchun iqtidorli o'quvchilarni qabul qiladi.",
+      qabu2026heroSub:"Bilim, tarbiya va zamonaviy ta'lim uyg'unligi — bizning farzandlarimiz uchun yorqin kelajak yaratish yo'lida har kuni mehnat qilamiz.",
+      navMaktabHayoti:"Maktab hayoti",navIqtidorli:"Iqtidorli o'quvchilar",navLoyiha:"Loyiha ishlari",navEco:"Eco School",navMemorandum:"Memorandumlar",logoLine1:"Bo'stonliq tumani",logoLine2:"Ixtisoslashtirilgan maktabi",footerLogo:"Bo'stonliq IM",navMore:"Ko'proq",mobileMenuLabel:"Menyu",qabu2026title:"Qabul 2027",qb_admBadge:"2026–2027-o'quv yili",qb_admTitle:"Ixtisoslashtirilgan maktab va<br class=\"hidden md:block\"> maktab-internatlarga <span style=\"color:var(--amber)\">qabul</span>",qb_admSubtitle:"Ixtisoslashtirilgan ta'lim muassasalari agentligi tomonidan o'tkazilgan qabul jarayoni bosqichlari va natijalari",qb_row1Label:"HUJJAT TOPSHIRISH MUDDATI",qb_row1Date:"1-IYUN – 20-IYUN 2026-YIL",qb_row1Text:"Hujjatlar onlayn tarzda qabul qilindi:",qb_row2Label:"QAYSI SINFLARGA QABUL?",qb_row2Dir1:"ANIQ FANLAR YO'NALISHI",qb_row2Grades1:"5–10-SINFLAR",qb_row2Dir2:"TABIIY FANLAR YO'NALISHI",qb_row2Grades2:"7–10-SINFLAR",qb_row2Note:"Kirish imtihonlari bir bosqichda o'tkazildi.",qb_row3Label:"KIRISH IMTIHONLARI",qb_row3Date:"7–9-IYUL 2026-YIL",qb_row3Shift:"3 smenada o'tkazildi",qb_row3Time:"Test topshiriqlarini bajarish uchun <strong class=\"text-slate-900\">105 daqiqa</strong> vaqt berildi. Javoblar varaqasini belgilash uchun alohida qo'shimcha vaqt berilmadi.",qb_row4Label:"KERAKLI HUJJATLAR",qb_doc1:"Tug'ilganlik to'g'risidagi guvohnoma",qb_doc2:"Oxirgi 2 oyda olingan fotosurat",qb_doc3:"Ota-ona/vakilning pasport ma'lumotlari",qb_doc4:"Ota-ona/vakilning amaldagi telefon raqami",qb_row5Label:"IMTIHON RUXSATNOMASI",qb_row5P1:"Imtihon joyi va vaqti ko'rsatilgan ruxsatnoma talabgorning shaxsiy kabinetiga joylashtirildi.",qb_row5P2:"Bu haqda arizada ko'rsatilgan telefon raqamiga SMS yuborildi.",qb_row6Label:"QABUL JARAYONI BOSQICHLARI",qb_step1:"QABUL",qb_step1sub:"1–20 iyun",qb_step2:"HUJJAT",qb_step2sub:"Tekshirildi",qb_step3:"IMTIHON",qb_step3sub:"7–9 iyul",qb_step4:"NATIJA",qb_step4sub:"E'lon qilindi",qb_step5:"QABUL",qb_step5sub:"Ro'yxat asosida",qb_resultsTitle:"2026–2027-o'quv yilidagi qabul natijalari",qb_stat1:"nafar talabgor<br>ro'yxatdan o'tdi",qb_stat2:"nafar talabgor<br>imtihonda ishtirok etdi",qb_stat3:"nafar o'quvchi<br>qabul qilindi",qb_statsNote:"Ko'rsatkichlar barcha ixtisoslashtirilgan maktab va maktab-internatlar bo'yicha",qb_contactLabel1:"MUROJAAT UCHUN",qb_contactAgency:"Ixtisoslashtirilgan ta'lim muassasalari agentligi",qb_contactLabel2:"QABUL BO'YICHA CALL-MARKAZ",qb_importantLabel:"MUHIM!",qb_important:"Yuqoridagi ma'lumotlar aynan 2026–2027-o'quv yili qabuliga oid. Hozirgi 2027–2028 qabul sanalari bilan aralashtirmaslik kerak.",qb_photoBadge:"Fotolavhalar",qb_photoTitle:"Imtihon jarayonidan foto lavhalar",qb_photoSub:"Kirish imtihonlari va qabul jarayonining turli bosqichlaridan lavhalar"},ru:{topAddress:"Ташкентская область",topHours:"Пн-Сб: 08:00 - 17:00",navHome:"Главная",navLeadership:"Руководство",navTeachers:"Педагогический коллектив",navNews:"Объявления",navGallery:"Галерея",navContact:"Контакты",navCta:"Позвонить",navQabul:"Приёмный процесс",navSertifikat:"Сертификаты",
+      heroBadge:"Образование — ключ к будущему",
+      qabu2026badge:"Приём 2027–2028",
+      qabu2026heading:"Объявляем приём на новый учебный год!",
+      qabu2026subheading:"Специализированная школа Бустонлыкского района принимает талантливых учеников на 2027-2028 учебный год.",
+      qabu2026heroSub:"Гармония знаний, воспитания и современного образования — каждый день мы трудимся ради светлого будущего наших детей.",
+      navMaktabHayoti:"Школьная жизнь",navIqtidorli:"Одарённые учащиеся",navLoyiha:"Проектные работы",navEco:"Eco School",navMemorandum:"Меморандумы",logoLine1:"Бустонлыкский район",logoLine2:"Специализированная школа",footerLogo:"Бустонлыкская СШ",navMore:"Ещё",mobileMenuLabel:"Меню",qabu2026title:"Приём 2027",qb_admBadge:"2026–2027 учебный год",qb_admTitle:"Приём в специализированные школы и<br class=\"hidden md:block\"> школы-интернаты <span style=\"color:var(--amber)\">2026–2027</span>",qb_admSubtitle:"Этапы и результаты приёмного процесса, проведённого Агентством специализированных образовательных учреждений",qb_row1Label:"СРОК ПОДАЧИ ДОКУМЕНТОВ",qb_row1Date:"1 ИЮНЯ – 20 ИЮНЯ 2026 г.",qb_row1Text:"Документы принимались онлайн:",qb_row2Label:"В КАКИЕ КЛАССЫ ПРИЁМ?",qb_row2Dir1:"НАПРАВЛЕНИЕ ТОЧНЫХ НАУК",qb_row2Grades1:"5–10 КЛАССЫ",qb_row2Dir2:"НАПРАВЛЕНИЕ ЕСТЕСТВЕННЫХ НАУК",qb_row2Grades2:"7–10 КЛАССЫ",qb_row2Note:"Вступительные экзамены проводились в один этап.",qb_row3Label:"ВСТУПИТЕЛЬНЫЕ ЭКЗАМЕНЫ",qb_row3Date:"7–9 ИЮЛЯ 2026 г.",qb_row3Shift:"Проводились в 3 смены",qb_row3Time:"На выполнение тестовых заданий отводилось <strong class=\"text-slate-900\">105 минут</strong>. Дополнительное время для заполнения бланка ответов не предоставлялось.",qb_row4Label:"НЕОБХОДИМЫЕ ДОКУМЕНТЫ",qb_doc1:"Свидетельство о рождении",qb_doc2:"Фотография, сделанная за последние 2 месяца",qb_doc3:"Паспортные данные родителя/представителя",qb_doc4:"Действующий номер телефона родителя/представителя",qb_row5Label:"ЭКЗАМЕНАЦИОННЫЙ ПРОПУСК",qb_row5P1:"Пропуск с указанием места и времени экзамена размещался в личном кабинете абитуриента.",qb_row5P2:"Об этом отправлялось SMS-уведомление на номер телефона, указанный в заявке.",qb_row6Label:"ЭТАПЫ ПРИЁМНОГО ПРОЦЕССА",qb_step1:"ПРИЁМ",qb_step1sub:"1–20 июня",qb_step2:"ДОКУМЕНТ",qb_step2sub:"Проверено",qb_step3:"ЭКЗАМЕН",qb_step3sub:"7–9 июля",qb_step4:"РЕЗУЛЬТАТ",qb_step4sub:"Объявлено",qb_step5:"ЗАЧИСЛЕНИЕ",qb_step5sub:"По списку",qb_resultsTitle:"Результаты приёма на 2026–2027 учебный год",qb_stat1:"абитуриентов<br>зарегистрировались",qb_stat2:"абитуриентов<br>приняли участие в экзамене",qb_stat3:"учащихся<br>были зачислены",qb_statsNote:"Показатели по всем специализированным школам и школам-интернатам",qb_contactLabel1:"ДЛЯ ОБРАЩЕНИЙ",qb_contactAgency:"Агентство специализированных образовательных учреждений",qb_contactLabel2:"КОЛЛ-ЦЕНТР ПО ПРИЁМУ",qb_importantLabel:"ВАЖНО!",qb_important:"Указанная выше информация относится именно к приёму 2026–2027 учебного года. Не следует путать её с текущими датами приёма 2027–2028 годов.",qb_photoBadge:"Фотографии",qb_photoTitle:"Фотографии с экзаменационного процесса",qb_photoSub:"Кадры с различных этапов вступительных экзаменов и приёмного процесса"},en:{topAddress:"Tashkent region, Bostonliq district",topHours:"Mon-Sat: 08:00 - 17:00",navHome:"Home",navLeadership:"Leadership",navTeachers:"Pedagogical Team",navNews:"Announcements",navGallery:"Gallery",navContact:"Contact",navCta:"Call us",navQabul:"Admission Process",navSertifikat:"Certificates",
+      heroBadge:"Education — the key to the future",
+      qabu2026badge:"Admission 2027–2028",
+      qabu2026heading:"We announce admission for the new academic year!",
+      qabu2026subheading:"Bostonliq district Specialized School accepts talented students for the 2027-2028 academic year.",
+      qabu2026heroSub:"Harmony of knowledge, upbringing and modern education — every day we work to create a bright future for our children.",
+      navMaktabHayoti:"School Life",navIqtidorli:"Talented Students",navLoyiha:"Project Work",navEco:"Eco School",navMemorandum:"Memorandums",logoLine1:"Bostonliq District",logoLine2:"Specialized School",footerLogo:"Bostonliq SS",navMore:"More",mobileMenuLabel:"Menu",qabu2026title:"Admission 2027",qb_admBadge:"2026–2027 academic year",qb_admTitle:"Admission to specialized schools and<br class=\"hidden md:block\"> boarding schools <span style=\"color:var(--amber)\">2026–2027</span>",qb_admSubtitle:"Stages and results of the admission process conducted by the Agency for Specialized Educational Institutions",qb_row1Label:"DOCUMENT SUBMISSION PERIOD",qb_row1Date:"JUNE 1 – JUNE 20, 2026",qb_row1Text:"Documents were accepted online:",qb_row2Label:"WHICH GRADES ARE ADMITTED?",qb_row2Dir1:"EXACT SCIENCES TRACK",qb_row2Grades1:"GRADES 5–10",qb_row2Dir2:"NATURAL SCIENCES TRACK",qb_row2Grades2:"GRADES 7–10",qb_row2Note:"Entrance exams were held in a single stage.",qb_row3Label:"ENTRANCE EXAMS",qb_row3Date:"JULY 7–9, 2026",qb_row3Shift:"Held in 3 shifts",qb_row3Time:"Test takers were given <strong class=\"text-slate-900\">105 minutes</strong> to complete the tasks. No extra time was given for marking the answer sheet.",qb_row4Label:"REQUIRED DOCUMENTS",qb_doc1:"Birth certificate",qb_doc2:"A photo taken within the last 2 months",qb_doc3:"Parent's/guardian's passport details",qb_doc4:"Parent's/guardian's active phone number",qb_row5Label:"EXAM ADMISSION PASS",qb_row5P1:"The pass indicating the exam venue and time was posted to the applicant's personal account.",qb_row5P2:"An SMS notification was sent to the phone number provided in the application.",qb_row6Label:"ADMISSION PROCESS STAGES",qb_step1:"SUBMISSION",qb_step1sub:"Jun 1–20",qb_step2:"DOCUMENTS",qb_step2sub:"Verified",qb_step3:"EXAM",qb_step3sub:"Jul 7–9",qb_step4:"RESULTS",qb_step4sub:"Announced",qb_step5:"ENROLLMENT",qb_step5sub:"By list",qb_resultsTitle:"2026–2027 Academic Year Admission Results",qb_stat1:"applicants<br>registered",qb_stat2:"applicants<br>took the exam",qb_stat3:"students<br>were enrolled",qb_statsNote:"Figures cover all specialized schools and boarding schools",qb_contactLabel1:"FOR INQUIRIES",qb_contactAgency:"Agency for Specialized Educational Institutions",qb_contactLabel2:"ADMISSION CALL CENTER",qb_importantLabel:"IMPORTANT!",qb_important:"The information above refers specifically to the 2026–2027 academic year admission. Please do not confuse it with the current 2027–2028 admission dates.",qb_photoBadge:"Photos",qb_photoTitle:"Photos from the exam process",qb_photoSub:"Glimpses from various stages of entrance exams and the admission process"}};
+  function applyLang(lang){const dict=I18N[lang]||I18N.uz;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(dict[k]!==undefined){el.innerHTML=dict[k];}});document.documentElement.setAttribute('lang',lang);document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));localStorage.setItem('lang',lang);}
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>applyLang(btn.dataset.lang)));
+  applyLang(localStorage.getItem('lang')||'uz');
+  const themeBtn=document.getElementById('themeToggle');
+  const themeIcon=document.getElementById('themeIcon');
+  function applyTheme(t){document.body.classList.toggle('dark',t==='dark');document.documentElement.classList.toggle('dark',t==='dark');if(themeIcon)themeIcon.className=t==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';localStorage.setItem('theme',t);}
+  themeBtn.addEventListener('click',()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');});
+  applyTheme(localStorage.getItem('theme')||'light');
+
+  const back=document.getElementById('backTop');
+  if(back){window.addEventListener('scroll',()=>{back.classList.toggle('show',window.scrollY>500);});back.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));}
+</script>
+
+<script>
+  // VISIBILITY FALLBACK: ensure all content visible even if IntersectionObserver fails
+  (function(){
+    function forceVisible(){
+      var selectors = ['.reveal','.manzil-item','.map-wrapper','footer .grid > div',
+        '.team-card','.leader-card','.stagger-item','.stat-item','.dir-card',
+        '.contact-card','.anim-in','.hero-stat','.about-img-wrap'];
+      selectors.forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          el.style.opacity='1';
+          el.style.transform='none';
+          el.style.visibility='visible';
+          el.classList.add('in','anim-in','visible');
+        });
+      });
+    }
+    // Run immediately and after short delay
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded', forceVisible);
+    } else { forceVisible(); }
+    setTimeout(forceVisible, 100);
+    setTimeout(forceVisible, 500);
+  })();
+</script>
+
+<script>
+  // "Ko'proq" dropdown toggle
+  (function(){
+    const btn = document.getElementById('moreDropdownBtn');
+    const menu = document.getElementById('moreDropdownMenu');
+    const chevron = document.getElementById('moreChevron');
+    if(!btn || !menu) return;
+    function openMenu(){
+      menu.style.opacity = '1'; menu.style.visibility = 'visible'; menu.style.transform = 'translateY(0)';
+      btn.setAttribute('aria-expanded','true');
+      if(chevron) chevron.style.transform = 'rotate(180deg)';
+    }
+    function closeMenu(){
+      menu.style.opacity = '0'; menu.style.visibility = 'hidden'; menu.style.transform = 'translateY(4px)';
+      btn.setAttribute('aria-expanded','false');
+      if(chevron) chevron.style.transform = 'rotate(0deg)';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+    document.addEventListener('click', (e) => {
+      if(!menu.contains(e.target) && e.target !== btn) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+<script>
+  // Safety: force-close mobile menu when viewport crosses desktop breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1280) {
+      const mm = document.getElementById('mobileMenu');
+      if (mm) mm.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+<script>
+  // ===== Hero photo carousel engine (big image + thumbnail strip) =====
+  window.__pcInstances = window.__pcInstances || {};
+  window.__pcCaptions = window.__pcCaptions || {};
+  function initPhotoCarousel(id, images, captions){
+    const mainImg = document.getElementById('pcMain-'+id);
+    const thumbsWrap = document.getElementById('pcThumbs-'+id);
+    const counter = document.getElementById('pcCounter-'+id);
+    const captionEl = document.getElementById('pcCaption-'+id);
+    const prevBtn = document.getElementById('pcPrev-'+id);
+    const nextBtn = document.getElementById('pcNext-'+id);
+    const thumbPrevBtn = document.getElementById('pcThumbPrev-'+id);
+    const thumbNextBtn = document.getElementById('pcThumbNext-'+id);
+    if(!mainImg) return;
+    let idx = 0;
+    window.__pcInstances[id] = images;
+    window.__pcCaptions[id] = captions || null;
+    thumbsWrap.innerHTML = images.map((src,i) => `<img class="pc-thumb${i===0?' active':''}" src="${src}" data-idx="${i}" alt="" loading="lazy">`).join('');
+    function show(i){
+      idx = (i + images.length) % images.length;
+      mainImg.style.opacity = '0';
+      setTimeout(() => { mainImg.src = images[idx]; mainImg.style.opacity = '1'; }, 120);
+      if(counter) counter.textContent = (idx+1) + ' / ' + images.length;
+      if(captionEl && captions) captionEl.textContent = captions[idx] || '';
+      thumbsWrap.querySelectorAll('.pc-thumb').forEach((t,i2) => t.classList.toggle('active', i2===idx));
+      const activeThumb = thumbsWrap.children[idx];
+      if(activeThumb) activeThumb.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    }
+    if(prevBtn) prevBtn.addEventListener('click', () => show(idx-1));
+    if(nextBtn) nextBtn.addEventListener('click', () => show(idx+1));
+    thumbsWrap.addEventListener('click', (e) => {
+      const t = e.target.closest('.pc-thumb');
+      if(t) show(parseInt(t.dataset.idx, 10));
+    });
+    if(thumbPrevBtn) thumbPrevBtn.addEventListener('click', () => thumbsWrap.scrollBy({left:-220, behavior:'smooth'}));
+    if(thumbNextBtn) thumbNextBtn.addEventListener('click', () => thumbsWrap.scrollBy({left:220, behavior:'smooth'}));
+    mainImg.addEventListener('click', () => openPcLightbox(id, idx));
+    show(0);
+  }
+  (function setupPcLightbox(){
+    if(document.getElementById('pcLightbox')) return;
+    const lb = document.createElement('div');
+    lb.id = 'pcLightbox';
+    lb.setAttribute('role','dialog');
+    lb.innerHTML = `
+      <button class="pclb-close" id="pclbClose" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+      <button class="pc-main-nav" id="pclbPrev" style="left:1.5rem;background:rgba(255,255,255,.15);color:#fff;"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="pc-main-nav" id="pclbNext" style="right:1.5rem;background:rgba(255,255,255,.15);color:#fff;"><i class="fa-solid fa-chevron-right"></i></button>
+      <img id="pclbImg" src="" alt="">
+    `;
+    document.body.appendChild(lb);
+    document.getElementById('pclbClose').addEventListener('click', closePcLightbox);
+    lb.addEventListener('click', (e) => { if(e.target === lb) closePcLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closePcLightbox();
+      if(e.key === 'ArrowLeft') pcLbNav(-1);
+      if(e.key === 'ArrowRight') pcLbNav(1);
+    });
+    document.getElementById('pclbPrev').addEventListener('click', () => pcLbNav(-1));
+    document.getElementById('pclbNext').addEventListener('click', () => pcLbNav(1));
+  })();
+  window.__pcLbState = {id:null, idx:0};
+  function openPcLightbox(id, idx){
+    window.__pcLbState = {id, idx};
+    const images = window.__pcInstances[id];
+    document.getElementById('pclbImg').src = images[idx];
+    document.getElementById('pcLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function pcLbNav(dir){
+    const st = window.__pcLbState;
+    const images = window.__pcInstances[st.id];
+    st.idx = (st.idx + dir + images.length) % images.length;
+    document.getElementById('pclbImg').src = images[st.idx];
+  }
+  function closePcLightbox(){
+    document.getElementById('pcLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>

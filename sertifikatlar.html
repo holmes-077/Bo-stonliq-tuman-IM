@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikatlar - Maktab Statistikasi</title>
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<link rel="apple-touch-icon" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+  :root{--primary:#1e3a8a;--primary-2:#1e40af;--accent:#fbbf24;--accent-2:#f59e0b;--light:#f8fafc;--dark:#0f172a;--bg:#f8fafc;--surface:#ffffff;--surface-2:#f1f5f9;--text:#0f172a;--text-muted:#64748b;--border:#e2e8f0;}
+  html{overflow-x:hidden;}
+  body{overflow-x:hidden;}
+  body.dark{--primary:#3b82f6;--primary-2:#60a5fa;--bg:#0b1220;--surface:#111827;--surface-2:#1f2937;--text:#e5e7eb;--text-muted:#9ca3af;--border:#1f2937;}
+  body.dark .bg-white{background-color:var(--surface)!important;}
+  body.dark nav.bg-white{background-color:var(--surface)!important;border-bottom:1px solid var(--border);}
+  body.dark .nav-link{color:var(--text);}
+  .lang-btn{padding:2px 8px;border-radius:6px;font-weight:700;font-size:12px;color:#cbd5e1;transition:all .2s;cursor:pointer;border:none;background:transparent;outline:none;}
+  .lang-btn.active{background:var(--accent);color:#0f172a;}
+  .lang-btn:hover:not(.active){color:#fff;}
+  .theme-toggle{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);color:#fbbf24;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;border:1px solid rgba(255,255,255,.15);}
+  .theme-toggle:hover{background:rgba(251,191,36,.2);transform:rotate(15deg);}
+  .top-strip{background:linear-gradient(90deg,#0f172a 0%,#1e3a8a 100%);position:relative;z-index:60;}
+  footer{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);}
+  body.dark footer{background:linear-gradient(135deg,#0a0f1e 0%,#0f172a 100%);}
+  .nav-link{position:relative;font-weight:600;color:#0f172a;transition:all .3s;font-size:.85rem;white-space:nowrap;}
+  .nav-link::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:3px;background:var(--accent);transition:all .3s;transform:translateX(-50%);border-radius:3px;}
+  .nav-link:hover{color:var(--primary);}
+  .nav-link:hover::after,.nav-link.active-page::after{width:100%;}
+  .nav-link.active-page{color:var(--primary);}
+  .mobile-menu{transform:translateX(100%);transition:transform .4s;}
+  @media (min-width:1280px){.mobile-menu{display:none !important;}}
+  .mobile-menu.open{transform:translateX(0);}
+  #backTop{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(30,58,138,.35);cursor:pointer;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s,transform .3s,background .3s;z-index:100;border:none;}
+  #backTop.show{opacity:1;visibility:visible;}
+  #backTop:hover{background:var(--accent);transform:translateY(-4px);}
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Gradient Animation */
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Pulse Glow */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        /* Card Hover Effects */
+        .certificate-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Tab Animation */
+        .tab-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+            color: white;
+        }
+        
+        /* Grade Badge Animation */
+        .grade-badge {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grade-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255,255,255,0.3) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg) translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .grade-badge:hover::after {
+            transform: rotate(45deg) translateX(100%);
+        }
+        
+        .grade-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Chart Line Animation */
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        
+        .chart-line.animate {
+            animation: draw-line 2s ease forwards;
+        }
+        
+        @keyframes draw-line {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        /* Background Pattern */
+        .bg-pattern {
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Counter Animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Stagger Animation Classes */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* IELTS Band Colors */
+        .ielts-band {
+            transition: all 0.3s ease;
+        }
+        
+        .ielts-band:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ielts-band.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* SAT Card Animation */
+        .sat-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e1b4b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse-sat 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-sat {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+        }
+        
+        /* Particle Effect */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ===== YENGIL ANIMATSIYALAR ===== */
+
+        /* Ripple */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99,102,241,0.18);
+            transform: scale(0);
+            animation: ripple-anim 0.55s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+
+        /* Stat item hover glow */
+        .stat-item {
+            transition: box-shadow 0.25s, transform 0.25s;
+        }
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 0 2px #a855f7, 0 12px 30px rgba(168,85,247,0.15);
+        }
+
+        /* Ribbon */
+        .ribbon {
+            position: absolute;
+            top: 10px; right: -4px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px 0 0 4px;
+            letter-spacing: 0.05em;
+            box-shadow: -2px 2px 6px rgba(0,0,0,0.12);
+        }
+        .ribbon::before {
+            content: '';
+            position: absolute;
+            right: -4px; bottom: -4px;
+            border: 4px solid transparent;
+            border-left-color: #b45309;
+            border-top-color: #b45309;
+        }
+
+        #tab-xorijiy:not(.active) {
+            color: #475569;
+        }
+        .toast {
+            position: fixed;
+            bottom: 28px; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            padding: 11px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            box-shadow: 0 6px 24px rgba(99,102,241,0.35);
+            z-index: 300;
+            opacity: 0;
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s;
+            white-space: nowrap;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    
+  /* ===== DARK MODE FIXES: prevent invisible text ===== */
+  body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark h6{color:var(--text);}
+  body.dark p:not([class*="text-"]):not([style]){color:var(--text-muted);}
+  body.dark .text-slate-800,body.dark .text-slate-900{color:var(--text)!important;}
+  body.dark .text-gray-800,body.dark .text-gray-900{color:var(--text)!important;}
+  body.dark .text-black{color:var(--text)!important;}
+  body.dark .text-slate-600,body.dark .text-slate-700,body.dark .text-gray-600,body.dark .text-gray-700{color:var(--text-muted)!important;}
+  body.dark [style*="color:#0f172a"],[style*="color: #0f172a"]{color:var(--text)!important;}
+  body.dark [style*="color:var(--text)"]{color:var(--text)!important;}
+  body.dark .bg-white,[class*="bg-slate-50"],[class*="bg-slate-100"]{background-color:var(--surface);}
+  body.dark section{background:var(--bg);}
+  body.dark .bg-slate-50{background-color:var(--bg)!important;}
+  body.dark .bg-slate-100{background-color:var(--surface-2)!important;}
+  body.dark .contact-card h3,body.dark .dir-card h3{color:var(--text)!important;}
+  body.dark .contact-card p,body.dark .dir-card p{color:var(--text-muted)!important;}
+  body.dark .border-slate-100,body.dark .border-slate-200,body.dark .border-gray-100,body.dark .border-gray-200{border-color:var(--border)!important;}
+  body.dark input,body.dark textarea,body.dark select{background:var(--surface-2);color:var(--text);border-color:var(--border);}
+  body.dark .text-indigo-600,body.dark .text-purple-600,body.dark .text-pink-600{opacity:0.9;}
+  body.dark .bg-white\/80{background-color:rgba(17,24,39,0.8)!important;}
+  body.dark .bg-slate-100{background-color:var(--surface-2)!important;}
+  body.dark .tab-btn{background:var(--surface-2);color:var(--text);}
+  body.dark .tab-btn.active{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;}
+  body.dark [class*="text-slate-5"]{color:var(--text-muted)!important;}
+  body.dark [class*="text-slate-4"]{color:var(--text-muted)!important;}
+  /* Fix hardcoded color in style attribute */
+  body.dark .underline-title{color:#60a5fa;}
+  body.dark .section-title{color:var(--text)!important;}
+  /* Fix mobile menu in dark mode */
+  body.dark #mobileMenu{background:var(--surface);color:var(--text);}
+  body.dark #mobileMenu a{color:var(--text);}
+  body.dark #mobileMenu .border-b{border-color:var(--border);}
+
+  /* ===== Page Hero Animations (matching other pages) ===== */
+  .page-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#1e40af 100%);padding:5rem 1.5rem 4rem;text-align:center;color:#fff;position:relative;overflow:hidden;}
+  @keyframes heroBounce{0%{transform:scale(0) rotate(-10deg);opacity:0;}60%{transform:scale(1.15) rotate(3deg);}80%{transform:scale(.95);}100%{transform:scale(1) rotate(0);opacity:1;}}
+  @keyframes fadeInUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  @keyframes lineGrow{from{width:0;opacity:0;}to{width:4rem;opacity:1;}}
+  @keyframes blobFloat{from{transform:translate(0,0) scale(1);}to{transform:translate(30px,-30px) scale(1.1);}}
+  .hero-title{color:#fff;}
+  @keyframes shine{to{background-position:200% center;}}
+
+  /* ===== VISIBILITY OVERRIDE: ensure all content shows ===== */
+  .reveal, .reveal-d1, .reveal-d2 { opacity: 1 !important; transform: none !important; }
+  .manzil-item { opacity: 1 !important; transform: none !important; }
+  .map-wrapper { opacity: 1 !important; transform: none !important; }
+  footer .grid > div { opacity: 1 !important; transform: none !important; }
+  .team-card { opacity: 1 !important; transform: none !important; }
+  .leader-card { opacity: 1 !important; transform: none !important; }
+  .stagger-item { opacity: 1 !important; transform: none !important; }
+  .stat-item { opacity: 1 !important; transform: none !important; }
+  .dir-card { opacity: 1 !important; }
+  .contact-card { opacity: 1 !important; }
+  [class*="anim-"] { opacity: 1 !important; }
+
+  .dropdown-item:hover{background:var(--surface-2, #f1f5f9);}
+</style>
+</head>
+<body class="bg-slate-50 min-h-screen bg-pattern">
+
+    <div class="toast" id="toast">✅ <span id="toast-msg"></span></div>
+
+    <div class="top-strip text-white text-sm">
+  <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center flex-wrap gap-2">
+    <div class="hidden md:flex items-center gap-6">
+      <span><i class="fa-solid fa-location-dot text-yellow-400 mr-2"></i><span data-i18n="topAddress">Toshkent viloyati, Bo'stonliq tumani</span>
+      <span><i class="fa-solid fa-clock text-yellow-400 mr-2"></i><span data-i18n="topHours">Dush-Shan: 08:00 - 17:00</span>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <a href="tel:+998977848522" class="hidden sm:inline hover:text-yellow-400 transition"><i class="fa-solid fa-phone mr-1"></i> +998 97 784 85 22</a>
+      <div class="flex items-center gap-1 ml-2 pl-3 border-l border-white/20">
+        <button class="lang-btn active" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button id="themeToggle" class="theme-toggle" title="Mavzu"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+    </div>
+  </div>
+</div>
+<!-- NAVBAR -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="https://i.ibb.co/mVQz8Qh9/logo.jpg" alt="Logo" class="w-9 h-9 md:w-10 md:h-10 object-contain rounded-md" style="background:transparent" onerror="this.style.display='none'">
+      <div>
+        <div class="font-extrabold text-lg leading-tight" style="color:var(--primary)" data-i18n="logoLine1">Bo'stonliq tumani</div>
+        <div class="text-xs text-gray-500 font-medium" data-i18n="logoLine2">Ixtisoslashtirilgan maktabi</div>
+      </div>
+    </a>
+    <ul class="hidden xl:flex items-center gap-4 2xl:gap-6">
+      <li><a href="index.html" class="nav-link" data-i18n="navHome">Bosh sahifa</a></li>
+      <li><a href="rahbariyat.html" class="nav-link" data-i18n="navLeadership">Rahbariyat</a></li>
+      <li><a href="oqituvchilar.html" class="nav-link" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+      <li><a href="iqtidorli-oquvchilar.html" class="nav-link" data-i18n="navIqtidorli">Iqtidorli o'quvchilar</a></li>
+      <li><a href="qabul.html" class="nav-link" data-i18n="navQabul">Qabul jarayonlari</a></li>
+      <li><a href="yangiliklar.html" class="nav-link" data-i18n="navNews">E'lonlar</a></li>
+      <li><a href="aloqa.html" class="nav-link" data-i18n="navContact">Aloqa</a></li>
+      <li class="relative">
+        <button type="button" id="moreDropdownBtn" class="nav-link active-page flex items-center gap-1" aria-expanded="false">
+          <span data-i18n="navMore">Ko'proq</span> <i class="fa-solid fa-chevron-down text-[10px]" id="moreChevron" style="transition:transform .2s;"></i>
+        </button>
+        <div id="moreDropdownMenu" class="absolute left-0 mt-3 w-52 rounded-xl shadow-xl border py-2 z-50" style="background:var(--surface);border-color:var(--border);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .2s,visibility .2s,transform .2s;">
+        <a href="ecoschool.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navEco">Eco School</a>
+        <a href="maktab-hayoti.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navMaktabHayoti">Maktab hayoti</a>
+        <a href="loyiha-ishlari.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navLoyiha">Loyiha ishlari</a>
+        <a href="sertifikatlar.html" class="block px-4 py-2.5 text-sm font-bold dropdown-item" style="color:var(--primary);" data-i18n="navSertifikat">Sertifikatlar</a>
+        <a href="galereya.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navGallery">Galereya</a>
+        <a href="memorandumlar.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navMemorandum">Memorandumlar</a>
+        </div>
+      </li>
+  </ul>
+    <a href="tel:+998977848522" class="hidden 2xl:inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-semibold text-sm" style="background:linear-gradient(135deg,var(--primary),var(--primary-2));"><i class="fa-solid fa-phone text-xs"></i><span data-i18n="navCta">Qo'ng'iroq qilish</span></a>
+    <button id="menuBtn" class="xl:hidden text-2xl" style="color:var(--primary)"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[60] p-6">
+  <div class="flex justify-between items-center mb-8">
+    <span class="font-bold text-lg" style="color:var(--primary)" data-i18n="mobileMenuLabel">Menyu</span>
+    <button id="closeMenu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <ul class="flex flex-col gap-4">
+    <li><a href="index.html" class="block py-2 font-semibold border-b" data-i18n="navHome">Bosh sahifa</a></li>
+    <li><a href="maktab-hayoti.html" class="block py-2 font-semibold border-b" data-i18n="navMaktabHayoti">Maktab hayoti</a></li>
+    <li><a href="rahbariyat.html" class="block py-2 font-semibold border-b" data-i18n="navLeadership">Rahbariyat</a></li>
+    <li><a href="oqituvchilar.html" class="block py-2 font-semibold border-b" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+    <li><a href="iqtidorli-oquvchilar.html" class="block py-2 font-semibold border-b" data-i18n="navIqtidorli">Iqtidorli o'quvchilar</a></li>
+    <li><a href="loyiha-ishlari.html" class="block py-2 font-semibold border-b" data-i18n="navLoyiha">Loyiha ishlari</a></li>
+    <li><a href="sertifikatlar.html" class="block py-2 font-semibold border-b active-page" data-i18n="navSertifikat">Sertifikatlar</a></li>
+    <li><a href="galereya.html" class="block py-2 font-semibold border-b" data-i18n="navGallery">Galereya</a></li>
+    <li><a href="ecoschool.html" class="block py-2 font-semibold border-b" data-i18n="navEco">Eco School</a></li>
+    <li><a href="memorandumlar.html" class="block py-2 font-semibold border-b" data-i18n="navMemorandum">Memorandumlar</a></li>
+    <li><a href="qabul.html" class="block py-2 font-semibold border-b" data-i18n="navQabul">Qabul jarayonlari</a></li>
+    <li><a href="yangiliklar.html" class="block py-2 font-semibold border-b" data-i18n="navNews">E'lonlar</a></li>
+    <li><a href="aloqa.html" class="block py-2 font-semibold" data-i18n="navContact">Aloqa</a></li>
+  </ul>
+</div>
+
+<!-- Hero Section — matches page-hero style of all other pages -->
+<div class="page-hero" style="background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#1e40af 100%);padding:5rem 1.5rem 4rem;text-align:center;color:#fff;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(251,191,36,.12) 0%,transparent 60%);pointer-events:none;"></div>
+  <div class="anim-blob" style="position:absolute;width:300px;height:300px;background:#fbbf24;top:-80px;left:-60px;border-radius:50%;filter:blur(60px);opacity:.18;pointer-events:none;animation:blobFloat 8s ease-in-out infinite alternate;"></div>
+  <div class="anim-blob" style="position:absolute;width:260px;height:260px;background:#3b82f6;bottom:-60px;right:-40px;border-radius:50%;filter:blur(60px);opacity:.18;pointer-events:none;animation:blobFloat 11s ease-in-out infinite alternate-reverse;"></div>
+  <div class="relative" style="position:relative;z-index:10;">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:9999px;padding:.4rem 1.2rem;font-size:.85rem;color:rgba(255,255,255,.8);margin-bottom:1.5rem;">
+      <a href="index.html" style="color:#fbbf24;font-weight:600;" data-i18n="navHome">Bosh sahifa</a>
+      <i class="fa-solid fa-chevron-right" style="font-size:.7rem;opacity:.6;"></i>
+      <span data-i18n="navSertifikat">Sertifikatlar</span>
+    </div>
+    <div class="hero-anim-icon" style="width:5rem;height:5rem;border-radius:1rem;display:flex;align-items:center;justify-content:center;font-size:1.875rem;color:#fff;margin:0 auto 1rem;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);animation:heroBounce .8s .3s both cubic-bezier(.36,.07,.19,.97);">
+      <i class="fa-solid fa-certificate"></i>
+    </div>
+    <h1 class="hero-title text-4xl md:text-5xl font-black mb-3" style="animation:fadeInUp .7s .5s both ease;" data-i18n="sertTitle">Sertifikatlar</h1>
+    <p class="hero-subtitle" style="font-size:1.1rem;opacity:.85;max-width:36rem;margin:0 auto 1rem;animation:fadeInUp .7s .65s both ease;" data-i18n="sertSubtitle">Maktabimiz o'quvchilari tomonidan erishilgan yutuqlar va olingan sertifikatlar</p>
+    <div style="width:4rem;height:.25rem;background:#fbbf24;border-radius:2px;margin:0 auto 2.5rem;animation:lineGrow .6s .9s both ease;"></div>
+    <!-- Stats Bar -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;">
+      <div style="background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:1rem;padding:1rem 2rem;min-width:130px;">
+        <div class="text-3xl font-bold text-yellow-400 counter" id="total-counter" data-target="655">0</div>
+        <div style="font-size:.8rem;opacity:.75;" data-i18n="statTotal">Jami sertifikat</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:1rem;padding:1rem 2rem;min-width:130px;">
+        <div class="text-3xl font-bold text-yellow-400 counter" id="milliy-counter" data-target="476">0</div>
+        <div style="font-size:.8rem;opacity:.75;" data-i18n="statNational">Milliy sertifikat</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:1rem;padding:1rem 2rem;min-width:130px;">
+        <div class="text-3xl font-bold text-yellow-400 counter" id="xorijiy-counter" data-target="179">0</div>
+        <div style="font-size:.8rem;opacity:.75;" data-i18n="statForeign">Xorijiy sertifikat</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 pb-20">
+        
+        <!-- Tabs -->
+        <div class="flex justify-center mb-12">
+            <div class="bg-slate-100 p-1.5 rounded-2xl inline-flex gap-1.5">
+                <button onclick="switchTab('milliy')" id="tab-milliy" class="tab-btn active px-9 py-3.5 rounded-xl font-semibold text-sm flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    Milliy sertifikatlar
+                </button>
+                <button onclick="switchTab('xorijiy')" id="tab-xorijiy" class="tab-btn px-9 py-3.5 rounded-xl font-semibold text-sm text-slate-600 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Xorijiy sertifikatlar
+                </button>
+            </div>
+        </div>
+
+        <!-- Milliy Sertifikatlar Content -->
+        <div id="content-milliy" class="tab-content">
+            <!-- Asosiy fanlar -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </span>
+                    Asosiy fanlar
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Matematika</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-matematika">56</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Rus tili</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-rusTili">4</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Ona tili va adabiyot</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-onaTili">104</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Tarix</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-tarix">37</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Kimyo</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-kimyo">13</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Biologiya</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-biologiya">3</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Fizika</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-fizika">18</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">CEFR</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-cefr">239</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+
+                    <div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 stagger-item text-center">
+                        <div class="flex items-center justify-center gap-2 mb-3">
+                            <h3 class="text-lg font-bold text-slate-900">Arab tili</h3>                        </div>
+                        <div class="text-4xl font-black text-emerald-600"><span id="cert-arabTili">2</span> <span class="text-lg font-semibold text-slate-400">ta</span></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" id="qoshimchaFanlarContainer"></div>
+            </div>
+
+            <!-- Ingliz tili Milliy -->
+            <div class="stagger-item">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                        </svg>
+                    </span>
+                    Ingliz tili - Milliy sertifikat
+                </h2>
+                
+                <div class="flex flex-wrap gap-4">
+                    <div class="certificate-card bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 rounded-2xl p-8 text-white shadow-xl">
+                        <div class="text-sm opacity-80 mb-1">Daraja</div>
+                        <div class="text-5xl font-bold mb-4">B1</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-3xl font-bold" id="cert-b1">486</span>
+                            <span class="text-sm opacity-80">ta</span>
+                        </div>
+                    </div>
+                    <div class="certificate-card bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-600 rounded-2xl p-8 text-white shadow-xl">
+                        <div class="text-sm opacity-80 mb-1">Daraja</div>
+                        <div class="text-5xl font-bold mb-4">B2</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-3xl font-bold" id="cert-b2">239</span>
+                            <span class="text-sm opacity-80">ta</span>
+                        </div>
+                    </div>
+                    <div class="certificate-card bg-gradient-to-br from-purple-500 via-pink-500 to-rose-600 rounded-2xl p-8 text-white shadow-xl">
+                        <div class="text-sm opacity-80 mb-1">Daraja</div>
+                        <div class="text-5xl font-bold mb-4">C1</div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-3xl font-bold" id="cert-c1">13</span>
+                            <span class="text-sm opacity-80">ta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Xorijiy Sertifikatlar Content -->
+        <div id="content-xorijiy" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- SAT -->
+                <div class="certificate-card sat-card rounded-2xl p-8 text-white shadow-xl stagger-item text-center">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 mx-auto rounded-xl bg-white/15 flex items-center justify-center font-bold text-sm mb-4">SAT</div>
+                        <div class="text-blue-200 text-sm mb-2">SAT - Xalqaro sertifikat</div>
+                        <div class="text-5xl font-black"><span id="cert-sat">111</span> <span class="text-lg font-semibold opacity-70">ta</span></div>
+                    </div>
+                </div>
+
+                <!-- IELTS -->
+                <div class="certificate-card rounded-2xl p-8 text-white shadow-xl stagger-item text-center" style="background:linear-gradient(135deg,#10b981,#0d9488);">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-white/15 flex items-center justify-center font-bold text-sm mb-4">IELTS</div>
+                    <div class="text-emerald-100 text-sm mb-2">IELTS - Xalqaro sertifikat</div>
+                    <div class="text-5xl font-black"><span id="cert-ielts">67</span> <span class="text-lg font-semibold opacity-70">ta</span></div>
+                </div>
+
+                <!-- Xitoy tili -->
+                <div class="certificate-card rounded-2xl p-8 text-white shadow-xl stagger-item text-center" style="background:linear-gradient(135deg,#ef4444,#b91c1c);">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-white/15 flex items-center justify-center font-bold text-sm mb-4">中文</div>
+                    <div class="text-red-100 text-sm mb-2">Xitoy tili - Xalqaro sertifikat</div>
+                    <div class="text-5xl font-black"><span id="cert-xitoy">1</span> <span class="text-lg font-semibold opacity-70">ta</span></div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Statistics Chart Section -->
+        <div class="mt-16 stagger-item" id="stats-section">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+                <div class="p-8 border-b border-slate-100">
+                    <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-400 to-orange-500 flex items-center justify-center text-white">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </span>
+                        Maktabdagi sertifikatlar o'sishi
+                    </h2>
+                    <p class="text-slate-500 mt-2">2023-2025 yillar bo'yicha statistika</p>
+                </div>
+                
+                <div class="p-8">
+                    <!-- Chart Container -->
+                    <div class="relative h-96 w-full">
+                        <svg class="w-full h-full" viewBox="0 0 800 400" preserveAspectRatio="none">
+                            <!-- Grid Lines: max qiymat 400, 5 bosqich (80 birlikdan) -->
+                            <line x1="60" y1="0"   x2="750" y2="0"   stroke="#e2e8f0" stroke-width="1"/>
+                            <line x1="60" y1="66"  x2="750" y2="66"  stroke="#e2e8f0" stroke-width="1"/>
+                            <line x1="60" y1="132" x2="750" y2="132" stroke="#e2e8f0" stroke-width="1"/>
+                            <line x1="60" y1="198" x2="750" y2="198" stroke="#e2e8f0" stroke-width="1"/>
+                            <line x1="60" y1="264" x2="750" y2="264" stroke="#e2e8f0" stroke-width="1"/>
+                            <line x1="60" y1="330" x2="750" y2="330" stroke="#e2e8f0" stroke-width="2"/>
+
+                            <!-- Y Axis Labels -->
+                            <text x="40" y="5"   text-anchor="end" class="text-xs fill-slate-400">400</text>
+                            <text x="40" y="71"  text-anchor="end" class="text-xs fill-slate-400">320</text>
+                            <text x="40" y="137" text-anchor="end" class="text-xs fill-slate-400">240</text>
+                            <text x="40" y="203" text-anchor="end" class="text-xs fill-slate-400">160</text>
+                            <text x="40" y="269" text-anchor="end" class="text-xs fill-slate-400">80</text>
+                            <text x="40" y="335" text-anchor="end" class="text-xs fill-slate-400">0</text>
+                            
+                            <!-- Gradient Definition -->
+                            <defs>
+                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="rgba(99, 102, 241, 0.3)"/>
+                                    <stop offset="100%" stop-color="rgba(99, 102, 241, 0)"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- 
+                              Formula: y = 330 - (qiymat * 330 / 400)
+                              2023: 24  → y = 310
+                              2024: 256 → y = 119
+                              2025: 375 → y = 21
+                            -->
+
+                            <!-- Area Fill -->
+                            <path id="cert-chart-area" d="M 60,330 L 60,310 L 405,119 L 750,21 L 750,330 Z" 
+                                  fill="url(#chartGradient)" opacity="0.6"/>
+                            
+                            <!-- Chart Line -->
+                            <path id="cert-chart-line" class="chart-line" 
+                                  d="M 60,310 L 405,119 L 750,21" 
+                                  fill="none" 
+                                  stroke="url(#lineGradient)" 
+                                  stroke-width="4"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            
+                            <defs>
+                                <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="50%" stop-color="#8b5cf6"/>
+                                    <stop offset="100%" stop-color="#ec4899"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Data Points -->
+                            <circle id="cert-chart-pt1" cx="60"  cy="310" r="8" fill="#6366f1" stroke="white" stroke-width="3"/>
+                            <circle id="cert-chart-pt2" cx="405" cy="119" r="8" fill="#8b5cf6" stroke="white" stroke-width="3"/>
+                            <circle id="cert-chart-pt3" cx="750" cy="21"  r="8" fill="#ec4899" stroke="white" stroke-width="3"/>
+                            
+                            <!-- Data Labels -->
+                            <text id="cert-chart-lbl1" x="60"  y="297" text-anchor="middle" class="text-sm font-bold fill-slate-700">24</text>
+                            <text id="cert-chart-lbl2" x="405" y="106" text-anchor="middle" class="text-sm font-bold fill-slate-700">256</text>
+                            <text id="cert-chart-lbl3" x="750" y="8"   text-anchor="middle" class="text-sm font-bold fill-slate-700">375</text>
+                            
+                            <!-- X Axis Labels -->
+                            <text x="60"  y="380" text-anchor="middle" class="text-sm font-semibold fill-slate-600">2023</text>
+                            <text x="405" y="380" text-anchor="middle" class="text-sm font-semibold fill-slate-600">2024</text>
+                            <text x="750" y="380" text-anchor="middle" class="text-sm font-semibold fill-slate-600">2025</text>
+                            
+                        </svg>
+                    </div>
+                    
+                    <!-- Legend -->
+                    <div class="flex flex-wrap justify-center gap-6 mt-6 pt-6 border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+                            <span class="text-sm text-slate-600">Sertifikatlar soni</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-sm">
+                            <span class="text-slate-500">Jami: <span class="font-bold text-indigo-600 text-lg" id="cert-chart-jami">655 ta</span>
+                            <span class="text-slate-400">|</span>
+                            <span class="text-slate-500">Davri: <span class="font-semibold text-slate-700">2023-2025</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Year Stats Grid -->
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 text-center border border-indigo-100">
+                            <div class="text-xs text-slate-500 mb-1">2023</div>
+                            <div class="text-2xl font-bold text-indigo-600" id="cert-y2023">24</div>
+                            <div class="text-xs text-slate-400">ta</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 text-center border border-indigo-100">
+                            <div class="text-xs text-slate-500 mb-1">2024</div>
+                            <div class="text-2xl font-bold text-indigo-600" id="cert-y2024">256</div>
+                            <div class="text-xs text-slate-400">ta</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 text-center border border-indigo-100">
+                            <div class="text-xs text-slate-500 mb-1">2025</div>
+                            <div class="text-2xl font-bold text-indigo-600" id="cert-y2025">375</div>
+                            <div class="text-xs text-slate-400">ta</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab Switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('tab-' + tab).classList.add('active');
+            // xorijiy active bo'lganda badge ni yashir
+            const badge = document.querySelector('.tab-btn-new-badge');
+            if (tab === 'xorijiy' && badge) badge.style.display = 'none';
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            const content = document.getElementById('content-' + tab);
+            content.classList.remove('hidden');
+            content.style.opacity = 0;
+            content.style.transform = 'translateY(16px)';
+            requestAnimationFrame(() => {
+                content.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                content.style.opacity = 1;
+                content.style.transform = 'translateY(0)';
+            });
+            animateStaggerItems();
+            showToast(tab === 'milliy' ? 'Milliy sertifikatlar' : 'Xorijiy sertifikatlar');
+        }
+
+        // Counter
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const step = target / (2000 / 16);
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) { counter.textContent = target; clearInterval(timer); }
+                    else counter.textContent = Math.floor(current);
+                }, 16);
+            });
+        }
+
+        // Stagger
+        function animateStaggerItems() {
+            document.querySelectorAll('.stagger-item').forEach((item, i) => {
+                item.classList.remove('visible');
+                setTimeout(() => item.classList.add('visible'), i * 100);
+            });
+        }
+
+        // Chart
+        function animateChart() {
+            const line = document.querySelector('.chart-line');
+            if (line) line.classList.add('animate');
+        }
+
+        // Ripple (only on click, lightweight)
+        function addRipple(e) {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple-effect';
+            ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+            card.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.from('.hero-title', { opacity:0, y:40, duration:0.9, ease:'power3.out' });
+            gsap.from('.hero-subtitle', { opacity:0, y:24, duration:0.9, delay:0.25, ease:'power3.out' });
+            gsap.from('.stat-item', { opacity:0, scale:0.8, duration:0.6, stagger:0.1, delay:0.5, ease:'back.out(1.7)' });
+
+            setTimeout(animateCounters, 800);
+            animateStaggerItems();
+
+            ScrollTrigger.create({
+                trigger: '.chart-line', start: 'top 80%',
+                onEnter: animateChart, once: true
+            });
+
+            gsap.utils.toArray('.stagger-item').forEach((item, i) => {
+                ScrollTrigger.create({
+                    trigger: item, start: 'top 85%',
+                    onEnter: () => gsap.to(item, { opacity:1, y:0, duration:0.55, delay:i*0.07, ease:'power3.out' }),
+                    once: true
+                });
+            });
+
+            // Ripple on card click
+            document.querySelectorAll('.certificate-card').forEach(card => {
+                card.addEventListener('click', addRipple);
+            });
+
+            // Ribbon on first card
+            const firstCard = document.querySelector('.certificate-card');
+            if (firstCard) {
+                const r = document.createElement('div');
+                r.className = 'ribbon'; r.textContent = '⭐ TOP';
+                firstCard.appendChild(r);
+            }
+        });
+    </script>
+
+<!-- FOOTER -->
+<footer class="text-white pt-16 pb-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.ibb.co/mVQz8Qh9/logo.jpg" alt="logo" class="w-10 h-10" onerror="this.style.display='none'">
+          <div class="font-extrabold text-lg" data-i18n="footerLogo">Bo'stonliq IM</div>
+        </div>
+        <p class="text-blue-100 text-sm leading-relaxed" data-i18n="footerAbout">Bo'stonliq tumani Ixtisoslashtirilgan maktabi — bilim va tarbiya makoni.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerLinks">Tezkor havolalar</h4>
+        <ul class="space-y-2 text-sm text-blue-100">
+          <li><a href="index.html" class="hover:text-yellow-400" data-i18n="navHome">Bosh sahifa</a></li>
+          <li><a href="maktab-hayoti.html" class="hover:text-yellow-400"><i class="fa-solid fa-book-open mr-1"></i>Maktab hayoti</a></li>
+          <li><a href="rahbariyat.html" class="hover:text-yellow-400" data-i18n="navLeadership">Rahbariyat</a></li>
+          <li><a href="oqituvchilar.html" class="hover:text-yellow-400" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+          <li><a href="iqtidorli-oquvchilar.html" class="hover:text-yellow-400"><i class="fa-solid fa-medal mr-1"></i>Iqtidorli o'quvchilar</a></li>
+          <li><a href="loyiha-ishlari.html" class="hover:text-yellow-400"><i class="fa-solid fa-diagram-project mr-1"></i>Loyiha ishlari</a></li>
+          <li><a href="sertifikatlar.html" class="hover:text-yellow-400" data-i18n="navSertifikat">Sertifikatlar</a></li>
+          <li><a href="galereya.html" class="hover:text-yellow-400" data-i18n="navGallery">Galereya</a></li>
+          <li><a href="qabul.html" class="hover:text-yellow-400" data-i18n="navQabul">Qabul jarayonlari</a></li>
+          <li><a href="yangiliklar.html" class="hover:text-yellow-400" data-i18n="navNews">E'lonlar</a></li>
+  </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerContact">Aloqa</h4>
+        <ul class="space-y-2 text-sm text-blue-100">
+          <li><i class="fa-solid fa-phone mr-2"></i>+998 97 784 85 22</li>
+          <li><i class="fa-solid fa-phone mr-2"></i>+998 97 363 41 53</li>
+          <li class="break-all"><i class="fa-solid fa-envelope mr-2"></i>sardorbekramatjonov@gmail.com</li>
+          <li class="break-all"><i class="fa-solid fa-envelope mr-2"></i>sardorbekramatjonov@bustanlikim.org</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerSocial">Ijtimoiy tarmoqlar</h4>
+        <div class="flex gap-3">
+          <a href="https://t.me/Bustanlikspecializedschool" target="_blank" class="w-10 h-10 rounded-full bg-white/10 hover:bg-yellow-400 hover:text-slate-900 text-white flex items-center justify-center transition"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-center text-sm text-blue-100">
+      <span data-i18n="footerCopy">© 2026 Bo'stonliq tumani Ixtisoslashtirilgan maktabi. Barcha huquqlar himoyalangan.</span>
+    </div>
+  </div>
+</footer>
+<div id="backTop"><i class="fa-solid fa-arrow-up"></i></div>
+
+
+<script>
+  const I18N = {
+    uz: {
+      topAddress:"Toshkent viloyati, Bo'stonliq tumani", topHours:"Dush-Shan: 08:00 - 17:00",
+      navHome:"Bosh sahifa", navLeadership:"Rahbariyat", navTeachers:"Pedagogik jamoa",
+      navNews:"E'lonlar", navGallery:"Galereya", navContact:"Aloqa", navCta:"Qo'ng'iroq qilish",
+      navQabul:"Qabul jarayonlari", navSertifikat:"Sertifikatlar",
+      sertTitle:"Sertifikatlar",
+      sertSubtitle:"Maktabimiz o'quvchilari tomonidan erishilgan yutuqlar va olingan sertifikatlar",
+      statTotal:"Jami sertifikat", statNational:"Milliy sertifikat", statForeign:"Xorijiy sertifikat",
+      footerAbout:"Bo'stonliq tumani Ixtisoslashtirilgan maktabi — bilim va tarbiya makoni.",
+      footerLinks:"Tezkor havolalar", footerContact:"Aloqa", footerSocial:"Ijtimoiy tarmoqlar",
+      logoLine1:"Bo'stonliq tumani",logoLine2:"Ixtisoslashtirilgan maktabi",footerLogo:"Bo'stonliq IM",navMore:"Ko'proq",mobileMenuLabel:"Menyu",footerCopy:"© 2026 Bo'stonliq tumani Ixtisoslashtirilgan maktabi. Barcha huquqlar himoyalangan.",
+      navMaktabHayoti:"Maktab hayoti", navIqtidorli:"Iqtidorli o'quvchilar", navLoyiha:"Loyiha ishlari", navEco:"Eco School", navMemorandum:"Memorandumlar",
+    },
+    ru: {
+      topAddress:"Ташкентская область, Бустонлыкский район", topHours:"Пн-Сб: 08:00 - 17:00",
+      navHome:"Главная", navLeadership:"Руководство", navTeachers:"Педагогический коллектив",
+      navNews:"Объявления", navGallery:"Галерея", navContact:"Контакты", navCta:"Позвонить",
+      navQabul:"Приёмный процесс", navSertifikat:"Сертификаты",
+      sertTitle:"Сертификаты",
+      sertSubtitle:"Достижения и сертификаты, полученные учениками нашей школы",
+      statTotal:"Всего сертификатов", statNational:"Нац. сертификат", statForeign:"Иностр. сертификат",
+      footerAbout:"Специализированная школа Бустонлыкского района — место знаний и воспитания.",
+      footerLinks:"Быстрые ссылки", footerContact:"Контакты", footerSocial:"Социальные сети",
+      logoLine1:"Бустонлыкский район",logoLine2:"Специализированная школа",footerLogo:"Бустонлыкская СШ",navMore:"Ещё",mobileMenuLabel:"Меню",footerCopy:"© 2026 Специализированная школа Бустонлыкского района. Все права защищены.",
+      navMaktabHayoti:"Школьная жизнь", navIqtidorli:"Одарённые учащиеся", navLoyiha:"Проектные работы", navEco:"Eco School", navMemorandum:"Меморандумы",
+    },
+    en: {
+      topAddress:"Tashkent region, Bostonliq district", topHours:"Mon-Sat: 08:00 - 17:00",
+      navHome:"Home", navLeadership:"Leadership", navTeachers:"Pedagogical Team",
+      navNews:"Announcements", navGallery:"Gallery", navContact:"Contact", navCta:"Call us",
+      navQabul:"Admission Process", navSertifikat:"Certificates",
+      sertTitle:"Certificates",
+      sertSubtitle:"Achievements and certificates earned by our school students",
+      statTotal:"Total certificates", statNational:"National cert.", statForeign:"Foreign cert.",
+      footerAbout:"Bostonliq district Specialized School — a place of knowledge and education.",
+      footerLinks:"Quick links", footerContact:"Contact", footerSocial:"Social networks",
+      logoLine1:"Bostonliq District",logoLine2:"Specialized School",footerLogo:"Bostonliq SS",navMore:"More",mobileMenuLabel:"Menu",footerCopy:"© 2026 Bostonliq district Specialized School. All rights reserved.",
+      navMaktabHayoti:"School Life", navIqtidorli:"Talented Students", navLoyiha:"Project Work", navEco:"Eco School", navMemorandum:"Memorandums",
+    }
+  };
+</script>
+<script>
+  function applyLang(lang){
+    const dict=I18N[lang]||I18N.uz;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(dict[k]!==undefined){el.innerHTML=dict[k];}});
+    document.documentElement.setAttribute('lang',lang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    localStorage.setItem('lang',lang);
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>applyLang(btn.dataset.lang)));
+  applyLang(localStorage.getItem('lang')||'uz');
+  const themeBtn=document.getElementById('themeToggle');
+  const themeIcon=document.getElementById('themeIcon');
+  function applyTheme(t){document.body.classList.toggle('dark',t==='dark');document.documentElement.classList.toggle('dark',t==='dark');if(themeIcon)themeIcon.className=t==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';localStorage.setItem('theme',t);}
+  themeBtn.addEventListener('click',()=>{applyTheme(document.body.classList.contains('dark')?'light':'dark');});
+  applyTheme(localStorage.getItem('theme')||'light');
+  const menuBtn=document.getElementById('menuBtn');
+  const closeMenuBtn=document.getElementById('closeMenu');
+  const mobileMenu=document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click',()=>mobileMenu.classList.add('open'));
+  closeMenuBtn.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+  document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+  const back=document.getElementById('backTop');
+  if(back){window.addEventListener('scroll',()=>{back.classList.toggle('show',window.scrollY>500);});back.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));}
+</script>
+
+<script>
+  // VISIBILITY FALLBACK: ensure all content visible even if IntersectionObserver fails
+  (function(){
+    function forceVisible(){
+      var selectors = ['.reveal','.manzil-item','.map-wrapper','footer .grid > div',
+        '.team-card','.leader-card','.stagger-item','.stat-item','.dir-card',
+        '.contact-card','.anim-in','.hero-stat','.about-img-wrap'];
+      selectors.forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          el.style.opacity='1';
+          el.style.transform='none';
+          el.style.visibility='visible';
+          el.classList.add('in','anim-in','visible');
+        });
+      });
+    }
+    // Run immediately and after short delay
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded', forceVisible);
+    } else { forceVisible(); }
+    setTimeout(forceVisible, 100);
+    setTimeout(forceVisible, 500);
+  })();
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA1YRuXGnQ_UFWDIw_XgVLrxy7crBXYu3w",
+    authDomain: "bostonliq-im.firebaseapp.com",
+    projectId: "bostonliq-im",
+    storageBucket: "bostonliq-im.firebasestorage.app",
+    messagingSenderId: "837804259239",
+    appId: "1:837804259239:web:48de64c4d3df698163e882"
+  };
+  const fbApp = initializeApp(firebaseConfig);
+  const db = getFirestore(fbApp);
+
+  function setNum(id, val){
+    const el = document.getElementById(id);
+    if(el) el.textContent = val;
+  }
+  function setCounter(id, val){
+    const el = document.getElementById(id);
+    if(el){ el.setAttribute('data-target', val); el.textContent = val; }
+  }
+
+  (async function(){
+    try{
+      const snap = await getDoc(doc(db, 'sertifikatlar', 'stats'));
+      if(!snap.exists()) return;
+      const d = snap.data();
+      const mf = d.milliyFanlar || {};
+      const en = d.ingliz || {};
+      const xr = d.xorijiy || {};
+      const yl = d.yillar || {};
+
+      const milliyTotal = Object.values(mf).reduce((a,b)=>{
+        const v = (b && typeof b === 'object') ? (b.value ?? 0) : b;
+        return a + (+v || 0);
+      }, 0);
+      const xorijiyTotal = Object.values(xr).reduce((a,b)=>a+(+b||0),0);
+      const jamiTotal = milliyTotal + xorijiyTotal;
+
+      setCounter('total-counter', jamiTotal);
+      setCounter('milliy-counter', milliyTotal);
+      setCounter('xorijiy-counter', xorijiyTotal);
+
+      setNum('cert-matematika', mf.matematika ?? 0);
+      setNum('cert-rusTili', mf.rusTili ?? 0);
+      setNum('cert-onaTili', mf.onaTili ?? 0);
+      setNum('cert-tarix', mf.tarix ?? 0);
+      setNum('cert-kimyo', mf.kimyo ?? 0);
+      setNum('cert-biologiya', mf.biologiya ?? 0);
+      setNum('cert-fizika', mf.fizika ?? 0);
+      setNum('cert-cefr', mf.cefr ?? 0);
+      setNum('cert-arabTili', mf.arabTili ?? 0);
+
+      // Qo'shimcha fanlar (admin panelda "Fan qo'shish" orqali qo'shilganlar)
+      const fixedKeys = ['matematika','rusTili','onaTili','tarix','kimyo','biologiya','fizika','cefr','arabTili'];
+      const extraContainer = document.getElementById('qoshimchaFanlarContainer');
+      if(extraContainer){
+        const extraKeys = Object.keys(mf).filter(k => !fixedKeys.includes(k));
+        extraContainer.innerHTML = extraKeys.map(k => {
+          const v = mf[k];
+          const label = (v && typeof v === 'object') ? (v.label || k) : k;
+          const value = (v && typeof v === 'object') ? (v.value ?? 0) : v;
+          return `<div class="certificate-card bg-white rounded-2xl p-6 shadow-lg border border-slate-100 text-center">
+            <h3 class="text-lg font-bold text-slate-900 mb-3">${label}</h3>
+            <div class="text-4xl font-black text-emerald-600">${value} <span class="text-lg font-semibold text-slate-400">ta</span></div>
+          </div>`;
+        }).join('');
+      }
+
+      setNum('cert-b1', en.b1 ?? 0);
+      setNum('cert-b2', en.b2 ?? 0);
+      setNum('cert-c1', en.c1 ?? 0);
+
+      setNum('cert-sat', xr.sat ?? 0);
+      setNum('cert-ielts', xr.ielts ?? 0);
+      setNum('cert-xitoy', xr.xitoy ?? 0);
+
+      const y2023 = +yl.y2023 || 0, y2024 = +yl.y2024 || 0, y2025 = +yl.y2025 || 0;
+      setNum('cert-y2023', y2023);
+      setNum('cert-y2024', y2024);
+      setNum('cert-y2025', y2025);
+      const jamiEl = document.getElementById('cert-chart-jami');
+      if(jamiEl) jamiEl.textContent = jamiTotal + ' ta';
+
+      // Grafikni qayta chizish (nuqtalar va chiziqni yangi qiymatlarga moslashtirish)
+      const maxVal = Math.max(y2023, y2024, y2025, 1);
+      const scaleMax = Math.ceil(maxVal / 100) * 100 || 100;
+      const yPos = v => 330 - (v * 330 / scaleMax);
+      const p1 = yPos(y2023), p2 = yPos(y2024), p3 = yPos(y2025);
+
+      const area = document.getElementById('cert-chart-area');
+      const line = document.getElementById('cert-chart-line');
+      if(area) area.setAttribute('d', `M 60,330 L 60,${p1} L 405,${p2} L 750,${p3} L 750,330 Z`);
+      if(line) line.setAttribute('d', `M 60,${p1} L 405,${p2} L 750,${p3}`);
+
+      const pt1 = document.getElementById('cert-chart-pt1'), pt2 = document.getElementById('cert-chart-pt2'), pt3 = document.getElementById('cert-chart-pt3');
+      if(pt1) pt1.setAttribute('cy', p1);
+      if(pt2) pt2.setAttribute('cy', p2);
+      if(pt3) pt3.setAttribute('cy', p3);
+
+      const lbl1 = document.getElementById('cert-chart-lbl1'), lbl2 = document.getElementById('cert-chart-lbl2'), lbl3 = document.getElementById('cert-chart-lbl3');
+      if(lbl1){ lbl1.setAttribute('y', p1 - 13); lbl1.textContent = y2023; }
+      if(lbl2){ lbl2.setAttribute('y', p2 - 13); lbl2.textContent = y2024; }
+      if(lbl3){ lbl3.setAttribute('y', p3 - 13); lbl3.textContent = y2025; }
+    }catch(e){ console.warn('Sertifikatlar yuklanmadi:', e.message); }
+  })();
+</script>
+
+<script>
+  // "Ko'proq" dropdown toggle
+  (function(){
+    const btn = document.getElementById('moreDropdownBtn');
+    const menu = document.getElementById('moreDropdownMenu');
+    const chevron = document.getElementById('moreChevron');
+    if(!btn || !menu) return;
+    function openMenu(){
+      menu.style.opacity = '1'; menu.style.visibility = 'visible'; menu.style.transform = 'translateY(0)';
+      btn.setAttribute('aria-expanded','true');
+      if(chevron) chevron.style.transform = 'rotate(180deg)';
+    }
+    function closeMenu(){
+      menu.style.opacity = '0'; menu.style.visibility = 'hidden'; menu.style.transform = 'translateY(4px)';
+      btn.setAttribute('aria-expanded','false');
+      if(chevron) chevron.style.transform = 'rotate(0deg)';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+    document.addEventListener('click', (e) => {
+      if(!menu.contains(e.target) && e.target !== btn) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+<script>
+  // Safety: force-close mobile menu when viewport crosses desktop breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1280) {
+      const mm = document.getElementById('mobileMenu');
+      if (mm) mm.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin panel — Bo'stonliq tumani ixtisoslashtirilgan maktabi</title>
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{font-family:'Inter',sans-serif;box-sizing:border-box;}
+  html{overflow-x:hidden;}
+  body{background:#f1f5f9;overflow-x:hidden;}
+  .side-link{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border-radius:.7rem;color:#cbd5e1;font-weight:600;font-size:.92rem;cursor:pointer;transition:all .2s;}
+  .side-link:hover{background:rgba(255,255,255,.06);color:#fff;}
+  .side-link.active{background:#fbbf24;color:#1e3a8a;}
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .card-item{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.1rem;}
+  .btn{display:inline-flex;align-items:center;gap:.4rem;font-weight:700;border-radius:.65rem;padding:.55rem 1.1rem;font-size:.85rem;cursor:pointer;transition:all .2s;border:none;}
+  .btn-primary{background:#1e3a8a;color:#fff;}
+  .btn-primary:hover{background:#1e40af;}
+  .btn-gold{background:#fbbf24;color:#1e3a8a;}
+  .btn-gold:hover{background:#f59e0b;}
+  .btn-danger{background:#fee2e2;color:#dc2626;}
+  .btn-danger:hover{background:#fecaca;}
+  .btn-ghost{background:#f1f5f9;color:#334155;}
+  .btn-ghost:hover{background:#e2e8f0;}
+  input,textarea,select{width:100%;border:1.5px solid #e2e8f0;border-radius:.6rem;padding:.55rem .75rem;font-size:.88rem;transition:border .2s;}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:#1e3a8a;}
+  label{font-size:.78rem;font-weight:700;color:#475569;margin-bottom:.25rem;display:block;}
+  .field{margin-bottom:.9rem;}
+  .toast{position:fixed;bottom:24px;right:24px;background:#1e3a8a;color:#fff;padding:.9rem 1.4rem;border-radius:.8rem;font-weight:600;font-size:.9rem;box-shadow:0 20px 40px -10px rgba(0,0,0,.3);z-index:999;transform:translateY(120%);transition:transform .35s;display:flex;align-items:center;gap:.6rem;}
+  .toast.show{transform:translateY(0);}
+  .toast.err{background:#dc2626;}
+  .spin{animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:1rem;}
+  .modal-bg.open{display:flex;}
+  .modal-box{background:#fff;border-radius:1.2rem;max-width:520px;width:100%;max-height:88vh;overflow-y:auto;padding:1.6rem;}
+  table{width:100%;border-collapse:collapse;font-size:.86rem;}
+  th{text-align:left;color:#94a3b8;font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;padding:.6rem .5rem;border-bottom:2px solid #e2e8f0;}
+  td{padding:.7rem .5rem;border-bottom:1px solid #f1f5f9;vertical-align:middle;}
+</style>
+<style id="sr-anim-css">
+  .sr-reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);}
+  .sr-reveal.sr-in{opacity:1; transform:translateY(0);}
+  .sr-hero{animation:sr-fadeup .8s cubic-bezier(.4,0,.2,1) both;}
+  @keyframes sr-fadeup{from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){
+    .sr-reveal{transition:none !important; opacity:1 !important; transform:none !important;}
+    .sr-hero{animation:none !important;}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen" class="min-h-screen flex items-center justify-center px-4" style="background:linear-gradient(135deg,#0f172a,#1e3a8a);">
+  <div class="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm">
+    <div class="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center text-2xl text-white" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)"><i class="fa-solid fa-lock"></i></div>
+    <h1 class="text-xl font-black text-center mb-1" style="color:#1e3a8a">Admin panel</h1>
+    <p class="text-center text-sm text-slate-400 mb-6">Bo'stonliq tumani Ixtisoslashtirilgan maktabi</p>
+    <div class="field">
+      <label>Email</label>
+      <input id="loginEmail" type="email" placeholder="admin@bostonliqim.uz">
+    </div>
+    <div class="field">
+      <label>Parol</label>
+      <input id="loginPass" type="password" placeholder="••••••••">
+    </div>
+    <button id="loginBtn" class="btn btn-primary w-full justify-center py-2.5">Kirish</button>
+    <p id="loginErr" class="text-red-500 text-xs text-center mt-3 hidden"></p>
+  </div>
+</div>
+
+<!-- ===== ADMIN APP ===== -->
+<div id="app" class="hidden min-h-screen flex">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 shrink-0 hidden md:flex flex-col p-4" style="background:#0f172a;">
+    <div class="flex items-center gap-3 px-2 py-3 mb-4">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)"><i class="fa-solid fa-school"></i></div>
+      <div>
+        <div class="text-white font-extrabold text-sm leading-tight">Bo'stonliq tumani<br>ixtisoslashtirilgan maktabi</div>
+        <div class="text-slate-400 text-xs">Admin panel</div>
+      </div>
+    </div>
+    <nav class="flex flex-col gap-1">
+      <div class="side-link active" data-tab="rahbariyat"><i class="fa-solid fa-user-tie w-5"></i> Rahbariyat</div>
+      <div class="side-link" data-tab="oqituvchilar"><i class="fa-solid fa-chalkboard-user w-5"></i> O'qituvchilar</div>
+      <div class="side-link" data-tab="iqtidorli"><i class="fa-solid fa-medal w-5"></i> Iqtidorli o'quvchilar</div>
+      <div class="side-link" data-tab="sertifikatlar"><i class="fa-solid fa-certificate w-5"></i> Sertifikatlar</div>
+      <div class="side-link" data-tab="yangiliklar"><i class="fa-solid fa-newspaper w-5"></i> Yangiliklar</div>
+      <div class="side-link" data-tab="galereya"><i class="fa-solid fa-images w-5"></i> Galereya</div>
+      <div class="side-link" data-tab="rasmlar"><i class="fa-solid fa-image w-5"></i> Bosh sahifa rasmlari</div>
+    </nav>
+    <div class="mt-auto">
+      <div class="text-slate-400 text-xs px-2 mb-2" id="sideUserEmail"></div>
+      <div class="side-link" id="logoutBtn"><i class="fa-solid fa-right-from-bracket w-5"></i> Chiqish</div>
+    </div>
+  </aside>
+
+  <!-- Mobile top bar -->
+  <div class="md:hidden fixed top-0 left-0 right-0 bg-slate-900 text-white flex items-center justify-between px-4 py-3 z-40">
+    <div class="font-bold text-sm">Bo'stonliq tumani ixtisoslashtirilgan maktabi — Admin</div>
+    <button id="mobileMenuBtn"><i class="fa-solid fa-bars text-xl"></i></button>
+  </div>
+  <select id="mobileTabSelect" class="md:hidden fixed top-14 left-0 right-0 z-40 rounded-none border-0 border-b" style="display:none;">
+    <option value="rahbariyat">Rahbariyat</option>
+    <option value="oqituvchilar">O'qituvchilar</option>
+    <option value="iqtidorli">Iqtidorli o'quvchilar</option>
+    <option value="sertifikatlar">Sertifikatlar</option>
+    <option value="yangiliklar">Yangiliklar</option>
+    <option value="galereya">Galereya</option>
+    <option value="rasmlar">Bosh sahifa rasmlari</option>
+  </select>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 p-5 md:p-8 pt-20 md:pt-8 max-w-6xl mx-auto w-full">
+
+    <!-- RAHBARIYAT -->
+    <section id="panel-rahbariyat" class="panel active">
+      <div class="flex items-center justify-between mb-6">
+        <div><h2 class="text-2xl font-black text-slate-800">Rahbariyat</h2><p class="text-slate-400 text-sm">5 kishilik rahbariyat ma'lumotlari</p></div>
+      </div>
+      <div id="rahbariyatList" class="grid md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- O'QITUVCHILAR -->
+    <section id="panel-oqituvchilar" class="panel">
+      <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div><h2 class="text-2xl font-black text-slate-800">O'qituvchilar</h2><p class="text-slate-400 text-sm" id="teacherCount">Yuklanmoqda...</p></div>
+        <div class="flex gap-2 flex-wrap">
+          <button class="btn btn-ghost" onclick="seedTeachersData()"><i class="fa-solid fa-database"></i> Boshlang'ich ro'yxatni yuklash (40 ta)</button>
+          <button class="btn btn-gold" onclick="openTeacherModal()"><i class="fa-solid fa-plus"></i> Yangi o'qituvchi</button>
+        </div>
+      </div>
+      <div id="teacherGroups"></div>
+    </section>
+
+    <!-- IQTIDORLI O'QUVCHILAR -->
+    <section id="panel-iqtidorli" class="panel">
+      <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div><h2 class="text-2xl font-black text-slate-800">Iqtidorli o'quvchilar</h2><p class="text-slate-400 text-sm" id="studentCount">Yuklanmoqda...</p></div>
+        <div class="flex gap-2 flex-wrap">
+          <button class="btn btn-ghost" onclick="seedStudentsData()"><i class="fa-solid fa-database"></i> Boshlang'ich ro'yxatni yuklash (36 ta)</button>
+          <button class="btn btn-gold" onclick="openStudentModal()"><i class="fa-solid fa-plus"></i> Yangi o'quvchi</button>
+        </div>
+      </div>
+      <div id="studentGroups"></div>
+    </section>
+
+    <!-- SERTIFIKATLAR -->
+    <section id="panel-sertifikatlar" class="panel">
+      <div class="mb-6"><h2 class="text-2xl font-black text-slate-800">Sertifikatlar statistikasi</h2><p class="text-slate-400 text-sm">Raqamlarni kiriting — jami/milliy/xorijiy avtomatik hisoblanadi</p></div>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="card-item text-center"><div class="text-xs font-bold text-slate-400 uppercase mb-1">Jami</div><div id="calcJami" class="text-3xl font-black text-indigo-600">0</div></div>
+        <div class="card-item text-center"><div class="text-xs font-bold text-slate-400 uppercase mb-1">Milliy</div><div id="calcMilliy" class="text-3xl font-black text-emerald-600">0</div></div>
+        <div class="card-item text-center"><div class="text-xs font-bold text-slate-400 uppercase mb-1">Xorijiy</div><div id="calcXorijiy" class="text-3xl font-black text-amber-600">0</div></div>
+      </div>
+
+      <div class="card-item mb-4">
+        <h3 class="font-bold text-slate-700 mb-3">Milliy — Asosiy fanlar</h3>
+        <div class="grid sm:grid-cols-3 gap-3" id="milliyFields"></div>
+      </div>
+
+      <div class="card-item mb-4">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="font-bold text-slate-700">Milliy — Qo'shimcha fanlar</h3>
+          <button class="btn btn-gold" onclick="addQoshimchaFan()"><i class="fa-solid fa-plus"></i> Fan qo'shish</button>
+        </div>
+        <div class="space-y-2" id="qoshimchaFanlarList"></div>
+        <button class="btn btn-primary mt-4" onclick="saveSertifikatlar()"><i class="fa-solid fa-floppy-disk"></i> Saqlash</button>
+      </div>
+
+      <div class="card-item mb-4">
+        <h3 class="font-bold text-slate-700 mb-3">Ingliz tili — Milliy sertifikat (CEFR darajalar)</h3>
+        <div class="grid sm:grid-cols-3 gap-3" id="inglizFields"></div>
+      </div>
+
+      <div class="card-item mb-4">
+        <h3 class="font-bold text-slate-700 mb-3">Xorijiy sertifikatlar</h3>
+        <div class="grid sm:grid-cols-3 gap-3" id="xorijiyFields"></div>
+      </div>
+
+      <div class="card-item mb-6">
+        <h3 class="font-bold text-slate-700 mb-3">O'sish grafigi (yillar bo'yicha)</h3>
+        <div class="grid sm:grid-cols-3 gap-3" id="yillarFields"></div>
+      </div>
+
+      <button class="btn btn-primary" onclick="saveSertifikatlar()"><i class="fa-solid fa-floppy-disk"></i> Saqlash</button>
+    </section>
+
+    <!-- YANGILIKLAR -->
+    <section id="panel-yangiliklar" class="panel">
+      <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div><h2 class="text-2xl font-black text-slate-800">Yangiliklar</h2><p class="text-slate-400 text-sm">Rasm bilan birga yangilik qo'shing</p></div>
+        <button class="btn btn-gold" onclick="openNewsModal()"><i class="fa-solid fa-plus"></i> Yangi yangilik</button>
+      </div>
+      <div id="newsList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- GALEREYA -->
+    <section id="panel-galereya" class="panel">
+      <div class="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div><h2 class="text-2xl font-black text-slate-800">Galereya</h2><p class="text-slate-400 text-sm">Rasm qo'shish/o'chirish — sayt darhol yangilanadi</p></div>
+        <button class="btn btn-gold" onclick="openGalleryModal()"><i class="fa-solid fa-plus"></i> Rasm qo'shish</button>
+      </div>
+      <div id="galleryGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- BOSH SAHIFA RASMLARI -->
+    <section id="panel-rasmlar" class="panel">
+      <div class="mb-6"><h2 class="text-2xl font-black text-slate-800">Bosh sahifa rasmlari</h2><p class="text-slate-400 text-sm">Hero fon rasmi va "Maktab haqida" rasmi</p></div>
+      <div class="card-item mb-4">
+        <label>Hero / "Maktab haqida" rasmi (link)</label>
+        <div class="flex gap-2 mb-3">
+          <input id="heroImageInput" type="text" placeholder="https://i.ibb.co/...">
+          <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+            <i class="fa-solid fa-upload"></i>
+            <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPick(this,'heroImageInput','heroImagePreview')">
+          </label>
+          <button class="btn btn-primary shrink-0" onclick="saveHeroImage()"><i class="fa-solid fa-floppy-disk"></i></button>
+        </div>
+        <img id="heroImagePreview" class="rounded-xl w-full max-w-md h-56 object-cover border" src="" alt="">
+      </div>
+      <p class="text-xs text-slate-400">Yuklash tugmasi orqali kompyuteringizdan rasm tanlang — u avtomatik ravishda ImgBB'ga yuklanib, linki shu maydonga to'ldiriladi. Xohlasangiz linkni qo'lda ham joylashtirishingiz mumkin.</p>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== MODALS ===== -->
+
+<!-- Teacher modal -->
+<div id="teacherModal" class="modal-bg">
+  <div class="modal-box">
+    <div class="flex justify-between items-center mb-4"><h3 class="font-black text-lg text-slate-800" id="teacherModalTitle">Yangi o'qituvchi</h3><button onclick="closeModal('teacherModal')" class="text-slate-400 text-xl"><i class="fa-solid fa-xmark"></i></button></div>
+    <input type="hidden" id="teacherId">
+    <div class="field"><label>F.I.SH</label><input id="teacherName" placeholder="Familiya Ism Sharif"></div>
+    <div class="field"><label>Fan</label><input id="teacherSubject" placeholder="Masalan: Matematika"></div>
+    <div class="field"><label>Toifa</label>
+      <select id="teacherToifa">
+        <option value="oliy">Oliy toifa</option>
+        <option value="1-toifa">1-toifa</option>
+        <option value="2-toifa">2-toifa</option>
+        <option value="mutaxassis">Mutaxassis</option>
+      </select>
+    </div>
+    <div class="field"><label>Telefon</label><input id="teacherPhone" placeholder="+998 90 123 45 67"></div>
+    <div class="field"><label>Ta'lim muassasasi (qisqartma)</label><input id="teacherUni" placeholder="Masalan: TDPU"></div>
+    <div class="field"><label>Bitirgan yili</label><input id="teacherYear" placeholder="2020"></div>
+    <div class="field"><label>Rasm (imgbb link, ixtiyoriy)</label>
+      <div class="flex gap-2">
+        <input id="teacherPhoto" placeholder="https://i.ibb.co/..." class="flex-1">
+        <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+          <i class="fa-solid fa-upload"></i>
+          <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPick(this,'teacherPhoto')">
+        </label>
+      </div>
+    </div>
+    <button class="btn btn-primary w-full justify-center py-2.5 mt-2" onclick="saveTeacher()">Saqlash</button>
+  </div>
+</div>
+
+<!-- Student modal -->
+<div id="studentModal" class="modal-bg">
+  <div class="modal-box">
+    <div class="flex justify-between items-center mb-4"><h3 class="font-black text-lg text-slate-800" id="studentModalTitle">Yangi o'quvchi</h3><button onclick="closeModal('studentModal')" class="text-slate-400 text-xl"><i class="fa-solid fa-xmark"></i></button></div>
+    <input type="hidden" id="studentId">
+    <div class="field"><label>F.I.SH</label><input id="studentName" placeholder="Familiya Ism"></div>
+    <div class="field"><label>Izoh (erishgan yutug'i)</label><textarea id="studentIzoh" rows="3" placeholder="Masalan: Al-Xorazmiy olimpiadasi tuman bosqichi 1-o'rin"></textarea></div>
+    <div class="field"><label>O'quv yili</label><input id="studentYear" placeholder="Masalan: 2025-2026"></div>
+    <div class="field"><label>O'quvchi rasmi (ixtiyoriy)</label>
+      <div class="flex gap-2">
+        <input id="studentPhoto" placeholder="https://i.ibb.co/..." class="flex-1">
+        <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+          <i class="fa-solid fa-upload"></i>
+          <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPick(this,'studentPhoto')">
+        </label>
+      </div>
+    </div>
+    <div class="field"><label>Hujjat / qabul xati rasmi (ixtiyoriy)</label>
+      <div class="flex gap-2">
+        <input id="studentDoc" placeholder="https://i.ibb.co/..." class="flex-1">
+        <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+          <i class="fa-solid fa-upload"></i>
+          <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPick(this,'studentDoc')">
+        </label>
+      </div>
+    </div>
+    <button class="btn btn-primary w-full justify-center py-2.5 mt-2" onclick="saveStudent()">Saqlash</button>
+  </div>
+</div>
+
+<!-- News modal -->
+<div id="newsModal" class="modal-bg">
+  <div class="modal-box">
+    <div class="flex justify-between items-center mb-4"><h3 class="font-black text-lg text-slate-800">Yangi yangilik</h3><button onclick="closeModal('newsModal')" class="text-slate-400 text-xl"><i class="fa-solid fa-xmark"></i></button></div>
+    <input type="hidden" id="newsId">
+    <div class="field"><label>Sarlavha</label><input id="newsTitle" placeholder="Yangilik sarlavhasi"></div>
+    <div class="field"><label>Matn</label><textarea id="newsText" rows="4" placeholder="Yangilik matni..."></textarea></div>
+    <div class="field"><label>Rasm (link)</label>
+      <div class="flex gap-2">
+        <input id="newsImage" placeholder="https://i.ibb.co/..." class="flex-1">
+        <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+          <i class="fa-solid fa-upload"></i>
+          <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPick(this,'newsImage')">
+        </label>
+      </div>
+    </div>
+    <div class="field"><label>Sana</label><input id="newsDate" type="date"></div>
+    <button class="btn btn-primary w-full justify-center py-2.5 mt-2" onclick="saveNews()">Saqlash</button>
+  </div>
+</div>
+
+<!-- Gallery modal -->
+<div id="galleryModal" class="modal-bg">
+  <div class="modal-box">
+    <div class="flex justify-between items-center mb-4"><h3 class="font-black text-lg text-slate-800">Rasm qo'shish</h3><button onclick="closeModal('galleryModal')" class="text-slate-400 text-xl"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="field"><label>Rasm linki</label>
+      <div class="flex gap-2">
+        <input id="galleryImageInput" placeholder="https://i.ibb.co/..." class="flex-1">
+        <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+          <i class="fa-solid fa-upload"></i>
+          <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPick(this,'galleryImageInput')">
+        </label>
+      </div>
+    </div>
+    <p class="text-xs text-slate-400 mb-3">Rasmni imgbb.com ga yuklab, "direct link"ni shu yerga joylashtiring.</p>
+    <button class="btn btn-primary w-full justify-center py-2.5" onclick="saveGalleryImage()">Qo'shish</button>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import {
+    getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+  } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+  import {
+    getFirestore, collection, doc, getDoc, getDocs, setDoc, addDoc,
+    updateDoc, deleteDoc, query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA1YRuXGnQ_UFWDIw_XgVLrxy7crBXYu3w",
+    authDomain: "bostonliq-im.firebaseapp.com",
+    projectId: "bostonliq-im",
+    storageBucket: "bostonliq-im.firebasestorage.app",
+    messagingSenderId: "837804259239",
+    appId: "1:837804259239:web:48de64c4d3df698163e882"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // expose to global scope for inline onclick handlers
+  window.__fb = { db, collection, doc, getDoc, getDocs, setDoc, addDoc, updateDoc, deleteDoc, query, orderBy, serverTimestamp };
+
+  // ---------- TOAST ----------
+  function toast(msg, isErr){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (isErr ? ' err' : '');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+  window.toast = toast;
+
+  // ---------- IMGBB AUTO-UPLOAD ----------
+  // api.imgbb.com saytida bepul ro'yxatdan o'tib, "API key"ni oling va shu yerga joylashtiring.
+  const IMGBB_API_KEY = "c3062a892ec5a05470d865b47ffd8a15";
+
+  async function imgbbUploadFile(file){
+    if(!IMGBB_API_KEY || IMGBB_API_KEY === "YOUR_IMGBB_API_KEY"){
+      toast("Avval admin.html faylida IMGBB_API_KEY to'ldirilishi kerak (api.imgbb.com dan bepul olinadi)", true);
+      return null;
+    }
+    if(!file.type.startsWith('image/')){
+      toast("Faqat rasm fayli tanlang", true);
+      return null;
+    }
+    if(file.size > 32 * 1024 * 1024){
+      toast("Rasm hajmi 32MB dan katta bo'lmasligi kerak", true);
+      return null;
+    }
+    const fd = new FormData();
+    fd.append('image', file);
+    try{
+      toast("Rasm yuklanmoqda...");
+      const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method:'POST', body: fd });
+      const data = await res.json();
+      if(data && data.success){
+        toast("Rasm muvaffaqiyatli yuklandi ✅");
+        return data.data.url;
+      }
+      throw new Error(data?.error?.message || "Noma'lum xatolik");
+    }catch(err){
+      toast("Rasm yuklashda xatolik: " + err.message, true);
+      return null;
+    }
+  }
+  window.imgbbUploadFile = imgbbUploadFile;
+
+  // Generic handler: file picked -> upload -> fill target text input (+ optional preview img)
+  async function handleImgbbPick(fileInputEl, targetInputId, previewImgId){
+    const file = fileInputEl.files[0];
+    if(!file) return;
+    const url = await imgbbUploadFile(file);
+    if(url){
+      const targetEl = document.getElementById(targetInputId);
+      if(targetEl) targetEl.value = url;
+      if(previewImgId){
+        const prevEl = document.getElementById(previewImgId);
+        if(prevEl) prevEl.src = url;
+      }
+    }
+    fileInputEl.value = '';
+  }
+  window.handleImgbbPick = handleImgbbPick;
+
+  // For dynamically generated cards (rahbariyat/o'qituvchilar rows): upload then
+  // write directly into the sibling text input with data-field="photoUrl" inside the same .card-item
+  async function handleImgbbPickCard(fileInputEl){
+    const file = fileInputEl.files[0];
+    if(!file) return;
+    const url = await imgbbUploadFile(file);
+    if(url){
+      const card = fileInputEl.closest('.card-item');
+      const targetEl = card ? card.querySelector('[data-field="photoUrl"]') : null;
+      if(targetEl){
+        targetEl.value = url;
+        let img = card.querySelector('img');
+        if(img) img.src = url;
+      }
+    }
+    fileInputEl.value = '';
+  }
+  window.handleImgbbPickCard = handleImgbbPickCard;
+
+  // ---------- AUTH ----------
+  const loginScreen = document.getElementById('loginScreen');
+  const appEl = document.getElementById('app');
+
+  document.getElementById('loginBtn').addEventListener('click', doLogin);
+  document.getElementById('loginPass').addEventListener('keydown', e => { if(e.key === 'Enter') doLogin(); });
+
+  function doLogin(){
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPass').value;
+    const errEl = document.getElementById('loginErr');
+    errEl.classList.add('hidden');
+    signInWithEmailAndPassword(auth, email, pass).catch(err => {
+      errEl.textContent = "Email yoki parol noto'g'ri.";
+      errEl.classList.remove('hidden');
+    });
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+
+  onAuthStateChanged(auth, user => {
+    if(user){
+      loginScreen.classList.add('hidden');
+      appEl.classList.remove('hidden');
+      document.getElementById('sideUserEmail').textContent = user.email;
+      loadAll();
+    } else {
+      loginScreen.classList.remove('hidden');
+      appEl.classList.add('hidden');
+    }
+  });
+
+  // ---------- TABS ----------
+  document.querySelectorAll('.side-link[data-tab]').forEach(el => {
+    el.addEventListener('click', () => switchTab(el.dataset.tab));
+  });
+  document.getElementById('mobileTabSelect').addEventListener('change', e => switchTab(e.target.value));
+  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    const sel = document.getElementById('mobileTabSelect');
+    sel.style.display = sel.style.display === 'none' ? 'block' : 'none';
+  });
+  function switchTab(tab){
+    document.querySelectorAll('.side-link[data-tab]').forEach(el => el.classList.toggle('active', el.dataset.tab === tab));
+    document.querySelectorAll('.panel').forEach(el => el.classList.toggle('active', el.id === 'panel-' + tab));
+    document.getElementById('mobileTabSelect').style.display = 'none';
+  }
+
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+  window.closeModal = closeModal;
+
+  function loadAll(){
+    loadRahbariyat();
+    loadTeachers();
+    loadStudents();
+    loadSertifikatlar();
+    loadNews();
+    loadGallery();
+    loadHeroImage();
+  }
+
+  // ================= RAHBARIYAT =================
+  // Saytda hozir turgan haqiqiy ism/telefon — birinchi marta ochilganda shular ko'rsatiladi
+  const RAHBAR_DEFS = [
+    { id: 'direktor', roleLabel: 'Maktab direktori', defName: "Ramatjonov Sardorbek Sarvarbek o'g'li", defPhone: '+998 97 784 85 22' },
+    { id: 'oquv', roleLabel: "O'quv ishlari bo'yicha direktor o'rinbosari", defName: 'Mannobov Alijon Abduvoli o\'g\'li', defPhone: '+998 99 104 04 50' },
+    { id: 'manaviy', roleLabel: "Ma'naviy-ma'rifiy ishlar bo'yicha direktor o'rinbosari", defName: 'Raximova Lola Batirbayevna', defPhone: '+998 94 215 20 13' },
+    { id: 'maslahatchi', roleLabel: 'Maktab maslahatchisi', defName: 'Vaisboyeva Barno Vaisboyevna', defPhone: '+998 97 363 41 53' },
+    { id: 'psixolog', roleLabel: 'Maktab psixologi', defName: 'Buzrukova Arofat Madjitovna', defPhone: '+998 97 264 74 68' },
+  ];
+
+  async function loadRahbariyat(){
+    const { db, doc, getDoc } = window.__fb;
+    const list = document.getElementById('rahbariyatList');
+    list.innerHTML = '';
+    for(const r of RAHBAR_DEFS){
+      const snap = await getDoc(doc(db, 'rahbariyat', r.id));
+      const data = snap.exists() ? snap.data() : { name: r.defName, phone: r.defPhone };
+      const card = document.createElement('div');
+      card.className = 'card-item';
+      card.innerHTML = `
+        <div class="field"><label>${r.roleLabel}</label></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">F.I.SH</label><input value="${data.name || ''}" data-field="name" data-id="${r.id}"></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">Telefon</label><input value="${data.phone || ''}" data-field="phone" data-id="${r.id}"></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">Rasm (imgbb link)</label>
+          <div class="flex gap-2">
+            <input value="${data.photoUrl || ''}" data-field="photoUrl" data-id="${r.id}" placeholder="https://i.ibb.co/..." class="flex-1">
+            <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+              <i class="fa-solid fa-upload"></i>
+              <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPickCard(this)">
+            </label>
+          </div>
+        </div>
+        ${data.photoUrl ? `<img src="${data.photoUrl}" class="w-full h-40 object-cover rounded-lg" alt="">` : ''}
+        <button class="btn btn-primary w-full justify-center" onclick="saveRahbar('${r.id}', this)">Saqlash</button>
+      `;
+      list.appendChild(card);
+    }
+  }
+
+  window.saveRahbar = async function(id, btn){
+    const { db, doc, setDoc } = window.__fb;
+    const card = btn.closest('.card-item');
+    const name = card.querySelector('[data-field="name"]').value.trim();
+    const phone = card.querySelector('[data-field="phone"]').value.trim();
+    const photoUrl = card.querySelector('[data-field="photoUrl"]').value.trim();
+    const def = RAHBAR_DEFS.find(r => r.id === id);
+    try{
+      await setDoc(doc(db, 'rahbariyat', id), { name, phone, photoUrl, roleLabel: def.roleLabel, order: RAHBAR_DEFS.indexOf(def) });
+      toast('Saqlandi ✓');
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // ================= O'QITUVCHILAR =================
+  let teachersCache = [];
+
+  const TOIFA_OPTIONS = [['oliy','Oliy toifa'], ['1-toifa','1-toifa'], ['2-toifa','2-toifa'], ['mutaxassis','Mutaxassis']];
+
+  async function loadTeachers(){
+    const { db, collection, getDocs } = window.__fb;
+    const groupsEl = document.getElementById('teacherGroups');
+    groupsEl.innerHTML = '<p class="text-center text-slate-400 py-6">Yuklanmoqda...</p>';
+    try{
+      const snap = await getDocs(collection(db, 'oqituvchilar'));
+      teachersCache = [];
+      snap.forEach(d => teachersCache.push({ id: d.id, ...d.data() }));
+      document.getElementById('teacherCount').textContent = teachersCache.length + " ta o'qituvchi";
+      if(!teachersCache.length){
+        groupsEl.innerHTML = '<p class="text-center text-slate-400 py-10">Hozircha o\'qituvchi qo\'shilmagan. Yuqoridagi "Yangi o\'qituvchi" tugmasini bosing.</p>';
+        return;
+      }
+      const bySubject = {};
+      teachersCache.forEach(t => {
+        const key = t.subject || 'Fansiz';
+        (bySubject[key] = bySubject[key] || []).push(t);
+      });
+      const subjects = Object.keys(bySubject).sort((a,b) => a.localeCompare(b));
+      groupsEl.innerHTML = subjects.map(subject => `
+        <div class="mb-8">
+          <h3 class="font-bold text-slate-700 mb-3 flex items-center gap-2"><i class="fa-solid fa-book text-blue-500"></i> ${subject} <span class="text-slate-400 text-xs font-normal">(${bySubject[subject].length} ta)</span></h3>
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+            ${bySubject[subject].map(t => teacherEditCard(t)).join('')}
+          </div>
+        </div>
+      `).join('');
+    }catch(e){
+      groupsEl.innerHTML = `<p class="text-center text-red-500 py-6">Xatolik: ${e.message}</p>`;
+    }
+  }
+
+  function teacherEditCard(t){
+    return `
+      <div class="card-item" data-teacher-id="${t.id}">
+        <div class="field"><label class="!text-slate-400 !font-medium">F.I.SH</label><input value="${t.name || ''}" data-field="name"></div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="field"><label class="!text-slate-400 !font-medium">Fan</label><input value="${t.subject || ''}" data-field="subject"></div>
+          <div class="field"><label class="!text-slate-400 !font-medium">Toifa</label>
+            <select data-field="toifa">
+              ${TOIFA_OPTIONS.map(([v,l]) => `<option value="${v}" ${t.toifa===v?'selected':''}>${l}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="field"><label class="!text-slate-400 !font-medium">Telefon</label><input value="${t.phone || ''}" data-field="phone"></div>
+          <div class="field"><label class="!text-slate-400 !font-medium">Bitirgan yili</label><input value="${t.year || ''}" data-field="year"></div>
+        </div>
+        <div class="field"><label class="!text-slate-400 !font-medium">Ta'lim muassasasi</label><input value="${t.uni || ''}" data-field="uni"></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">Rasm (imgbb link)</label>
+          <div class="flex gap-2">
+            <input value="${t.photoUrl || ''}" data-field="photoUrl" placeholder="https://i.ibb.co/..." class="flex-1">
+            <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+              <i class="fa-solid fa-upload"></i>
+              <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPickCard(this)">
+            </label>
+          </div>
+        </div>
+        ${t.photoUrl ? `<img src="${t.photoUrl}" class="w-full h-32 object-cover rounded-lg mb-3" alt="">` : ''}
+        <div class="flex gap-2">
+          <button class="btn btn-primary flex-1 justify-center" onclick="saveTeacherCard('${t.id}', this)"><i class="fa-solid fa-floppy-disk"></i> Saqlash</button>
+          <button class="btn btn-danger !px-3" onclick="deleteTeacher('${t.id}')"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    `;
+  }
+
+  window.saveTeacherCard = async function(id, btn){
+    const { db, doc, updateDoc } = window.__fb;
+    const card = btn.closest('[data-teacher-id]');
+    const payload = {};
+    card.querySelectorAll('[data-field]').forEach(el => { payload[el.dataset.field] = el.value.trim(); });
+    if(!payload.name || !payload.subject){ toast("Ism va fan majburiy", true); return; }
+    try{
+      await updateDoc(doc(db, 'oqituvchilar', id), payload);
+      toast('Saqlandi ✓');
+      loadTeachers();
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  window.openTeacherModal = function(){
+    document.getElementById('teacherModalTitle').textContent = 'Yangi o\'qituvchi';
+    ['teacherId','teacherName','teacherSubject','teacherPhone','teacherUni','teacherYear','teacherPhoto'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('teacherToifa').value = 'oliy';
+    document.getElementById('teacherModal').classList.add('open');
+  };
+  window.saveTeacher = async function(){
+    const { db, collection, addDoc } = window.__fb;
+    const payload = {
+      name: document.getElementById('teacherName').value.trim(),
+      subject: document.getElementById('teacherSubject').value.trim(),
+      toifa: document.getElementById('teacherToifa').value,
+      phone: document.getElementById('teacherPhone').value.trim(),
+      uni: document.getElementById('teacherUni').value.trim(),
+      year: document.getElementById('teacherYear').value.trim(),
+      photoUrl: document.getElementById('teacherPhoto').value.trim(),
+    };
+    if(!payload.name || !payload.subject){ toast('Ism va fan majburiy', true); return; }
+    try{
+      await addDoc(collection(db, 'oqituvchilar'), payload);
+      closeModal('teacherModal');
+      toast('Saqlandi ✓');
+      loadTeachers();
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // One-click seed: bulk-import the teacher list provided by the client (40 entries; rows 1 & 11 pending)
+  const INITIAL_TEACHERS = [
+    {name:"Axunova Muxabbat Abdumalikovna", subject:"Ona tili va adabiyot", toifa:"oliy", phone:"+998 97 616 15 55", uni:"Toshkent DPU", year:"1996"},
+    {name:"Muratov Shoxijaxon SHerali o'g'li", subject:"Ona tili va adabiyot", toifa:"oliy", phone:"+998 94 621 32 28", uni:"Jizzax DPI", year:"2019"},
+    {name:"Sottiboyeva Gulnoza Odilovna", subject:"Ona tili va adabiyot", toifa:"oliy", phone:"+998 99 817 46 36", uni:"Toshkent DPU", year:"1999"},
+    {name:"Alimkulova Feruza Turabekovna", subject:"Rus tili", toifa:"oliy", phone:"+998 99 870 39 06", uni:"Vladimirskiy DPI im. P.I. Lebedeva", year:"1991"},
+    {name:"Utkirova Nodira Boxodirovna", subject:"Rus tili", toifa:"2-toifa", phone:"+998 90 999 18 96", uni:"Chirchiq Davlat Pedagogika Universiteti", year:"2023"},
+    {name:"Mirjalalova Nigora Abdukarimovna", subject:"Rus tili", toifa:"1-toifa", phone:"+998 88 879 95 99", uni:"O'zbekiston Davlat Jahon tillari Universiteti", year:"1993"},
+    {name:"Xakimova Durdonaxon Erkinjon qizi", subject:"Rus tili", toifa:"oliy", phone:"+998 93 566 87 80", uni:"Qo'qon Davlat Pedagogika instituti", year:"2019"},
+    {name:"Jo'rayev Asrorjon Muxammadjonovich", subject:"Ingliz tili", toifa:"oliy", phone:"+998 93 566 87 80", uni:"Qo'qon Davlat Pedagogika instituti", year:"2009"},
+    {name:"Qodirova Nigina Umarali qizi", subject:"Ingliz tili", toifa:"oliy", phone:"+998 99 852 61 77", uni:"Farg'ona Davlat Universiteti", year:"2022"},
+    {name:"Safarova Zulfiya Sulaymonovna", subject:"Ingliz tili", toifa:"oliy toifa", phone:"+998 97 878 60 13", uni:"Buxoro Davlat Universiteti", year:"2009"},
+    {name:"Niyazmetova Nargisa Sharafovna", subject:"Ingliz tili", toifa:"oliy toifa", phone:"+998 99 488 31 82", uni:"Toshkent DPU", year:"2004"},
+    {name:"Yusupov Javlon Oybekovich", subject:"Ingliz tili", toifa:"oliy toifa", phone:"+998 90 988 95 36", uni:"O'Z DJTU", year:"2014"},
+    {name:"Tojiboyeva Sevinch Abdunazarovna", subject:"Ingliz tili", toifa:"mutaxassis", phone:"+998 94 362 63 33", uni:"O'Z DJTU", year:"2024"},
+    {name:"Yuldasheva Gulchexra Tolibjonovna", subject:"Ingliz tili", toifa:"oliy", phone:"+998 97 616 68 82", uni:"O'Z DJTU", year:"2004"},
+    {name:"Boymatova Madina Komiljon qizi", subject:"Tarix", toifa:"1-toifa", phone:"+998 94 621 32 28", uni:"Chirchiq Davlat Pedagogika Instituti", year:"2022"},
+    {name:"Utkirov Farrux Ixtiyorovich", subject:"Tarix", toifa:"oliy", phone:"+998 95 790 11 87", uni:"Chirchiq Davlat Pedagogika Instituti", year:"2022"},
+    {name:"Ramatjonova Muxlisa Rixsiboy qizi", subject:"Tarix", toifa:"1-toifa", phone:"+998 97 342 94 25", uni:"O'zbekiston xalqaro islom akademiyasi", year:"2019"},
+    {name:"Kudratov Solijon Ubaydullayevich", subject:"Tarbiya", toifa:"mutaxassis", phone:"+998 55 902 41 61", uni:"Toshkent Davlat pedagogika instituti", year:"1999"},
+    {name:"Esanturdiyev Xayotjon Sayfiddin o'g'li", subject:"Informatika", toifa:"2-toifa", phone:"+998 90 136 84 21", uni:"Chirchiq Davlat Pedagogika Instituti", year:"2022"},
+    {name:"Odilov Rixstilla Uktamovich", subject:"Informatika", toifa:"oliy", phone:"+998 97 766 04 65", uni:"Chirchiq Davlat Pedagogika Instituti", year:"2022"},
+    {name:"Karimova Zulfiya Dusbek qizi", subject:"Informatika", toifa:"1-toifa", phone:"+998 99 886 96 79", uni:"Guliston Davlat Universiteti", year:"2016"},
+    {name:"Otajanova Saida Saparboyevna", subject:"Matematika", toifa:"oliy", phone:"+998 99 852 61 77", uni:"Al-Xorazmiy nomli Urganch DU", year:"2007"},
+    {name:"Sultanova Nigora Mirtillayevna", subject:"Matematika", toifa:"1-toifa", phone:"+998 99 838 09 17", uni:"Toshkent DPU", year:"1996"},
+    {name:"Ziyodullayev Ozodbek Asqar o'g'li", subject:"Matematika", toifa:"oliy", phone:"+998 99 487 41 48", uni:"Qishloq xo'jaligini mexanizatsiyalash muhandislari instituti", year:"2017"},
+    {name:"Ro'ziyev Obidjon Xurram o'g'li", subject:"Matematika", toifa:"1-toifa", phone:"+998 90 132 21 19", uni:"Qarshi davlat universiteti", year:"2017"},
+    {name:"Quttibayev Akbarjon Umarali o'g'li", subject:"Matematika", toifa:"2-toifa", phone:"+998 93 124 44 49", uni:"Chirchiq Davlat Pedagogika Instituti", year:"2022"},
+    {name:"Sharofiddinova Muxsina Baxtiyor qizi", subject:"Matematika", toifa:"1-toifa", phone:"+998 93 160 38 36", uni:"Namangan Davlat universiteti", year:"2019"},
+    {name:"Sharipova Ra'no Ashurovna", subject:"Matematika", toifa:"1-toifa", phone:"+998 97 736 08 09", uni:"O'Z MU", year:"2002"},
+    {name:"Ikramov Eldor Zafar o'g'li", subject:"Matematika", toifa:"2-toifa", phone:"+998 94 938 07 14", uni:"Chirchiq Davlat Pedagogika Universiteti", year:"2024"},
+    {name:"Yolqinova Husnobod Ulug'bek qizi", subject:"Matematika", toifa:"2-toifa", phone:"+998 99 819 47 87", uni:"Chirchiq Davlat Pedagogika Universiteti", year:"2023"},
+    {name:"Muxitdinova Dilnoza Zafarovna", subject:"Matematika", toifa:"2-toifa", phone:"+998 99 487 41 47", uni:"Qishloq xo'jaligini mexanizatsiyalash muhandislari instituti", year:"2017"},
+    {name:"Yeshimbetova Gulchexra Abdullayevna", subject:"Geografiya", toifa:"oliy toifa", phone:"+998 99 409 25 09", uni:"Nukus Davlat PI", year:"2009"},
+    {name:"Pulatova Gulxayo Abdusait qizi", subject:"Biologiya", toifa:"2-toifa", phone:"+998 93 962 56 65", uni:"Chirchiq Davlat PI", year:"2023"},
+    {name:"Ganibayev Ixtiyor Baxtiyorovich", subject:"Kimyo", toifa:"1-toifa", phone:"+998 99 405 64 12", uni:"Toshkent DPU", year:"2009"},
+    {name:"Xapizova Dildora Dilshod qizi", subject:"Kimyo", toifa:"oliy", phone:"+998 94 368 09 39", uni:"Chirchiq DPU", year:"2024"},
+    {name:"Alimov Jo'rabek Karim o'g'li", subject:"Fizika", toifa:"oliy", phone:"+998 94 367 30 97", uni:"Chirchiq Davlat Pedagogika Instituti", year:"2022"},
+    {name:"Xonturayev Muzaffar Saidjabborovich", subject:"Fizika", toifa:"1-toifa", phone:"+998 99 802 61 55", uni:"Toshkent DPU", year:"1993"},
+    {name:"Qorayev Mavlon Jo'raqul o'g'li", subject:"Fizika", toifa:"oliy toifa", phone:"+998 90 721 42 11", uni:"Mirzo Ulug'bek nomidagi O'zbekiston Milliy Universiteti", year:"2021"},
+    {name:"Mannopov Abdusaid Abduvoli o'g'li", subject:"Jismoniy tarbiya", toifa:"oliy toifa", phone:"+998 99 851 19 66", uni:"O'Z DJTI", year:"2016"},
+    {name:"Bekmuratova Malika Shaydilovna", subject:"Sanat (ART)", toifa:"2-toifa", phone:"+998 93 809 90 90", uni:"Kamoliddin Behzod nomidagi Milliy rassomchilik va dizayn instituti", year:"2012"},
+  ];
+  window.seedTeachersData = async function(){
+    const { db, collection, addDoc } = window.__fb;
+    if(!confirm(`${INITIAL_TEACHERS.length} ta o'qituvchi ma'lumoti (rasmsiz) bazaga qo'shiladi. Davom etilsinmi?`)) return;
+    toast("Yuklanmoqda, biroz kuting...");
+    let count = 0;
+    for(const t of INITIAL_TEACHERS){
+      try{ await addDoc(collection(db, 'oqituvchilar'), { name:t.name, subject:t.subject, toifa:t.toifa, phone:t.phone, uni:t.uni, year:t.year, photoUrl:'' }); count++; }
+      catch(e){ console.warn('Xatolik:', t.name, e.message); }
+    }
+    toast(`${count} ta o'qituvchi qo'shildi ✓`);
+    loadTeachers();
+  };
+  window.deleteTeacher = async function(id){
+    if(!confirm("Rostdan ham o'chirilsinmi?")) return;
+    const { db, doc, deleteDoc } = window.__fb;
+    try{ await deleteDoc(doc(db, 'oqituvchilar', id)); toast("O'chirildi ✓"); loadTeachers(); }
+    catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // ================= IQTIDORLI O'QUVCHILAR =================
+  let studentsCache = [];
+
+  async function loadStudents(){
+    const { db, collection, getDocs } = window.__fb;
+    const groupsEl = document.getElementById('studentGroups');
+    groupsEl.innerHTML = '<p class="text-center text-slate-400 py-6">Yuklanmoqda...</p>';
+    try{
+      const snap = await getDocs(collection(db, 'iqtidorli_oquvchilar'));
+      studentsCache = [];
+      snap.forEach(d => studentsCache.push({ id: d.id, ...d.data() }));
+      document.getElementById('studentCount').textContent = studentsCache.length + " ta o'quvchi";
+      if(!studentsCache.length){
+        groupsEl.innerHTML = '<p class="text-center text-slate-400 py-10">Hozircha o\'quvchi qo\'shilmagan. "Boshlang\'ich ro\'yxatni yuklash" yoki "Yangi o\'quvchi" tugmasini bosing.</p>';
+        return;
+      }
+      const byYear = {};
+      studentsCache.forEach(s => {
+        const key = s.year || "Yilsiz";
+        (byYear[key] = byYear[key] || []).push(s);
+      });
+      const yearsList = Object.keys(byYear).sort((a,b) => b.localeCompare(a));
+      groupsEl.innerHTML = yearsList.map(year => `
+        <div class="mb-8">
+          <h3 class="font-bold text-slate-700 mb-3 flex items-center gap-2"><i class="fa-solid fa-calendar-days text-purple-500"></i> ${year}-o'quv yili <span class="text-slate-400 text-xs font-normal">(${byYear[year].length} ta)</span></h3>
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+            ${byYear[year].map(s => studentEditCard(s)).join('')}
+          </div>
+        </div>
+      `).join('');
+    }catch(e){
+      groupsEl.innerHTML = `<p class="text-center text-red-500 py-6">Xatolik: ${e.message}</p>`;
+    }
+  }
+
+  function studentEditCard(s){
+    return `
+      <div class="card-item" data-student-id="${s.id}">
+        <div class="field"><label class="!text-slate-400 !font-medium">F.I.SH</label><input value="${s.name || ''}" data-field="name"></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">Izoh (yutug'i)</label><textarea rows="2" data-field="izoh">${s.izoh || ''}</textarea></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">O'quv yili</label><input value="${s.year || ''}" data-field="year"></div>
+        <div class="field"><label class="!text-slate-400 !font-medium">O'quvchi rasmi</label>
+          <div class="flex gap-2">
+            <input value="${s.photoUrl || ''}" data-field="photoUrl" placeholder="https://i.ibb.co/..." class="flex-1">
+            <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+              <i class="fa-solid fa-upload"></i>
+              <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPickCard(this)">
+            </label>
+          </div>
+        </div>
+        <div class="field"><label class="!text-slate-400 !font-medium">Hujjat / qabul xati rasmi</label>
+          <div class="flex gap-2">
+            <input value="${s.docUrl || ''}" data-field="docUrl" placeholder="https://i.ibb.co/..." class="flex-1">
+            <label class="btn btn-ghost shrink-0 cursor-pointer" title="Kompyuterdan rasm yuklash">
+              <i class="fa-solid fa-upload"></i>
+              <input type="file" accept="image/*" class="hidden" onchange="handleImgbbPickDoc(this)">
+            </label>
+          </div>
+        </div>
+        ${s.photoUrl ? `<img src="${s.photoUrl}" class="w-full h-32 object-cover rounded-lg mb-3" alt="">` : ''}
+        <div class="flex gap-2">
+          <button class="btn btn-primary flex-1 justify-center" onclick="saveStudentCard('${s.id}', this)"><i class="fa-solid fa-floppy-disk"></i> Saqlash</button>
+          <button class="btn btn-danger !px-3" onclick="deleteStudent('${s.id}')"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    `;
+  }
+
+  window.saveStudentCard = async function(id, btn){
+    const { db, doc, updateDoc } = window.__fb;
+    const card = btn.closest('[data-student-id]');
+    const payload = {};
+    card.querySelectorAll('[data-field]').forEach(el => { payload[el.dataset.field] = el.value.trim(); });
+    if(!payload.name){ toast("Ism majburiy", true); return; }
+    try{
+      await updateDoc(doc(db, 'iqtidorli_oquvchilar', id), payload);
+      toast('Saqlandi ✓');
+      loadStudents();
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  window.openStudentModal = function(){
+    document.getElementById('studentModalTitle').textContent = "Yangi o'quvchi";
+    ['studentId','studentName','studentIzoh','studentYear','studentPhoto','studentDoc'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('studentModal').classList.add('open');
+  };
+  window.saveStudent = async function(){
+    const { db, collection, addDoc } = window.__fb;
+    const payload = {
+      name: document.getElementById('studentName').value.trim(),
+      izoh: document.getElementById('studentIzoh').value.trim(),
+      year: document.getElementById('studentYear').value.trim(),
+      photoUrl: document.getElementById('studentPhoto').value.trim(),
+      docUrl: document.getElementById('studentDoc').value.trim(),
+    };
+    if(!payload.name){ toast('Ism majburiy', true); return; }
+    try{
+      await addDoc(collection(db, 'iqtidorli_oquvchilar'), payload);
+      closeModal('studentModal');
+      toast('Saqlandi ✓');
+      loadStudents();
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+  window.deleteStudent = async function(id){
+    if(!confirm("Rostdan ham o'chirilsinmi?")) return;
+    const { db, doc, deleteDoc } = window.__fb;
+    try{ await deleteDoc(doc(db, 'iqtidorli_oquvchilar', id)); toast("O'chirildi ✓"); loadStudents(); }
+    catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // Doc-image uploader for student cards (writes to data-field="docUrl" sibling, not photoUrl)
+  window.handleImgbbPickDoc = async function(fileInputEl){
+    const file = fileInputEl.files[0];
+    if(!file) return;
+    const url = await imgbbUploadFile(file);
+    if(url){
+      const card = fileInputEl.closest('[data-student-id]') || fileInputEl.closest('.card-item');
+      const targetEl = card ? card.querySelector('[data-field="docUrl"]') : null;
+      if(targetEl) targetEl.value = url;
+    }
+    fileInputEl.value = '';
+  };
+
+  // One-click seed: bulk-import the initial 36-student list provided by the client
+  const INITIAL_STUDENTS = [
+    {name:"Qulmurodov Xushnud", izoh:"Kimyo va materialshunoslik muhandisligi yo'nalishi bo'yicha \"Yangi O'zbekiston\" Universitetiga qabul qilingan", year:"2021-2022"},
+    {name:"Abdumalikov Hikmatulloh", izoh:"Mexanika muhandisligi yo'nalishi bo'yicha \"Yangi O'zbekiston\" Universitetiga qabul qilingan, 50% li grant bilan", year:"2024-2025"},
+    {name:"Abduraxmonova Aslzoda", izoh:"Pedagogika yo'nalishi bo'yicha, School of Humanities, Natural & Social Sciences fakultetiga \"Yangi O'zbekiston\" Universitetiga qabul qilingan", year:"2024-2025"},
+    {name:"Toshtemirov Sarvar", izoh:"Pedagogika (STEM fanlari bo'yicha) yo'nalishi bo'yicha \"Yangi O'zbekiston\" Universitetiga qabul qilingan. 50% li grant bilan", year:"2024-2025"},
+    {name:"Raxmonberdiyev Erkin", izoh:"2024-2025-o'quv yilida STEAM xalqaro olimpiadasining respublika bosqichi ishtirokchisi bo'ldi", year:"2024-2025"},
+    {name:"Raxmonberdiyev Erkin", izoh:"Amaliy matematika yo'nalishi bo'yicha \"Yangi O'zbekiston\" Universitetiga qabul qilingan, 50% li grant bilan", year:"2024-2025"},
+    {name:"Toxirova Sabina", izoh:"\"Yangi O'zbekiston\" Universitetiga qabul qilingan, 100% grant bilan", year:"2024-2025"},
+    {name:"Rahimberdiyev Umar", izoh:"Amaliy matematika yo'nalishi bo'yicha \"Yangi O'zbekiston\" Universitetiga qabul qilingan, 50% li grant bilan", year:"2024-2025"},
+    {name:"Mirzaxmatova Madina", izoh:"\"Yangi O'zbekiston\" Universitetiga qabul qilingan", year:"2024-2025"},
+    {name:"Xakimjonova Ziyoda", izoh:"\"Yangi O'zbekiston\" Universitetiga qabul qilingan", year:"2022-2023"},
+    {name:"Abduraxmonova Aslzoda", izoh:"\"Yangi O'zbekiston\" Universitetiga qabul qilingan", year:"2022-2023"},
+    {name:"Esanbayeva Xushriya", izoh:"\"Yangi O'zbekiston\" Universitetiga qabul qilingan, 75% li grant bilan", year:"2022-2023"},
+    {name:"Mirzokabulova Xosila", izoh:"\"Yangi O'zbekiston\" Universitetiga qabul qilingan, 100% li grant bilan", year:"2022-2023"},
+    {name:"Azizxonov Mustafo", izoh:"AQSh universitetlaridan (jumladan University of New Hampshire) Engineering physics yo'nalishi bo'yicha qabul xati olgan", year:"2022-2023"},
+    {name:"Yuldoshvoyev Asadbek", izoh:"Mexanika muhandisligi yo'nalishi bo'yicha \"Yangi O'zbekiston\" Universitetiga qabul qilingan, 100% li grant bilan", year:"2025-2026"},
+    {name:"Abduvaliyev Dilnur", izoh:"Colorado State University (AQSh), University of Birmingham (Buyuk Britaniya) dan qabul xati olgan", year:"2025-2026"},
+    {name:"Abdullayeva Dilnura", izoh:"University of Glasgow, University of Bristol, University of Birmingham, Kent State University, Colorado State University dan qabul xati olgan", year:"2025-2026"},
+    {name:"Xamidullayev Feruz", izoh:"O'zbekiston kubogi musobaqasida kusiki va fudokan karate-do federatsiyasi terma jamoasi safida 1-o'rinni egalladi", year:"2025-2026"},
+    {name:"Ziyodullayeva Odinaxon", izoh:"University of Birmingham, University of Glasgow, University of Washington (Seattle), Arizona State University ($72,000 stipendiya), Purdue University dan qabul xati olgan", year:"2024-2025"},
+    {name:"Ziyodullayeva Jasmin", izoh:"AFS Global STEM Accelerators 2026, The Knowledge Society (TKS) 2026-2027, Unite Girls Research Fellowship 2026 dasturlari ishtirokchisi", year:"2025-2026"},
+    {name:"Yergashvoyev Jamshid", izoh:"Kiberxavfsizlik tashkilotida Security Researcher sifatida faoliyat yuritmoqda. 17 yoshida 2 ta CVE olishga erishdi, NASA tizimidagi xavfsizlik zaifligini aniqlagan", year:"2024-2025"},
+    {name:"Elshod Shokirjonov", izoh:"Osiyo chempionatida kumush medal sohibi, boks bo'yicha 52 kg vazn toifasida", year:"2025-2026"},
+    {name:"Rahimjonov Abdumalik", izoh:"Ingliz tili fanidan 3-o'rin, tuman bosqichi", year:"2025-2026"},
+    {name:"Narbayev Og'abek", izoh:"Informatika fanidan 2-o'rin tuman bosqichi, viloyat bosqichi 3-o'rin", year:"2025-2026"},
+    {name:"Rustamov Rustam", izoh:"Al-Xorazmiy olimpiadasi tuman bosqichi 1-o'rin", year:"2025-2026"},
+    {name:"Xusanov Abdulla", izoh:"Al-Xorazmiy olimpiadasi tuman bosqichi 2-o'rin", year:"2025-2026"},
+    {name:"Rahimov Xurshid", izoh:"Ingliz tilidan 2-o'rin tuman bosqichi", year:"2025-2026"},
+    {name:"Yuldashev Ulug'bek", izoh:"Ingliz tilidan 1-o'rin tuman bosqichi", year:"2025-2026"},
+    {name:"Davronova Intizor", izoh:"Tarix fanidan 1-o'rin tuman bosqichi", year:"2025-2026"},
+    {name:"Tursunboyeva Muslima", izoh:"Xalqaro qizlar olimpiadasi 1-o'rin tuman bosqichi, matematikadan tuman bosqichi 2-o'rin, ona tili tuman olimpiadasi 1-o'rin", year:"2025-2026"},
+    {name:"Ziyodullayeva Jasmina", izoh:"Xalqaro qizlar olimpiadasi 1-o'rin tuman bosqichi", year:"2025-2026"},
+    {name:"Alijanov Shaxriyor", izoh:"STEM olimpiadasi tabiiy fanlar yo'nalishi viloyat bosqichi 1-o'rin", year:"2025-2026"},
+    {name:"Dehkonboyeva Ziyoda", izoh:"Fizika olimpiadasi tuman bosqichi 1-o'rin", year:"2025-2026"},
+    {name:"Yo'ldashvoyev Asadbek", izoh:"Fizika olimpiadasi tuman bosqichi 3-o'rin", year:"2025-2026"},
+    {name:"Olimjonova Nozanin", izoh:"Kimyo fanidan 1-o'rin tuman bosqichi", year:"2025-2026"},
+    {name:"Umidova Zarnigor", izoh:"Ingliz tilidan 1-o'rin tuman bosqichi", year:"2025-2026"},
+  ];
+  window.seedStudentsData = async function(){
+    if(studentsCache.length > 0){
+      if(!confirm(`Ro'yxatda allaqachon ${studentsCache.length} ta o'quvchi bor. Yana ${INITIAL_STUDENTS.length} ta qo'shilsinmi? (dublikat bo'lishi mumkin)`)) return;
+    } else {
+      if(!confirm(`${INITIAL_STUDENTS.length} ta o'quvchi ma'lumoti (rasmsiz) bazaga qo'shiladi. Davom etilsinmi?`)) return;
+    }
+    const { db, collection, addDoc } = window.__fb;
+    toast("Yuklanmoqda, biroz kuting...");
+    let count = 0;
+    for(const s of INITIAL_STUDENTS){
+      try{ await addDoc(collection(db, 'iqtidorli_oquvchilar'), { name:s.name, izoh:s.izoh, year:s.year, photoUrl:'', docUrl:'' }); count++; }
+      catch(e){ console.warn('Xatolik:', s.name, e.message); }
+    }
+    toast(`${count} ta o'quvchi qo'shildi ✓`);
+    loadStudents();
+  };
+
+  // ================= SERTIFIKATLAR =================
+  const MILLIY_KEYS = [
+    ['matematika','Matematika'], ['rusTili','Rus tili'], ['onaTili',"Ona tili va adabiyot"],
+    ['tarix','Tarix'], ['kimyo','Kimyo'], ['biologiya','Biologiya'],
+    ['fizika','Fizika'], ['cefr','CEFR'], ['arabTili','Arab tili']
+  ];
+  const INGLIZ_KEYS = [['b1','B1'], ['b2','B2'], ['c1','C1']];
+  const XORIJIY_KEYS = [['sat','SAT'], ['ielts','IELTS'], ['xitoy','Xitoy tili']];
+  const YIL_KEYS = [['y2023','2023'], ['y2024','2024'], ['y2025','2025']];
+  // Saytda hozir turgan haqiqiy raqamlar — birinchi marta ochilganda shular ko'rsatiladi
+  const SERT_DEFAULTS = {
+    matematika:56, rusTili:4, onaTili:104, tarix:37, kimyo:13, biologiya:3, fizika:18, cefr:239, arabTili:2,
+    b1:486, b2:239, c1:13,
+    sat:111, ielts:67, xitoy:1,
+    y2023:24, y2024:256, y2025:375
+  };
+  let qoshimchaFanlar = []; // [{key,label,value}] — "Fan qo'shish" orqali qo'shilgan qo'shimcha fanlar
+
+  function buildFieldInputs(containerId, keys, prefix){
+    const el = document.getElementById(containerId);
+    el.innerHTML = keys.map(([k,label]) => `
+      <div class="field">
+        <label>${label}</label>
+        <input type="number" min="0" id="cert_${prefix}_${k}" oninput="recalcSert()" value="${SERT_DEFAULTS[k] ?? 0}">
+      </div>
+    `).join('');
+  }
+  buildFieldInputs('milliyFields', MILLIY_KEYS, 'm');
+  buildFieldInputs('inglizFields', INGLIZ_KEYS, 'e');
+  buildFieldInputs('xorijiyFields', XORIJIY_KEYS, 'x');
+  buildFieldInputs('yillarFields', YIL_KEYS, 'y');
+
+  function renderQoshimchaFanlar(){
+    const el = document.getElementById('qoshimchaFanlarList');
+    if(!el) return;
+    el.innerHTML = qoshimchaFanlar.map((f, i) => `
+      <div class="field" style="display:flex;gap:8px;align-items:flex-end;">
+        <div style="flex:1"><label>Fan nomi</label><input value="${f.label}" oninput="qoshimchaFanlar[${i}].label=this.value">
+        </div>
+        <div style="width:110px"><label>Soni</label><input type="number" min="0" value="${f.value}" oninput="qoshimchaFanlar[${i}].value=+this.value||0; recalcSert();"></div>
+        <button class="btn" style="background:#fee2e2;color:#dc2626;" onclick="removeQoshimchaFan(${i})"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    `).join('') || '<p class="text-slate-400 text-sm">Hali qo\'shimcha fan yo\'q</p>';
+  }
+  window.addQoshimchaFan = function(){
+    qoshimchaFanlar.push({ key: 'custom_' + Date.now(), label: '', value: 0 });
+    renderQoshimchaFanlar();
+  };
+  window.removeQoshimchaFan = function(i){
+    qoshimchaFanlar.splice(i, 1);
+    renderQoshimchaFanlar();
+    recalcSert();
+  };
+
+  async function loadSertifikatlar(){
+    const { db, doc, getDoc } = window.__fb;
+    const snap = await getDoc(doc(db, 'sertifikatlar', 'stats'));
+    const data = snap.exists() ? snap.data() : {};
+    MILLIY_KEYS.forEach(([k]) => document.getElementById('cert_m_' + k).value = data.milliyFanlar?.[k] ?? SERT_DEFAULTS[k] ?? 0);
+    INGLIZ_KEYS.forEach(([k]) => document.getElementById('cert_e_' + k).value = data.ingliz?.[k] ?? SERT_DEFAULTS[k] ?? 0);
+    XORIJIY_KEYS.forEach(([k]) => document.getElementById('cert_x_' + k).value = data.xorijiy?.[k] ?? SERT_DEFAULTS[k] ?? 0);
+    YIL_KEYS.forEach(([k]) => document.getElementById('cert_y_' + k).value = data.yillar?.[k] ?? SERT_DEFAULTS[k] ?? 0);
+    const fixedKeys = MILLIY_KEYS.map(([k]) => k);
+    const mf = data.milliyFanlar || {};
+    qoshimchaFanlar = Object.keys(mf).filter(k => !fixedKeys.includes(k)).map(k => ({ key: k, label: mf[k].label || k, value: mf[k].value ?? mf[k] }));
+    renderQoshimchaFanlar();
+    recalcSert();
+  }
+  window.recalcSert = function(){
+    const milliy = MILLIY_KEYS.reduce((s,[k]) => s + (+document.getElementById('cert_m_'+k).value || 0), 0)
+      + qoshimchaFanlar.reduce((s,f) => s + (+f.value || 0), 0);
+    const xorijiy = XORIJIY_KEYS.reduce((s,[k]) => s + (+document.getElementById('cert_x_'+k).value || 0), 0);
+    document.getElementById('calcMilliy').textContent = milliy;
+    document.getElementById('calcXorijiy').textContent = xorijiy;
+    document.getElementById('calcJami').textContent = milliy + xorijiy;
+  };
+  window.saveSertifikatlar = async function(){
+    const { db, doc, setDoc } = window.__fb;
+    const milliyFanlar = {}; MILLIY_KEYS.forEach(([k]) => milliyFanlar[k] = +document.getElementById('cert_m_'+k).value || 0);
+    qoshimchaFanlar.forEach(f => { if(f.label.trim()) milliyFanlar[f.key] = { label: f.label.trim(), value: +f.value || 0 }; });
+    const ingliz = {}; INGLIZ_KEYS.forEach(([k]) => ingliz[k] = +document.getElementById('cert_e_'+k).value || 0);
+    const xorijiy = {}; XORIJIY_KEYS.forEach(([k]) => xorijiy[k] = +document.getElementById('cert_x_'+k).value || 0);
+    const yillar = {}; YIL_KEYS.forEach(([k]) => yillar[k] = +document.getElementById('cert_y_'+k).value || 0);
+    const milliyTotal = MILLIY_KEYS.reduce((s,[k]) => s + milliyFanlar[k], 0) + qoshimchaFanlar.reduce((s,f) => s + (+f.value||0), 0);
+    const xorijiyTotal = Object.values(xorijiy).reduce((a,b) => a+b, 0);
+    try{
+      await setDoc(doc(db, 'sertifikatlar', 'stats'), {
+        milliyFanlar, ingliz, xorijiy, yillar,
+        milliy: milliyTotal, xorijiyJami: xorijiyTotal, jami: milliyTotal + xorijiyTotal
+      });
+      toast('Saqlandi ✓');
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // ================= YANGILIKLAR =================
+  let newsCache = [];
+  async function loadNews(){
+    const { db, collection, getDocs, query, orderBy } = window.__fb;
+    const list = document.getElementById('newsList');
+    list.innerHTML = '<p class="text-slate-400 col-span-full text-center py-6">Yuklanmoqda...</p>';
+    try{
+      const snap = await getDocs(query(collection(db, 'yangiliklar'), orderBy('date', 'desc')));
+      newsCache = [];
+      snap.forEach(d => newsCache.push({ id: d.id, ...d.data() }));
+      if(!newsCache.length){
+        list.innerHTML = '<p class="text-slate-400 col-span-full text-center py-6">Hozircha yangilik yo\'q</p>';
+        return;
+      }
+      list.innerHTML = newsCache.map(n => `
+        <div class="card-item">
+          <div class="h-32 rounded-lg bg-slate-100 bg-cover bg-center mb-3" style="background-image:url('${n.imageUrl || ''}')"></div>
+          <div class="font-bold text-slate-800 mb-1 line-clamp-1">${n.title || ''}</div>
+          <div class="text-xs text-slate-400 mb-2">${n.date || ''}</div>
+          <p class="text-sm text-slate-500 line-clamp-2 mb-3">${n.text || ''}</p>
+          <div class="flex gap-2">
+            <button class="btn btn-ghost flex-1 justify-center" onclick="editNews('${n.id}')"><i class="fa-solid fa-pen"></i> Tahrirlash</button>
+            <button class="btn btn-danger" onclick="deleteNews('${n.id}')"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      `).join('');
+    }catch(e){
+      list.innerHTML = `<p class="text-red-500 col-span-full text-center py-6">Xatolik: ${e.message}</p>`;
+    }
+  }
+  window.openNewsModal = function(){
+    ['newsId','newsTitle','newsText','newsImage'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('newsDate').value = new Date().toISOString().slice(0,10);
+    document.getElementById('newsModal').classList.add('open');
+  };
+  window.editNews = function(id){
+    const n = newsCache.find(x => x.id === id);
+    if(!n) return;
+    document.getElementById('newsId').value = n.id;
+    document.getElementById('newsTitle').value = n.title || '';
+    document.getElementById('newsText').value = n.text || '';
+    document.getElementById('newsImage').value = n.imageUrl || '';
+    document.getElementById('newsDate').value = n.date || '';
+    document.getElementById('newsModal').classList.add('open');
+  };
+  window.saveNews = async function(){
+    const { db, collection, doc, addDoc, updateDoc } = window.__fb;
+    const id = document.getElementById('newsId').value;
+    const payload = {
+      title: document.getElementById('newsTitle').value.trim(),
+      text: document.getElementById('newsText').value.trim(),
+      imageUrl: document.getElementById('newsImage').value.trim(),
+      date: document.getElementById('newsDate').value,
+    };
+    if(!payload.title){ toast('Sarlavha majburiy', true); return; }
+    try{
+      if(id){ await updateDoc(doc(db, 'yangiliklar', id), payload); }
+      else{ await addDoc(collection(db, 'yangiliklar'), payload); }
+      closeModal('newsModal');
+      toast('Saqlandi ✓');
+      loadNews();
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+  window.deleteNews = async function(id){
+    if(!confirm("Rostdan ham o'chirilsinmi?")) return;
+    const { db, doc, deleteDoc } = window.__fb;
+    try{ await deleteDoc(doc(db, 'yangiliklar', id)); toast("O'chirildi ✓"); loadNews(); }
+    catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // ================= GALEREYA =================
+  let galleryCache = [];
+  async function loadGallery(){
+    const { db, collection, getDocs, query, orderBy } = window.__fb;
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = '<p class="text-slate-400 col-span-full text-center py-6">Yuklanmoqda...</p>';
+    try{
+      const snap = await getDocs(query(collection(db, 'galereya'), orderBy('createdAt', 'desc')));
+      galleryCache = [];
+      snap.forEach(d => galleryCache.push({ id: d.id, ...d.data() }));
+      if(!galleryCache.length){
+        grid.innerHTML = '<p class="text-slate-400 col-span-full text-center py-6">Hozircha rasm yo\'q</p>';
+        return;
+      }
+      grid.innerHTML = galleryCache.map(g => `
+        <div class="relative group rounded-xl overflow-hidden aspect-square bg-slate-100">
+          <img src="${g.imageUrl}" class="w-full h-full object-cover">
+          <button onclick="deleteGalleryImage('${g.id}')" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-red-500 text-white opacity-0 group-hover:opacity-100 transition flex items-center justify-center"><i class="fa-solid fa-trash text-xs"></i></button>
+        </div>
+      `).join('');
+    }catch(e){
+      grid.innerHTML = `<p class="text-red-500 col-span-full text-center py-6">Xatolik: ${e.message}</p>`;
+    }
+  }
+  window.openGalleryModal = function(){
+    document.getElementById('galleryImageInput').value = '';
+    document.getElementById('galleryModal').classList.add('open');
+  };
+  window.saveGalleryImage = async function(){
+    const { db, collection, addDoc, serverTimestamp } = window.__fb;
+    const url = document.getElementById('galleryImageInput').value.trim();
+    if(!url){ toast('Rasm linkini kiriting', true); return; }
+    try{
+      await addDoc(collection(db, 'galereya'), { imageUrl: url, createdAt: serverTimestamp() });
+      closeModal('galleryModal');
+      toast("Rasm qo'shildi ✓");
+      loadGallery();
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+  window.deleteGalleryImage = async function(id){
+    if(!confirm("Rasm o'chirilsinmi?")) return;
+    const { db, doc, deleteDoc } = window.__fb;
+    try{ await deleteDoc(doc(db, 'galereya', id)); toast("O'chirildi ✓"); loadGallery(); }
+    catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+  // ================= BOSH SAHIFA RASMLARI =================
+  async function loadHeroImage(){
+    const { db, doc, getDoc } = window.__fb;
+    const snap = await getDoc(doc(db, 'sozlamalar', 'rasmlar'));
+    const data = snap.exists() ? snap.data() : {};
+    document.getElementById('heroImageInput').value = data.heroImage || '';
+    document.getElementById('heroImagePreview').src = data.heroImage || '';
+  }
+  window.saveHeroImage = async function(){
+    const { db, doc, setDoc } = window.__fb;
+    const url = document.getElementById('heroImageInput').value.trim();
+    try{
+      await setDoc(doc(db, 'sozlamalar', 'rasmlar'), { heroImage: url }, { merge: true });
+      document.getElementById('heroImagePreview').src = url;
+      toast('Saqlandi ✓');
+    }catch(e){ toast('Xatolik: ' + e.message, true); }
+  };
+
+</script>
+<script>
+(function(){
+  var sel = '.card, .card-item, .card-hover, .leader-card, .team-card, .certificate-card, .news-card, article, .cards-grid > *';
+  var seen = new Set(); var list = [];
+  document.querySelectorAll(sel).forEach(function(el){ if(!seen.has(el)){ seen.add(el); list.push(el); } });
+  list.forEach(function(el, i){ el.classList.add('sr-reveal'); el.style.transitionDelay = (Math.min(i % 6, 6) * 0.08) + 's'; });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('sr-in'); io.unobserve(e.target); } });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  list.forEach(function(el){ io.observe(el); });
+  var hero = document.querySelector('h1');
+  if(hero) hero.classList.add('sr-hero');
+})();
+</script>
+</body>
+
+</html>

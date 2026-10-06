@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<script>if(localStorage.getItem("theme")==="dark")document.documentElement.classList.add("dark-early");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Eco School — Bo'stonliq tumani ixtisoslashtirilgan maktabi</title>
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<link rel="shortcut icon" type="image/jpeg" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<link rel="apple-touch-icon" href="https://i.ibb.co/mVQz8Qh9/logo.jpg">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+  :root{--primary:#1e3a8a;--primary-2:#1e40af;--accent:#fbbf24;--accent-2:#f59e0b;--light:#f8fafc;--dark:#0f172a;--bg:#f8fafc;--surface:#ffffff;--surface-2:#f1f5f9;--text:#0f172a;--text-muted:#64748b;--border:#e2e8f0;}
+  body.dark{--primary:#3b82f6;--primary-2:#60a5fa;--bg:#0b1220;--surface:#111827;--surface-2:#1f2937;--text:#e5e7eb;--text-muted:#9ca3af;--border:#1f2937;}
+  *{font-family:'Inter',sans-serif;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
+  body.dark .bg-white{background-color:var(--surface)!important;}
+  body.dark .bg-slate-50,body.dark .bg-slate-100{background-color:var(--bg)!important;}
+  body.dark .bg-blue-50{background-color:rgba(59,130,246,.1)!important;}
+  body.dark .bg-blue-100{background-color:rgba(59,130,246,.15)!important;}
+  body.dark .text-gray-500,body.dark .text-gray-600,body.dark .text-gray-700,body.dark .text-slate-600,body.dark .text-slate-700{color:var(--text-muted)!important;}
+  body.dark .text-slate-900,body.dark .text-gray-900{color:var(--text)!important;}
+  body.dark .border,body.dark .border-gray-200,body.dark .border-slate-200{border-color:var(--border)!important;}
+  body.dark nav.bg-white{background-color:var(--surface)!important;border-bottom:1px solid var(--border);}
+  body.dark .nav-link{color:var(--text);}
+  body.dark .dir-card,body.dark .contact-card{background:var(--surface);border-color:var(--border);}
+  body.dark .news-card,body.dark .team-card,body.dark .leader-card{background:var(--surface);}
+  /* ===== EXTRA DARK MODE ===== */
+  body.dark .filter-btn{background:var(--surface-2)!important;color:var(--text)!important;border-color:var(--border)!important;}
+  body.dark .filter-btn.active{background:var(--primary)!important;color:#fff!important;}
+  body.dark .page-hero{background:linear-gradient(135deg,rgba(11,18,32,.97) 0%,rgba(30,58,138,.9) 100%)!important;}
+  body.dark section.bg-white, body.dark .bg-white{background-color:var(--surface)!important;}
+  body.dark section.bg-slate-50, body.dark .bg-slate-50{background-color:var(--bg)!important;}
+  body.dark .modal-content, body.dark #newsModal .bg-white{background:var(--surface)!important;}
+  body.dark .text-gray-400{color:var(--text-muted)!important;}
+  body.dark .text-gray-600{color:var(--text-muted)!important;}
+  body.dark .bg-gray-100{background-color:var(--surface-2)!important;}
+  body.dark .border-gray-100{border-color:var(--border)!important;}
+  body.dark .shadow-sm{box-shadow:0 1px 3px rgba(0,0,0,.4)!important;}
+  body.dark .text-yellow-800{color:#fcd34d!important;}
+  body.dark .bg-yellow-100{background-color:rgba(251,191,36,.15)!important;}
+  body.dark .text-blue-700{color:#93c5fd!important;}
+  body.dark .bg-blue-100{background-color:rgba(59,130,246,.15)!important;}
+  body.dark .text-purple-800{color:#c4b5fd!important;}
+  body.dark .bg-purple-100{background-color:rgba(139,92,246,.15)!important;}
+  body.dark .text-green-700{color:#86efac!important;}
+  body.dark .bg-green-100{background-color:rgba(34,197,94,.15)!important;}
+  body.dark .text-orange-700{color:#fdba74!important;}
+  body.dark .bg-orange-100{background-color:rgba(249,115,22,.15)!important;}
+  body.dark .bg-pink-50{background-color:rgba(236,72,153,.1)!important;}
+  body.dark .text-blue-800{color:#93c5fd!important;}
+  body.dark input, body.dark textarea, body.dark select{background:var(--surface-2)!important;color:var(--text)!important;border-color:var(--border)!important;}
+  body.dark .marquee-section, body.dark section[style*='background:linear-gradient(135deg,#1e3a8a']{background:linear-gradient(135deg,#0f1f4a 0%,#1a2f6e 100%)!important;}
+  body.dark .sert-card{background:var(--surface)!important;border-color:var(--border)!important;}
+  body.dark .qabul-card{background:var(--surface)!important;}
+  body.dark .galereya-img-wrap{border-color:var(--border)!important;}
+  body.dark .breadcrumb a{color:rgba(255,255,255,.7)!important;}
+  body.dark table{background:var(--surface)!important;}
+  body.dark th{background:var(--surface-2)!important;color:var(--text)!important;border-color:var(--border)!important;}
+  body.dark td{color:var(--text)!important;border-color:var(--border)!important;}
+  body.dark .step-card, body.dark .info-card{background:var(--surface)!important;border-color:var(--border)!important;}
+
+  .lang-btn{padding:2px 8px;border-radius:6px;font-weight:700;font-size:12px;color:#cbd5e1;transition:all .2s;cursor:pointer;border:none;background:transparent;outline:none;}
+  .lang-btn.active{background:var(--accent);color:#0f172a;}
+  .lang-btn:hover:not(.active){color:#fff;}
+  .theme-toggle{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);color:#fbbf24;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;border:1px solid rgba(255,255,255,.15);}
+  .theme-toggle:hover{background:rgba(251,191,36,.2);transform:rotate(15deg);}
+  .manzil-item{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem 0;}
+  .manzil-icon{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+  body.dark .manzil-icon{background:linear-gradient(135deg,#3b82f6,#60a5fa);}
+  .underline-title{position:relative;display:inline-block;}
+  .underline-title::after{content:'';position:absolute;left:0;right:0;bottom:-8px;height:3px;background:var(--primary);border-radius:2px;}
+  .top-strip{background:linear-gradient(90deg,#0f172a 0%,#1e3a8a 100%);position:relative;z-index:60;}
+  .nav-link{position:relative;font-weight:600;color:#0f172a;transition:all .3s;font-size:.85rem;white-space:nowrap;}
+  .nav-link::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:3px;background:var(--accent);transition:all .3s;transform:translateX(-50%);border-radius:3px;}
+  .nav-link:hover{color:var(--primary);}
+  .nav-link:hover::after,.nav-link.active-page::after{width:100%;}
+  .nav-link.active-page{color:var(--primary);}
+  .hero{position:relative;min-height:100vh;background:linear-gradient(135deg,rgba(15,23,42,.85) 0%,rgba(30,58,138,.75) 60%,rgba(30,64,175,.7) 100%),url('maktab.jpg') center/cover no-repeat;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(251,191,36,.15) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(59,130,246,.2) 0%,transparent 50%);pointer-events:none;}
+  .hero-title{color:#fff;}
+  @keyframes shine{to{background-position:200% center;}}
+  .float-anim{animation:float 6s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
+  .pulse-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(251,191,36,.5);animation:pulseRing 3s ease-out infinite;}
+  @keyframes pulseRing{0%{transform:scale(.8);opacity:1;}100%{transform:scale(1.5);opacity:0;}}
+  .section-title{position:relative;display:inline-block;}
+  .section-title::after{content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:80px;height:4px;background:linear-gradient(90deg,var(--accent),var(--primary));border-radius:2px;}
+  .card-hover{transition:all .4s cubic-bezier(.4,0,.2,1);}
+  .card-hover:hover{transform:translateY(-12px);box-shadow:0 25px 50px -12px rgba(30,58,138,.25);}
+  .news-card img,.team-card img,.leader-card img{transition:transform .6s;}
+  .news-card:hover img,.team-card:hover img,.leader-card:hover img{transform:scale(1.08);}
+  .leader-card .overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(15,23,42,.95) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;color:#fff;}
+  .dir-card{position:relative;overflow:hidden;background:#fff;border-radius:1.25rem;padding:2rem;border:1px solid #e2e8f0;}
+  .dir-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+  .dir-card:hover::before{transform:scaleX(1);}
+  .dir-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(30,58,138,.15);}
+  .stat-num{color:#fbbf24;}
+  .marquee{overflow:hidden;white-space:nowrap;}
+  .marquee-track{display:inline-block;animation:scroll 30s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .news-badge{position:absolute;top:1rem;left:1rem;background:var(--accent);color:#0f172a;font-weight:700;padding:.4rem 1rem;border-radius:9999px;font-size:.75rem;}
+  .reveal{opacity:1;transform:translateY(0);transition:all .8s cubic-bezier(.4,0,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .contact-card{background:#fff;border-radius:1rem;padding:2rem;text-align:center;transition:all .4s;border:1px solid #e2e8f0;}
+  .contact-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 20px 40px rgba(30,58,138,.15);}
+  .contact-icon{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;margin:0 auto 1rem;}
+  .social-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .3s;}
+  .social-icon:hover{transform:translateY(-4px) scale(1.1);}
+  footer{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);}
+  #backTop{position:fixed;bottom:30px;right:30px;width:50px;height:50px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(30,58,138,.4);cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;z-index:100;}
+  #backTop.show{opacity:1;visibility:visible;}
+  #backTop:hover{background:var(--accent);transform:translateY(-4px);}
+  .mobile-menu{transform:translateX(100%);transition:transform .4s;}
+  @media (min-width:1280px){.mobile-menu{display:none !important;}}
+  .mobile-menu.open{transform:translateX(0);}
+  .gallery-item{overflow:hidden;border-radius:1rem;cursor:pointer;position:relative;}
+  .gallery-item img{transition:transform .5s;width:100%;height:100%;object-fit:cover;}
+  .gallery-item:hover img{transform:scale(1.1);}
+  .gallery-item .gal-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(15,23,42,.85) 100%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1.5rem;}
+  .gallery-item:hover .gal-overlay{opacity:1;}
+  .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.4;pointer-events:none;}
+  .page-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 60%,#1e40af 100%);padding:5rem 1.5rem 4rem;text-align:center;color:#fff;position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(251,191,36,.12) 0%,transparent 60%);pointer-events:none;}
+  .breadcrumb{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:9999px;padding:.4rem 1.2rem;font-size:.85rem;color:rgba(255,255,255,.8);margin-bottom:1.5rem;}
+  .breadcrumb a{color:var(--accent);font-weight:600;}
+
+  /* ===== EMAIL BUTTONS ===== */
+  .email-btn{
+    display:flex;align-items:center;gap:12px;
+    width:100%;margin-bottom:10px;padding:12px 16px;
+    border-radius:14px;text-decoration:none;
+    background:linear-gradient(135deg,#ea4335,#c5221f);
+    color:#fff;cursor:pointer;
+    box-shadow:0 4px 15px rgba(234,67,53,.3);
+    transition:transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s;
+    position:relative;overflow:hidden;
+  }
+  .email-btn::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+    opacity:0;transition:opacity .2s;
+  }
+  .email-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 28px rgba(234,67,53,.45);}
+  .email-btn:hover::before{opacity:1;}
+  .email-btn:active{transform:scale(.97);}
+  .email-btn-icon{
+    width:38px;height:38px;border-radius:50%;
+    background:rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;flex-shrink:0;
+  }
+  .email-btn-addr{font-weight:700;font-size:.88rem;flex:1;word-break:break-all;}
+  .email-btn-label{font-size:.72rem;font-weight:600;opacity:.85;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  body.dark .email-btn{background:linear-gradient(135deg,#ea4335,#b31412);}
+
+  /* ===== CALL BUTTONS ===== */
+  .call-btn{
+    display:flex;align-items:center;gap:12px;
+    width:100%;margin-bottom:10px;padding:12px 16px;
+    border-radius:14px;text-decoration:none;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#fff;border:none;cursor:pointer;
+    box-shadow:0 4px 15px rgba(30,58,138,.25);
+    transition:transform .2s cubic-bezier(.4,0,.2,1), box-shadow .2s, background .2s;
+    position:relative;overflow:hidden;
+  }
+  .call-btn::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+    opacity:0;transition:opacity .2s;
+  }
+  .call-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 10px 28px rgba(30,58,138,.4);}
+  .call-btn:hover::before{opacity:1;}
+  .call-btn:active{transform:scale(.97);box-shadow:0 2px 8px rgba(30,58,138,.2);}
+  .call-btn-icon{
+    width:38px;height:38px;border-radius:50%;
+    background:rgba(255,255,255,.2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;flex-shrink:0;
+    animation:phonePulse 2s ease-in-out infinite;
+  }
+  @keyframes phonePulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.4);}50%{box-shadow:0 0 0 8px rgba(255,255,255,.0);}}
+  .call-btn-num{font-weight:700;font-size:1rem;flex:1;letter-spacing:.3px;}
+  .call-btn-label{font-size:.72rem;font-weight:600;opacity:.8;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  body.dark .call-btn{background:linear-gradient(135deg,#3b82f6,#60a5fa);}
+
+  /* ===== ENHANCED ANIMATIONS ===== */
+
+  /* Navbar slide-in */
+  nav{animation:navSlideDown .6s cubic-bezier(.4,0,.2,1) both;}
+  @keyframes navSlideDown{from{transform:translateY(-100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+  /* Top strip fade-in */
+  .top-strip{animation:fadeInDown .5s ease both;}
+  @keyframes fadeInDown{from{transform:translateY(-20px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+  /* Page hero entrance: icon bounce, title slide, underline grow */
+  .page-hero .breadcrumb{animation:fadeInUp .6s .2s both ease;}
+  .page-hero .w-20{animation:heroBounce .8s .3s both cubic-bezier(.36,.07,.19,.97);}
+  @keyframes heroBounce{0%{transform:scale(0) rotate(-10deg);opacity:0;}60%{transform:scale(1.15) rotate(3deg);}80%{transform:scale(.95);}100%{transform:scale(1) rotate(0);opacity:1;}}
+  .page-hero h1{animation:fadeInUp .7s .5s both ease;}
+  .page-hero .w-16{animation:lineGrow .6s .9s both ease;}
+  @keyframes lineGrow{from{width:0;opacity:0;}to{width:4rem;opacity:1;}}
+  @keyframes fadeInUp{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+
+  /* Section title shimmer */
+  .underline-title{color:var(--primary);}
+  @keyframes shimmerText{to{background-position:200% center;}}
+
+  /* Manzil items: staggered slide-in from left */
+  .manzil-item{opacity:1;transform:translateX(0);transition:opacity .6s ease, transform .6s ease;}
+  .manzil-item.anim-in{opacity:1;transform:translateX(0);}
+  .manzil-item:nth-child(1){transition-delay:.05s;}
+  .manzil-item:nth-child(2){transition-delay:.2s;}
+  .manzil-item:nth-child(3){transition-delay:.35s;}
+
+  /* Manzil icon pulse on hover */
+  .manzil-icon{transition:transform .3s, box-shadow .3s;}
+  .manzil-item:hover .manzil-icon{transform:scale(1.15) rotate(-6deg);box-shadow:0 8px 20px rgba(30,58,138,.35);}
+
+  /* Social icons: pop entrance */
+  .social-icon{animation:popIn .4s both;}
+  .social-icon:nth-child(1){animation-delay:.6s;}
+  .social-icon:nth-child(2){animation-delay:.75s;}
+  .social-icon:nth-child(3){animation-delay:.9s;}
+  @keyframes popIn{from{transform:scale(0);opacity:0;}60%{transform:scale(1.2);}to{transform:scale(1);opacity:1;}}
+
+  /* Map reveal with border glow */
+  .map-wrapper{opacity:1;transform:translateX(0) scale(1);transition:opacity .8s ease, transform .8s ease;}
+  .map-wrapper.anim-in{opacity:1;transform:translateX(0) scale(1);}
+  .map-wrapper:hover{box-shadow:0 0 0 3px var(--accent),0 25px 50px rgba(30,58,138,.2)!important;}
+
+  /* Footer columns: staggered fade-up */
+  footer .grid>div{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease;}
+  footer .grid>div.anim-in{opacity:1;transform:translateY(0);}
+  footer .grid>div:nth-child(1){transition-delay:.05s;}
+  footer .grid>div:nth-child(2){transition-delay:.2s;}
+  footer .grid>div:nth-child(3){transition-delay:.35s;}
+  footer .grid>div:nth-child(4){transition-delay:.5s;}
+
+  /* Back-to-top bounce */
+  #backTop{animation:none;}
+  #backTop.show{animation:backTopBounce .5s cubic-bezier(.36,.07,.19,.97);}
+  @keyframes backTopBounce{0%{transform:scale(0) translateY(20px);}70%{transform:scale(1.15) translateY(-4px);}100%{transform:scale(1) translateY(0);}}
+
+  /* Ripple on CTA button click */
+  .cta-btn{position:relative;overflow:hidden;}
+  .cta-btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.25);transform:scale(0);border-radius:inherit;transition:transform .4s,opacity .4s;opacity:0;}
+  .cta-btn:active::after{transform:scale(2);opacity:1;}
+
+  /* Floating animated blobs in hero */
+  .anim-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.18;pointer-events:none;animation:blobFloat 8s ease-in-out infinite alternate;}
+  .anim-blob-2{animation-duration:11s;animation-direction:alternate-reverse;}
+  @keyframes blobFloat{from{transform:translate(0,0) scale(1);}to{transform:translate(30px,-30px) scale(1.1);}}
+
+  /* Theme toggle spin */
+  .theme-toggle:hover{transform:rotate(15deg) scale(1.1)!important;}
+
+  /* Reveal upgraded (already in use, adding stagger support) */
+  .reveal{opacity:1;transform:translateY(0);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-d1{transition-delay:.15s;}
+  .reveal-d2{transition-delay:.3s;}
+
+  /* Link hover underline animation */
+  footer a{position:relative;}
+  footer a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--accent);transition:width .3s ease;}
+  footer a:hover::after{width:100%;}
+
+  /* ===== DARK MODE FIXES: prevent invisible text ===== */
+  body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5,body.dark h6{color:var(--text);}
+  body.dark p:not([class*="text-"]):not([style]){color:var(--text-muted);}
+  body.dark .text-slate-800,body.dark .text-slate-900{color:var(--text)!important;}
+  body.dark .text-gray-800,body.dark .text-gray-900{color:var(--text)!important;}
+  body.dark .text-black{color:var(--text)!important;}
+  body.dark .text-slate-600,body.dark .text-slate-700,body.dark .text-gray-600,body.dark .text-gray-700{color:var(--text-muted)!important;}
+  body.dark [style*="color:#0f172a"],[style*="color: #0f172a"]{color:var(--text)!important;}
+  body.dark [style*="color:var(--text)"]{color:var(--text)!important;}
+  body.dark .bg-white,[class*="bg-slate-50"],[class*="bg-slate-100"]{background-color:var(--surface);}
+  body.dark section{background:var(--bg);}
+  body.dark .bg-slate-50{background-color:var(--bg)!important;}
+  body.dark .bg-slate-100{background-color:var(--surface-2)!important;}
+  body.dark .contact-card h3,body.dark .dir-card h3{color:var(--text)!important;}
+  body.dark .contact-card p,body.dark .dir-card p{color:var(--text-muted)!important;}
+  body.dark .border-slate-100,body.dark .border-slate-200,body.dark .border-gray-100,body.dark .border-gray-200{border-color:var(--border)!important;}
+  body.dark input,body.dark textarea,body.dark select{background:var(--surface-2);color:var(--text);border-color:var(--border);}
+  body.dark .text-indigo-600,body.dark .text-purple-600,body.dark .text-pink-600{opacity:0.9;}
+  body.dark .bg-white\/80{background-color:rgba(17,24,39,0.8)!important;}
+  body.dark .bg-slate-100{background-color:var(--surface-2)!important;}
+  body.dark .tab-btn{background:var(--surface-2);color:var(--text);}
+  body.dark .tab-btn.active{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;}
+  body.dark [class*="text-slate-5"]{color:var(--text-muted)!important;}
+  body.dark [class*="text-slate-4"]{color:var(--text-muted)!important;}
+  /* Fix hardcoded color in style attribute */
+  body.dark .underline-title{color:#60a5fa;}
+  body.dark .section-title{color:var(--text)!important;}
+  /* Fix mobile menu in dark mode */
+  body.dark #mobileMenu{background:var(--surface);color:var(--text);}
+  body.dark #mobileMenu a{color:var(--text);}
+  body.dark #mobileMenu .border-b{border-color:var(--border);}
+
+  /* ===== VISIBILITY OVERRIDE: ensure all content shows ===== */
+  .reveal, .reveal-d1, .reveal-d2 { opacity: 1 !important; transform: none !important; }
+  .manzil-item { opacity: 1 !important; transform: none !important; }
+  .map-wrapper { opacity: 1 !important; transform: none !important; }
+  footer .grid > div { opacity: 1 !important; transform: none !important; }
+  .team-card { opacity: 1 !important; transform: none !important; }
+  .leader-card { opacity: 1 !important; transform: none !important; }
+  .stagger-item { opacity: 1 !important; transform: none !important; }
+  .stat-item { opacity: 1 !important; transform: none !important; }
+  .dir-card { opacity: 1 !important; }
+  .contact-card { opacity: 1 !important; }
+  [class*="anim-"] { opacity: 1 !important; }
+
+  .dropdown-item:hover{background:var(--surface-2, #f1f5f9);}
+
+  /* ===== Generic image lightbox ===== */
+  .lb-trigger{cursor:zoom-in;transition:filter .2s;}
+  .lb-trigger:hover{filter:brightness(0.92);}
+  #genericLightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;}
+  #genericLightbox.open{opacity:1;visibility:visible;}
+  #genericLightbox img{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+  #genericLightbox .glb-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;border:none;}
+  #genericLightbox .glb-close:hover{background:rgba(251,191,36,.8);}
+  #genericLightbox .glb-nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;border:none;}
+  #genericLightbox .glb-nav:hover{background:rgba(251,191,36,.8);}
+  #genericLightbox .glb-prev{left:1.5rem;}
+  #genericLightbox .glb-next{right:1.5rem;}
+  @media (max-width:639px){
+    #genericLightbox .glb-prev{left:.5rem;width:40px;height:40px;}
+    #genericLightbox .glb-next{right:.5rem;width:40px;height:40px;}
+    #genericLightbox .glb-close{top:.75rem;right:.75rem;width:38px;height:38px;}
+  }
+  #genericLightbox .glb-counter{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.85rem;font-weight:600;background:rgba(0,0,0,.4);padding:.3rem .9rem;border-radius:9999px;}
+
+  /* ===== Hero photo carousel (big image + thumbnail strip) ===== */
+  .pc-wrap{max-width:900px;margin:0 auto;}
+  .pc-main{position:relative;border-radius:1.5rem;overflow:hidden;height:420px;background:#0f172a;box-shadow:0 20px 50px rgba(0,0,0,.15);}
+  .pc-main img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:opacity .25s;}
+  .pc-main-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.92);color:#0f172a;display:flex;align-items:center;justify-content:center;font-size:1.1rem;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s,transform .2s;z-index:3;}
+  .pc-main-nav:hover{background:#fbbf24;transform:translateY(-50%) scale(1.08);}
+  .pc-main-prev{left:16px;} .pc-main-next{right:16px;}
+  .pc-counter{position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,.55);color:#fff;font-size:.75rem;font-weight:700;padding:.3rem .8rem;border-radius:9999px;z-index:3;}
+  .pc-thumbs-wrap{display:flex;align-items:center;gap:8px;margin-top:14px;}
+  .pc-thumbs{display:flex;gap:8px;overflow-x:auto;scroll-behavior:smooth;padding:2px;flex:1;scrollbar-width:none;}
+  .pc-thumbs::-webkit-scrollbar{display:none;}
+  .pc-thumb{width:84px;height:64px;object-fit:cover;border-radius:.7rem;cursor:pointer;flex:0 0 auto;opacity:.55;transition:opacity .2s,box-shadow .2s;box-shadow:0 0 0 2px transparent;}
+  .pc-thumb:hover{opacity:.85;}
+  .pc-thumb.active{opacity:1;box-shadow:0 0 0 3px var(--amber,#f59e0b);}
+  .pc-thumb-nav{width:34px;height:34px;border-radius:50%;background:var(--surface,#fff);border:1px solid var(--border,#e2e8f0);color:var(--text,#0f172a);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto;transition:background .2s;}
+  .pc-thumb-nav:hover{background:var(--amber,#fbbf24);color:#fff;}
+  @media (max-width:639px){
+    .pc-main{height:230px;border-radius:1rem;}
+    .pc-main-nav{width:38px;height:38px;font-size:.95rem;}
+    .pc-thumb{width:64px;height:48px;}
+  }
+  #pcLightbox{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;}
+  #pcLightbox.open{opacity:1;visibility:visible;}
+  #pcLightbox img{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+  #pcLightbox .pclb-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;border:none;}
+  #pcLightbox .pclb-close:hover{background:rgba(251,191,36,.8);}
+</style>
+</head>
+<body>
+<!-- TOP STRIP -->
+<div class="top-strip text-white text-sm">
+  <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center flex-wrap gap-2">
+    <div class="hidden md:flex items-center gap-6">
+      <span><i class="fa-solid fa-location-dot text-yellow-400 mr-2"></i><span data-i18n="topAddress">Toshkent viloyati, Bo'stonliq tumani</span>
+      <span><i class="fa-solid fa-clock text-yellow-400 mr-2"></i><span data-i18n="topHours">Dush-Shan: 08:00 - 17:00</span>
+    </div>
+    <div class="flex items-center gap-3 ml-auto">
+      <a href="tel:+998977848522" class="hidden sm:inline hover:text-yellow-400 transition"><i class="fa-solid fa-phone mr-1"></i> +998 97 784 85 22</a>
+      <div class="flex items-center gap-1 ml-2 pl-3 border-l border-white/20">
+        <button class="lang-btn active" data-lang="uz">UZ</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button id="themeToggle" class="theme-toggle" title="Mavzu"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
+    </div>
+  </div>
+</div>
+<!-- NAVBAR -->
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <a href="index.html" class="flex items-center gap-3">
+      <img src="https://i.ibb.co/mVQz8Qh9/logo.jpg" alt="Logo" class="w-9 h-9 md:w-10 md:h-10 object-contain rounded-md" style="background:transparent" onerror="this.style.display='none'">
+      <div>
+        <div class="font-extrabold text-lg leading-tight" style="color:var(--primary)" data-i18n="logoLine1">Bo'stonliq tumani</div>
+        <div class="text-xs text-gray-500 font-medium" data-i18n="logoLine2">Ixtisoslashtirilgan maktabi</div>
+      </div>
+    </a>
+        <ul class="hidden xl:flex items-center gap-4 2xl:gap-6">
+      <li><a href="index.html" class="nav-link" data-i18n="navHome">Bosh sahifa</a></li>
+      <li><a href="rahbariyat.html" class="nav-link" data-i18n="navLeadership">Rahbariyat</a></li>
+      <li><a href="oqituvchilar.html" class="nav-link" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+      <li><a href="iqtidorli-oquvchilar.html" class="nav-link" data-i18n="navIqtidorli">Iqtidorli o'quvchilar</a></li>
+      <li><a href="qabul.html" class="nav-link" data-i18n="navQabul">Qabul jarayonlari</a></li>
+      <li><a href="yangiliklar.html" class="nav-link" data-i18n="navNews">E'lonlar</a></li>
+      <li><a href="aloqa.html" class="nav-link" data-i18n="navContact">Aloqa</a></li>
+      <li class="relative">
+        <button type="button" id="moreDropdownBtn" class="nav-link active-page flex items-center gap-1" aria-expanded="false">
+          <span data-i18n="navMore">Ko'proq</span> <i class="fa-solid fa-chevron-down text-[10px]" id="moreChevron" style="transition:transform .2s;"></i>
+        </button>
+        <div id="moreDropdownMenu" class="absolute left-0 mt-3 w-52 rounded-xl shadow-xl border py-2 z-50" style="background:var(--surface);border-color:var(--border);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .2s,visibility .2s,transform .2s;">
+        <a href="ecoschool.html" class="block px-4 py-2.5 text-sm font-bold dropdown-item" style="color:var(--text);" data-i18n="navEco">Eco School</a>
+        <a href="maktab-hayoti.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navMaktabHayoti">Maktab hayoti</a>
+        <a href="loyiha-ishlari.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navLoyiha">Loyiha ishlari</a>
+        <a href="sertifikatlar.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navSertifikat">Sertifikatlar</a>
+        <a href="galereya.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navGallery">Galereya</a>
+        <a href="memorandumlar.html" class="block px-4 py-2.5 text-sm dropdown-item" style="color:var(--text);" data-i18n="navMemorandum">Memorandumlar</a>
+        </div>
+      </li>
+  </ul>
+    <a href="tel:+998977848522" class="cta-btn hidden 2xl:inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-white font-semibold text-sm" style="background:linear-gradient(135deg,var(--primary),var(--primary-2));"><i class="fa-solid fa-phone text-xs"></i><span data-i18n="navCta">Qo'ng'iroq qilish</span></a>
+    <button id="menuBtn" class="xl:hidden text-2xl" style="color:var(--primary)"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-[60] p-6">
+  <div class="flex justify-between items-center mb-8">
+    <span class="font-bold text-lg" style="color:var(--primary)" data-i18n="mobileMenuLabel">Menyu</span>
+    <button id="closeMenu" class="text-2xl"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+    <ul class="flex flex-col gap-4">
+    <li><a href="index.html" class="block py-2 font-semibold border-b" data-i18n="navHome">Bosh sahifa</a></li>
+    <li><a href="maktab-hayoti.html" class="block py-2 font-semibold border-b" data-i18n="navMaktabHayoti">Maktab hayoti</a></li>
+    <li><a href="rahbariyat.html" class="block py-2 font-semibold border-b" data-i18n="navLeadership">Rahbariyat</a></li>
+    <li><a href="oqituvchilar.html" class="block py-2 font-semibold border-b" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+    <li><a href="iqtidorli-oquvchilar.html" class="block py-2 font-semibold border-b" data-i18n="navIqtidorli">Iqtidorli o'quvchilar</a></li>
+    <li><a href="loyiha-ishlari.html" class="block py-2 font-semibold border-b" data-i18n="navLoyiha">Loyiha ishlari</a></li>
+    <li><a href="sertifikatlar.html" class="block py-2 font-semibold border-b" data-i18n="navSertifikat">Sertifikatlar</a></li>
+    <li><a href="galereya.html" class="block py-2 font-semibold border-b" data-i18n="navGallery">Galereya</a></li>
+    <li><a href="ecoschool.html" class="block py-2 font-semibold border-b active-page" data-i18n="navEco">Eco School</a></li>
+    <li><a href="memorandumlar.html" class="block py-2 font-semibold border-b" data-i18n="navMemorandum">Memorandumlar</a></li>
+    <li><a href="qabul.html" class="block py-2 font-semibold border-b" data-i18n="navQabul">Qabul jarayonlari</a></li>
+    <li><a href="yangiliklar.html" class="block py-2 font-semibold border-b" data-i18n="navNews">E'lonlar</a></li>
+    <li><a href="aloqa.html" class="block py-2 font-semibold" data-i18n="navContact">Aloqa</a></li>
+  </ul>
+</div>
+<div class="page-hero" style="background:linear-gradient(135deg,#0f172a 0%,#14532d 55%,#166534 100%);">
+  <div class="anim-blob" style="width:300px;height:300px;background:#4ade80;top:-80px;left:-60px;"></div>
+  <div class="anim-blob anim-blob-2" style="width:260px;height:260px;background:#fbbf24;bottom:-60px;right:-40px;"></div>
+  <div class="relative z-10">
+    <div class="breadcrumb"><a href="index.html" data-i18n="navHome">Bosh sahifa</a> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i> <span data-i18n="eco_breadcrumb">Eco School</span></div>
+    <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl text-white mx-auto mb-4" style="background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2)"><i class="fa-solid fa-leaf"></i></div>
+    <h1 class="text-4xl md:text-5xl font-black mb-3" data-i18n="eco_h1">Eco School</h1>
+    <p class="text-green-100 max-w-2xl mx-auto text-sm md:text-base" data-i18n="eco_heroSub">Ekologik madaniyat, barqaror hayot tarzi va tabiatga mas'uliyatli munosabat — maktabimizning "Eco Zamin" jamoasi faoliyati</p>
+    <div class="w-16 h-1 bg-yellow-400 rounded mx-auto mt-4"></div>
+  </div>
+</div>
+<!-- ECO INTRO -->
+<section class="py-20 relative overflow-hidden" style="background:var(--bg);">
+  <div class="max-w-6xl mx-auto px-6 relative">
+    <div class="text-center mb-14 reveal">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-4" style="background:rgba(22,163,74,.1);color:#16a34a">
+        <i class="fa-solid fa-seedling"></i> <span data-i18n="eco_badge1">Eco Zamin jamoasi</span>
+      </span>
+      <h2 class="underline-title text-3xl md:text-4xl font-black" style="color:var(--text)" data-i18n="eco_title1">Hamkorlik memorandumi</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-10 reveal">
+      <div class="rounded-2xl overflow-hidden shadow-lg" style="border:1px solid var(--border)">
+        <img src="eco-img/eco-1.jpg" alt="Eco-Union memorandum imzolash" class="lb-trigger w-full h-72 object-cover">
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-lg" style="border:1px solid var(--border)">
+        <img src="eco-img/eco-2.jpg" alt="Memorandum imzolash marosimi" class="lb-trigger w-full h-72 object-cover">
+      </div>
+    </div>
+
+    <div class="rounded-2xl p-8 md:p-10 reveal" style="background:var(--surface);border:1px solid var(--border)">
+      <p class="leading-relaxed mb-4" style="color:var(--text)" data-i18n="eco_p1">
+        24-fevral kuni <strong>Muhammad al-Xorazmiy maktabining</strong> Eco-Union jamoasi hamda Ixtisoslashtirilgan ta'lim muassasalari agentligi tizimidagi <strong>Toshkent viloyati Bo'stonliq tuman ixtisoslashtirilgan maktabining Eco-Zamin jamoasi</strong> o'rtasida o'zaro hamkorlik memorandumi imzolandi.
+      </p>
+      <p class="leading-relaxed mb-4" style="color:var(--text-muted)" data-i18n="eco_p2">
+        Memorandumdan ko'zlangan asosiy maqsad — tomonlar o'rtasida o'zaro bilim va tajribalar bilan almashinish, yangi loyihalar ustida ish olib borish va eko-madaniyatni birgalikda targ'ib qilishlardan iborat.
+      </p>
+      <p class="leading-relaxed" style="color:var(--text-muted)" data-i18n="eco_p3">
+        Tashrif davomida Eco-Zamin jamoasi uchun Eco-Union jamoasi faoliyati haqida taqdimot bo'lib o'tdi. Bundan tashqari, maktab hududi bo'yicha kampus-tur o'tkazildi, unda mehmonlar maktabimizdagi issiqxona faoliyati, maktabning yashil zonasi haqida ma'lumotga ega bo'lishdi.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPUS TOUR -->
+<section class="py-4 pb-20 relative overflow-hidden" style="background:var(--bg);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="rounded-2xl overflow-hidden shadow-lg reveal" style="border:1px solid var(--border)">
+      <img src="eco-img/eco-3.jpg" alt="Kampus-tur va issiqxona faoliyati" class="lb-trigger w-full object-cover">
+    </div>
+  </div>
+</section>
+
+<!-- SUMMIT SCHOOL HAMKORLIGI -->
+<section class="py-20 relative overflow-hidden" style="background:var(--surface-2);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-4" style="background:rgba(22,163,74,.1);color:#16a34a">
+        <i class="fa-solid fa-handshake"></i> <span data-i18n="eco_badge2">Ikkinchi hamkorlik</span>
+      </span>
+      <h2 class="underline-title text-3xl md:text-4xl font-black" style="color:var(--text)" data-i18n="eco_title2">"Eco Zamin" va "Summit School"</h2>
+      <p class="max-w-2xl mx-auto mt-4" style="color:var(--text-muted)" data-i18n="eco_sub2">Ekologik ta'lim va tarbiya samaradorligini oshirish, tajriba almashinuvini rivojlantirish yo'lidagi hamkorlik</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <div class="space-y-5 reveal">
+        <div class="rounded-2xl p-6" style="background:var(--surface);border:1px solid var(--border);border-left:4px solid #16a34a">
+          <p class="leading-relaxed" style="color:var(--text)" data-i18n="eco_p4">
+            Maktabimizning <strong>"Eco Zamin" ekologik jamoasi</strong> hamda <strong>"Summit School"</strong> maktabining eko-qo'mitasi o'rtasida o'zaro hamkorlik memorandumi imzolandi. Mazkur memorandum o'quvchilarda ekologik madaniyatni yuksaltirish, atrof-muhitni muhofaza qilishga mas'uliyatli munosabatni shakllantirish, ekologik ta'lim va tarbiya samaradorligini oshirish hamda ta'lim muassasalari o'rtasidagi o'zaro tajriba almashinuvini rivojlantirishga qaratildi.
+          </p>
+        </div>
+        <div class="rounded-2xl p-6" style="background:var(--surface);border:1px solid var(--border);border-left:4px solid #fbbf24">
+          <div class="flex items-center gap-2 mb-2">
+            <i class="fa-solid fa-shoe-prints" style="color:#f59e0b"></i>
+            <h3 class="font-bold" style="color:var(--text)" data-i18n="eco_h3_7steps">"7 qadam" metodologiyasi</h3>
+          </div>
+          <p class="leading-relaxed text-sm" style="color:var(--text-muted)">
+            <span data-i18n="eco_p5">Hamkorlik doirasida tashkil etilgan uchrashuv davomida maktabimizning "Eco Zamin" ekologik jamoasi a'zolari tomonidan o'quvchilarda ekologik tafakkur va barqaror hayot tarzini shakllantirishga xizmat qiluvchi <strong>"7 qadam" metodologiyasi</strong> batafsil taqdim etildi. Mazkur metodologiya ekologik ta'limni tizimli ravishda tashkil etish, o'quvchilarning tabiatga nisbatan ongli munosabatini rivojlantirish hamda ekologik muammolarga yechim topish ko'nikmalarini shakllantirishga xizmat qiladi.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-3 reveal">
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:var(--surface);border:1px solid var(--border)">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(22,163,74,.12);color:#16a34a"><i class="fa-solid fa-seedling"></i></div>
+          <p class="text-sm leading-relaxed" style="color:var(--text)" data-i18n="eco_li1">Qo'shma ekologik loyihalar, amaliy seminar va treninglar, ko'chat ekish tadbirlari</p>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:var(--surface);border:1px solid var(--border)">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(22,163,74,.12);color:#16a34a"><i class="fa-solid fa-recycle"></i></div>
+          <p class="text-sm leading-relaxed" style="color:var(--text)" data-i18n="eco_li2">Hududlarni obodonlashtirish, ko'kalamzorlashtirish hamda chiqindilarni saralash va qayta ishlash madaniyatini targ'ib etish</p>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:var(--surface);border:1px solid var(--border)">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(22,163,74,.12);color:#16a34a"><i class="fa-solid fa-book-open"></i></div>
+          <p class="text-sm leading-relaxed" style="color:var(--text)" data-i18n="eco_li3">Ilg'or tajribalarni o'rganish, o'zaro tajriba almashish va ekologik tashabbuslarni qo'llab-quvvatlash</p>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl" style="background:var(--surface);border:1px solid var(--border)">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0" style="background:rgba(22,163,74,.12);color:#16a34a"><i class="fa-solid fa-earth-asia"></i></div>
+          <p class="text-sm leading-relaxed" style="color:var(--text)" data-i18n="eco_li4">Tabiiy resurslardan oqilona foydalanish hamda barqaror rivojlanish tamoyillariga sodiqlikni shakllantirish</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl p-8 mt-8 text-center reveal" style="background:linear-gradient(135deg,#14532d,#166534);">
+      <p class="leading-relaxed text-green-50 max-w-3xl mx-auto" data-i18n="eco_p6">
+        Mazkur hamkorlik o'quvchilarning ekologik bilim va kompetensiyalarini rivojlantirish, ularda tabiatni asrash, tabiiy resurslardan oqilona foydalanish hamda barqaror rivojlanish tamoyillariga sodiqlikni shakllantirishga xizmat qiladi. Memorandum doirasida amalga oshiriladigan qo'shma loyihalar yosh avlodning ekologik madaniyatini yuksaltirish, fuqarolik mas'uliyatini mustahkamlash hamda ta'lim muassasalari o'rtasidagi samarali hamkorlikni yanada rivojlantirishda muhim ahamiyat kasb etadi.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- YUTUQLAR / GALLERY -->
+<section class="py-20 relative overflow-hidden" style="background:var(--bg);">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-4" style="background:rgba(251,191,36,.15);color:#b45309">
+        <i class="fa-solid fa-flag"></i> <span data-i18n="eco_badge3">Green Flag Award</span>
+      </span>
+      <h2 class="underline-title text-3xl md:text-4xl font-black" style="color:var(--text)" data-i18n="eco_title3">Bizning yutuqlarimiz</h2>
+      <p class="max-w-2xl mx-auto mt-4" style="color:var(--text-muted)" data-i18n="eco_sub3">Eco-Schools Uzbekistan dasturi doirasidagi tadbirlar va mukofotlar</p>
+    </div>
+
+    <div class="pc-wrap reveal">
+      <div class="pc-main">
+        <button class="pc-main-nav pc-main-prev" id="pcPrev-eco" aria-label="Oldingi"><i class="fa-solid fa-chevron-left"></i></button>
+        <img id="pcMain-eco" src="eco-img/eco-4.jpg" alt="Eco School yutuqlari">
+        <button class="pc-main-nav pc-main-next" id="pcNext-eco" aria-label="Keyingi"><i class="fa-solid fa-chevron-right"></i></button>
+        <span class="pc-counter" id="pcCounter-eco">1 / 5</span>
+      </div>
+      <div class="pc-thumbs-wrap">
+        <button class="pc-thumb-nav" id="pcThumbPrev-eco" aria-label="Oldingi"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="pc-thumbs" id="pcThumbs-eco"></div>
+        <button class="pc-thumb-nav" id="pcThumbNext-eco" aria-label="Keyingi"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </div>
+    <script>
+      initPhotoCarousel('eco', ['eco-img/eco-4.jpg','eco-img/eco-5.jpg','eco-img/eco-6.jpg','eco-img/eco-7.jpg','eco-img/eco-8.jpg']);
+    </script>
+  </div>
+</section>
+
+<!-- GENERIC LIGHTBOX -->
+<div id="genericLightbox" role="dialog" aria-modal="true">
+  <button class="glb-close" id="glbClose" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+  <button class="glb-nav glb-prev" id="glbPrev" aria-label="Oldingi"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="glb-nav glb-next" id="glbNext" aria-label="Keyingi"><i class="fa-solid fa-chevron-right"></i></button>
+  <img id="glbImg" src="" alt="Katta ko'rinish">
+  <div class="glb-counter" id="glbCounter"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-white pt-16 pb-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://i.ibb.co/mVQz8Qh9/logo.jpg" alt="logo" class="w-10 h-10" onerror="this.style.display='none'">
+          <div class="font-extrabold text-lg" data-i18n="footerLogo">Bo'stonliq IM</div>
+        </div>
+        <p class="text-blue-100 text-sm leading-relaxed" data-i18n="footerAbout">Bo'stonliq tumani Ixtisoslashtirilgan maktabi — bilim va tarbiya makoni.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerLinks">Tezkor havolalar</h4>
+        <ul class="space-y-2 text-sm text-blue-100">
+          <li><a href="index.html" class="hover:text-yellow-400" data-i18n="navHome">Bosh sahifa</a></li>
+          <li><a href="maktab-hayoti.html" class="hover:text-yellow-400"><i class="fa-solid fa-book-open mr-1"></i>Maktab hayoti</a></li>
+          <li><a href="rahbariyat.html" class="hover:text-yellow-400" data-i18n="navLeadership">Rahbariyat</a></li>
+          <li><a href="oqituvchilar.html" class="hover:text-yellow-400" data-i18n="navTeachers">Pedagogik jamoa</a></li>
+          <li><a href="iqtidorli-oquvchilar.html" class="hover:text-yellow-400"><i class="fa-solid fa-medal mr-1"></i>Iqtidorli o'quvchilar</a></li>
+          <li><a href="loyiha-ishlari.html" class="hover:text-yellow-400"><i class="fa-solid fa-diagram-project mr-1"></i>Loyiha ishlari</a></li>
+          <li><a href="sertifikatlar.html" class="hover:text-yellow-400" data-i18n="navSertifikat">Sertifikatlar</a></li>
+          <li><a href="galereya.html" class="hover:text-yellow-400" data-i18n="navGallery">Galereya</a></li>
+          <li><a href="ecoschool.html" class="hover:text-yellow-400"><i class="fa-solid fa-leaf mr-1"></i>Eco School</a></li>
+          <li><a href="memorandumlar.html" class="hover:text-yellow-400"><i class="fa-solid fa-file-signature mr-1"></i>Memorandumlar</a></li>
+          <li><a href="qabul.html" class="hover:text-yellow-400" data-i18n="navQabul">Qabul jarayonlari</a></li>
+          <li><a href="yangiliklar.html" class="hover:text-yellow-400" data-i18n="navNews">E'lonlar</a></li>
+          <li><a href="aloqa.html" class="hover:text-yellow-400" data-i18n="navContact">Aloqa</a></li>
+  </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerContact">Aloqa</h4>
+        <ul class="space-y-2 text-sm text-blue-100">
+          <li><a href="tel:+998977848522" class="hover:text-yellow-400 transition"><i class="fa-solid fa-phone mr-2"></i>+998 97 784 85 22</a></li>
+          <li><a href="tel:+998973634153" class="hover:text-yellow-400 transition"><i class="fa-solid fa-phone mr-2"></i>+998 97 363 41 53</a></li>
+          <li class="break-all"><a href="https://mail.google.com/mail/?view=cm&to=sardorbekramatjonov@gmail.com" target="_blank" class="hover:text-yellow-400 transition"><i class="fa-brands fa-google mr-2"></i>sardorbekramatjonov@gmail.com</a></li>
+          <li class="break-all"><a href="mailto:sardorbekramatjonov@bustanlikim.org" target="_blank" class="hover:text-yellow-400 transition"><i class="fa-solid fa-envelope mr-2"></i>sardorbekramatjonov@bustanlikim.org</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-yellow-400" data-i18n="footerSocial">Ijtimoiy tarmoqlar</h4>
+        <div class="flex gap-3">
+          <a href="https://t.me/Bustanlikspecializedschool" target="_blank" class="social-icon bg-white/10 hover:bg-yellow-400 hover:text-slate-900 text-white"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-center text-sm text-blue-100">
+      <span data-i18n="footerCopy">© 2026 Bo'stonliq tumani Ixtisoslashtirilgan maktabi. Barcha huquqlar himoyalangan.</span>
+    </div>
+  </div>
+</footer>
+<!-- BACK TO TOP -->
+<div id="backTop"><i class="fa-solid fa-arrow-up"></i></div>
+<script>
+  const I18N={
+    uz:{
+      topAddress:"Toshkent viloyati, Bo'stonliq tumani",topHours:"Dush-Shan: 08:00 - 17:00",
+      navHome:"Bosh sahifa",navLeadership:"Rahbariyat",navTeachers:"Pedagogik jamoa",
+      navNews:"E'lonlar",navGallery:"Galereya",navContact:"Aloqa",navCta:"Qo'ng'iroq qilish",
+      navQabul:"Qabul jarayonlari",navSertifikat:"Sertifikatlar",
+      contactTitle:"Manzil",contactAddrLabel:"Manzil",
+      contactAddrText:"O'zbekiston Respublikasi, Toshkent viloyati, Bo'stonliq tumani Ixtisoslashtirilgan maktabi.",
+      contactPhoneLabel:"Telefon",contactSocial:"Ijtimoiy tarmoqlar",
+      aloqaHero:"Biz Bilan Bog'laning",
+      rahbariyatTitle:"Maktab Rahbariyati",rahbariyatBadge:"Bizning jamoa",
+      role_director_title:"Maktab rahbari",role_director_sub:"Maktab direktori",
+      role_manaviy_title:"Ma'naviy-ma'rifiy ishlari bo'yicha",
+      role_oquv_title:"O'quv ishlari bo'yicha",
+      role_deputy_sub:"Direktor o'rinbosari",
+      role_maslahatchi_title:"Maslahatchi",role_maslahatchi_sub:"Maktab maslahatchisi",
+      role_psixolog_title:"Psixolog",role_psixolog_sub:"Maktab psixologi",
+      footerAbout:"Bo'stonliq tumani Ixtisoslashtirilgan maktabi — bilim va tarbiya makoni.",
+      footerLinks:"Tezkor havolalar",footerContact:"Aloqa",footerSocial:"Ijtimoiy tarmoqlar",
+      
+      teachersTitle:"Mutaxassis O\'qituvchilar",
+      teachersBadge:"Bizning Pedagoglar",
+      teachersSubtitle:"40 dan ortiq tajribali va malakali o\'qituvchilarimiz har kuni o\'quvchilarimiz uchun sifatli ta\'lim berib kelmoqdalar.",
+      subjectMath:"Matematika",
+      subjectEng:"Ingliz tili",
+      subjectPhys:"Fizika",
+      subjectChem:"Kimyo",
+      subjectBio:"Biologiya",
+      subjectInfo:"Informatika",
+      gradeOliy:"Oliy toifa",
+      grade1:"1-toifa",
+      grade2:"2-toifa",
+      galleryTitle:"Maktabimiz hayoti",
+      gallerySubtitle:"Bizning maktab hayotidan eng yorqin lahzalar",
+      filterAll:"Barchasi",
+      filterYangilik:"Yangilik",
+      filterTadbir:"Tadbir",
+      filterMusobaqa:"Musobaqa",
+      filterYutuq:"Yutuq",
+      filterElon:"E\'lon",
+      filterBoshqa:"Boshqa",
+      newsLoading:"Yangiliklar yuklanmoqda...",
+      newsError:"Yangiliklar yuklanmadi. Sahifani yangilang.",
+      newsEmpty:"Hali yangiliklar qo\'shilmagan.",
+      loadMore:"Ko\'proq yangiliklar",
+      achievementsTitle:"Bizning yutuqlar",
+      achievementsSubtitle:"Maktabimiz sertifikatlari va mukofotlari",
+      breadcrumbHome:"Bosh sahifa",
+      
+      callBtn:"Qo'ng'iroq qilish",
+      footerCopy:"© 2026 Bo'stonliq tumani Ixtisoslashtirilgan maktabi. Barcha huquqlar himoyalangan.",
+      sertTitle:"Sertifikatlar",sertSubtitle:"Maktabimiz o'quvchilari tomonidan erishilgan yutuqlar va olingan sertifikatlar",
+      galereyaHero:"Galereya",oqituvchilarHero:"O'qituvchilar",yangilikHero:"Yangiliklar",
+      logoLine1:"Bo'stonliq tumani",logoLine2:"Ixtisoslashtirilgan maktabi",footerLogo:"Bo'stonliq IM",navMore:"Ko'proq",mobileMenuLabel:"Menyu",qabu2026title:"Qabul 2026",
+      eco_breadcrumb:"Eco School",
+      eco_h1:"Eco School",
+      eco_heroSub:"Ekologik madaniyat, barqaror hayot tarzi va tabiatga mas'uliyatli munosabat — maktabimizning \"Eco Zamin\" jamoasi faoliyati",
+      eco_badge1:"Eco Zamin jamoasi",
+      eco_title1:"Hamkorlik memorandumi",
+      eco_p1:"24-fevral kuni <strong>Muhammad al-Xorazmiy maktabining</strong> Eco-Union jamoasi hamda Ixtisoslashtirilgan ta'lim muassasalari agentligi tizimidagi <strong>Toshkent viloyati Bo'stonliq tuman ixtisoslashtirilgan maktabining Eco-Zamin jamoasi</strong> o'rtasida o'zaro hamkorlik memorandumi imzolandi.",
+      eco_p2:"Memorandumdan ko'zlangan asosiy maqsad — tomonlar o'rtasida o'zaro bilim va tajribalar bilan almashinish, yangi loyihalar ustida ish olib borish va eko-madaniyatni birgalikda targ'ib qilishlardan iborat.",
+      eco_p3:"Tashrif davomida Eco-Zamin jamoasi uchun Eco-Union jamoasi faoliyati haqida taqdimot bo'lib o'tdi. Bundan tashqari, maktab hududi bo'yicha kampus-tur o'tkazildi, unda mehmonlar maktabimizdagi issiqxona faoliyati, maktabning yashil zonasi haqida ma'lumotga ega bo'lishdi.",
+      eco_badge2:"Ikkinchi hamkorlik",
+      eco_title2:"\"Eco Zamin\" va \"Summit School\"",
+      eco_sub2:"Ekologik ta'lim va tarbiya samaradorligini oshirish, tajriba almashinuvini rivojlantirish yo'lidagi hamkorlik",
+      eco_p4:"Maktabimizning <strong>\"Eco Zamin\" ekologik jamoasi</strong> hamda <strong>\"Summit School\"</strong> maktabining eko-qo'mitasi o'rtasida o'zaro hamkorlik memorandumi imzolandi. Mazkur memorandum o'quvchilarda ekologik madaniyatni yuksaltirish, atrof-muhitni muhofaza qilishga mas'uliyatli munosabatni shakllantirish, ekologik ta'lim va tarbiya samaradorligini oshirish hamda ta'lim muassasalari o'rtasidagi o'zaro tajriba almashinuvini rivojlantirishga qaratildi.",
+      eco_h3_7steps:"\"7 qadam\" metodologiyasi",
+      eco_p5:"Hamkorlik doirasida tashkil etilgan uchrashuv davomida maktabimizning \"Eco Zamin\" ekologik jamoasi a'zolari tomonidan o'quvchilarda ekologik tafakkur va barqaror hayot tarzini shakllantirishga xizmat qiluvchi <strong>\"7 qadam\" metodologiyasi</strong> batafsil taqdim etildi. Mazkur metodologiya ekologik ta'limni tizimli ravishda tashkil etish, o'quvchilarning tabiatga nisbatan ongli munosabatini rivojlantirish hamda ekologik muammolarga yechim topish ko'nikmalarini shakllantirishga xizmat qiladi.",
+      eco_li1:"Qo'shma ekologik loyihalar, amaliy seminar va treninglar, ko'chat ekish tadbirlari",
+      eco_li2:"Hududlarni obodonlashtirish, ko'kalamzorlashtirish hamda chiqindilarni saralash va qayta ishlash madaniyatini targ'ib etish",
+      eco_li3:"Ilg'or tajribalarni o'rganish, o'zaro tajriba almashish va ekologik tashabbuslarni qo'llab-quvvatlash",
+      eco_li4:"Tabiiy resurslardan oqilona foydalanish hamda barqaror rivojlanish tamoyillariga sodiqlikni shakllantirish",
+      eco_p6:"Mazkur hamkorlik o'quvchilarning ekologik bilim va kompetensiyalarini rivojlantirish, ularda tabiatni asrash, tabiiy resurslardan oqilona foydalanish hamda barqaror rivojlanish tamoyillariga sodiqlikni shakllantirishga xizmat qiladi. Memorandum doirasida amalga oshiriladigan qo'shma loyihalar yosh avlodning ekologik madaniyatini yuksaltirish, fuqarolik mas'uliyatini mustahkamlash hamda ta'lim muassasalari o'rtasidagi samarali hamkorlikni yanada rivojlantirishda muhim ahamiyat kasb etadi.",
+      eco_badge3:"Green Flag Award",
+      eco_title3:"Bizning yutuqlarimiz",
+      eco_sub3:"Eco-Schools Uzbekistan dasturi doirasidagi tadbirlar va mukofotlar",
+      eco_cap1:"Green Flag Award Ceremony",
+      eco_cap2:"Sertifikat topshirish marosimi",
+      eco_cap3:"\"Eco Zamin\" jamoasi — Green Flag",
+      eco_cap4:"Individual sertifikat",
+      eco_cap5:"Tarbiyaviy tashrif",
+      navMaktabHayoti:"Maktab hayoti",
+      navIqtidorli:"Iqtidorli o'quvchilar",
+      navLoyiha:"Loyiha ishlari",
+      navMemorandum:"Memorandumlar",
+      navEco:"Eco School"
+    },
+    ru:{
+      topAddress:"Ташкентская область, Бустонлыкский район",topHours:"Пн-Сб: 08:00 - 17:00",
+      navHome:"Главная",navLeadership:"Руководство",navTeachers:"Педагогический коллектив",
+      navNews:"Объявления",navGallery:"Галерея",navContact:"Контакты",navCta:"Позвонить",
+      navQabul:"Приёмный процесс",navSertifikat:"Сертификаты",
+      contactTitle:"Адрес",contactAddrLabel:"Адрес",
+      contactAddrText:"Республика Узбекистан, Ташкентская область, Специализированная школа Бустонлыкского района.",
+      contactPhoneLabel:"Телефон",contactSocial:"Социальные сети",
+      aloqaHero:"Свяжитесь с нами",
+      rahbariyatTitle:"Руководство школы",rahbariyatBadge:"Наша команда",
+      role_director_title:"Директор школы",role_director_sub:"Директор школы",
+      role_manaviy_title:"По духовно-просветительской работе",
+      role_oquv_title:"По учебной работе",
+      role_deputy_sub:"Заместитель директора",
+      role_maslahatchi_title:"Советник",role_maslahatchi_sub:"Школьный советник",
+      role_psixolog_title:"Психолог",role_psixolog_sub:"Школьный психолог",
+      footerAbout:"Специализированная школа Бустонлыкского района — место знаний и воспитания.",
+      footerLinks:"Быстрые ссылки",footerContact:"Контакты",footerSocial:"Социальные сети",
+      
+      teachersTitle:"Специалисты-педагоги",
+      teachersBadge:"Наши педагоги",
+      teachersSubtitle:"Более 40 опытных и квалифицированных учителей ежедневно обеспечивают качественное образование для наших учеников.",
+      subjectMath:"Математика",
+      subjectEng:"Английский язык",
+      subjectPhys:"Физика",
+      subjectChem:"Химия",
+      subjectBio:"Биология",
+      subjectInfo:"Информатика",
+      gradeOliy:"Высшая категория",
+      grade1:"1-я категория",
+      grade2:"2-я категория",
+      galleryTitle:"Жизнь нашей школы",
+      gallerySubtitle:"Яркие моменты из жизни нашей школы",
+      filterAll:"Все",
+      filterYangilik:"Новость",
+      filterTadbir:"Мероприятие",
+      filterMusobaqa:"Соревнование",
+      filterYutuq:"Достижение",
+      filterElon:"Объявление",
+      filterBoshqa:"Другое",
+      newsLoading:"Загрузка новостей...",
+      newsError:"Новости не загрузились. Обновите страницу.",
+      newsEmpty:"Новостей пока нет.",
+      loadMore:"Ещё новости",
+      achievementsTitle:"Наши достижения",
+      achievementsSubtitle:"Сертификаты и награды нашей школы",
+      breadcrumbHome:"Главная",
+      
+      callBtn:"Позвонить",
+      footerCopy:"© 2026 Специализированная школа Бустонлыкского района. Все права защищены.",
+      sertTitle:"Сертификаты",sertSubtitle:"Достижения и сертификаты, полученные учениками нашей школы",
+      galereyaHero:"Галерея",oqituvchilarHero:"Учителя",yangilikHero:"Новости",
+      logoLine1:"Бустонлыкский район",logoLine2:"Специализированная школа",footerLogo:"Бустонлыкская СШ",navMore:"Ещё",mobileMenuLabel:"Меню",qabu2026title:"Приём 2026",
+      eco_breadcrumb:"Эко-школа",
+      eco_h1:"Эко-школа",
+      eco_heroSub:"Экологическая культура, устойчивый образ жизни и ответственное отношение к природе — деятельность команды \"Eco Zamin\" нашей школы",
+      eco_badge1:"Команда Eco Zamin",
+      eco_title1:"Меморандум о сотрудничестве",
+      eco_p1:"24 февраля между командой Eco-Union <strong>школы имени Мухаммада аль-Хорезми</strong> и командой Eco-Zamin <strong>специализированной школы Бустонлыкского района Ташкентской области</strong>, входящей в систему Агентства специализированных образовательных учреждений, был подписан меморандум о взаимном сотрудничестве.",
+      eco_p2:"Основная цель меморандума — обмен знаниями и опытом между сторонами, совместная работа над новыми проектами и совместное продвижение экологической культуры.",
+      eco_p3:"В ходе визита была проведена презентация о деятельности команды Eco-Union для команды Eco-Zamin. Кроме того, был организован кампус-тур по территории школы, в ходе которого гости ознакомились с работой теплицы и зелёной зоной школы.",
+      eco_badge2:"Второе сотрудничество",
+      eco_title2:"\"Eco Zamin\" и \"Summit School\"",
+      eco_sub2:"Сотрудничество, направленное на повышение эффективности экологического образования и воспитания, развитие обмена опытом",
+      eco_p4:"Между <strong>экологической командой \"Eco Zamin\"</strong> нашей школы и эко-комитетом школы <strong>\"Summit School\"</strong> был подписан меморандум о взаимном сотрудничестве. Данный меморандум направлен на повышение экологической культуры учащихся, формирование ответственного отношения к охране окружающей среды, повышение эффективности экологического образования и воспитания, а также развитие обмена опытом между образовательными учреждениями.",
+      eco_h3_7steps:"Методология \"7 шагов\"",
+      eco_p5:"В ходе встречи, организованной в рамках сотрудничества, членами экологической команды \"Eco Zamin\" нашей школы была подробно представлена <strong>методология \"7 шагов\"</strong>, служащая формированию у учащихся экологического мышления и устойчивого образа жизни. Данная методология служит систематической организации экологического образования, развитию осознанного отношения учащихся к природе и формированию навыков решения экологических проблем.",
+      eco_li1:"Совместные экологические проекты, практические семинары и тренинги, мероприятия по посадке саженцев",
+      eco_li2:"Благоустройство территорий, озеленение, а также продвижение культуры сортировки и переработки отходов",
+      eco_li3:"Изучение передового опыта, взаимный обмен опытом и поддержка экологических инициатив",
+      eco_li4:"Формирование рационального использования природных ресурсов и приверженности принципам устойчивого развития",
+      eco_p6:"Данное сотрудничество служит развитию экологических знаний и компетенций учащихся, формированию у них бережного отношения к природе, рационального использования природных ресурсов и приверженности принципам устойчивого развития. Совместные проекты, реализуемые в рамках меморандума, имеют важное значение для повышения экологической культуры молодого поколения, укрепления гражданской ответственности и дальнейшего развития эффективного сотрудничества между образовательными учреждениями.",
+      eco_badge3:"Green Flag Award",
+      eco_title3:"Наши достижения",
+      eco_sub3:"Мероприятия и награды в рамках программы Eco-Schools Uzbekistan",
+      eco_cap1:"Церемония вручения Green Flag Award",
+      eco_cap2:"Церемония вручения сертификатов",
+      eco_cap3:"Команда \"Eco Zamin\" — Green Flag",
+      eco_cap4:"Индивидуальный сертификат",
+      eco_cap5:"Воспитательный визит",
+      navMaktabHayoti:"Школьная жизнь",
+      navIqtidorli:"Одарённые учащиеся",
+      navLoyiha:"Проектные работы",
+      navMemorandum:"Меморандумы",
+      navEco:"Eco School"
+    },
+    en:{
+      topAddress:"Tashkent region, Bostonliq district",topHours:"Mon-Sat: 08:00 - 17:00",
+      navHome:"Home",navLeadership:"Leadership",navTeachers:"Pedagogical Team",
+      navNews:"Announcements",navGallery:"Gallery",navContact:"Contact",navCta:"Call us",
+      navQabul:"Admission Process",navSertifikat:"Certificates",
+      contactTitle:"Address",contactAddrLabel:"Address",
+      contactAddrText:"Republic of Uzbekistan, Tashkent region, Bostonliq district Specialized School.",
+      contactPhoneLabel:"Phone",contactSocial:"Social networks",
+      aloqaHero:"Get In Touch",
+      rahbariyatTitle:"School Leadership",rahbariyatBadge:"Our team",
+      role_director_title:"School Principal",role_director_sub:"School Director",
+      role_manaviy_title:"Moral & Educational Affairs",
+      role_oquv_title:"Academic Affairs",
+      role_deputy_sub:"Deputy Director",
+      role_maslahatchi_title:"Counselor",role_maslahatchi_sub:"School Counselor",
+      role_psixolog_title:"Psychologist",role_psixolog_sub:"School Psychologist",
+      footerAbout:"Bostonliq district Specialized School — a place of knowledge and education.",
+      footerLinks:"Quick links",footerContact:"Contact",footerSocial:"Social networks",
+      
+      teachersTitle:"Specialist Teachers",
+      teachersBadge:"Our Teachers",
+      teachersSubtitle:"More than 40 experienced and qualified teachers provide quality education for our students every day.",
+      subjectMath:"Mathematics",
+      subjectEng:"English Language",
+      subjectPhys:"Physics",
+      subjectChem:"Chemistry",
+      subjectBio:"Biology",
+      subjectInfo:"Informatics",
+      gradeOliy:"Highest category",
+      grade1:"1st category",
+      grade2:"2nd category",
+      galleryTitle:"School Life",
+      gallerySubtitle:"The brightest moments from our school life",
+      filterAll:"All",
+      filterYangilik:"News",
+      filterTadbir:"Event",
+      filterMusobaqa:"Competition",
+      filterYutuq:"Achievement",
+      filterElon:"Announcement",
+      filterBoshqa:"Other",
+      newsLoading:"Loading news...",
+      newsError:"Failed to load news. Please refresh.",
+      newsEmpty:"No news yet.",
+      loadMore:"Load more news",
+      achievementsTitle:"Our Achievements",
+      achievementsSubtitle:"Certificates and awards of our school",
+      breadcrumbHome:"Home",
+      
+      callBtn:"Call now",
+      footerCopy:"© 2026 Bostonliq district Specialized School. All rights reserved.",
+      sertTitle:"Certificates",sertSubtitle:"Achievements and certificates earned by our school students",
+      galereyaHero:"Gallery",oqituvchilarHero:"Teachers",yangilikHero:"News",
+      logoLine1:"Bostonliq District",logoLine2:"Specialized School",footerLogo:"Bostonliq SS",navMore:"More",mobileMenuLabel:"Menu",qabu2026title:"Admission 2026",
+      eco_breadcrumb:"Eco School",
+      eco_h1:"Eco School",
+      eco_heroSub:"Ecological culture, a sustainable lifestyle, and a responsible attitude toward nature — the work of our school's \"Eco Zamin\" team",
+      eco_badge1:"Eco Zamin Team",
+      eco_title1:"Cooperation Memorandum",
+      eco_p1:"On February 24, a cooperation memorandum was signed between the Eco-Union team of <strong>Muhammad al-Khwarizmi School</strong> and the Eco-Zamin team of the <strong>Specialized School of Bostonliq District, Tashkent Region</strong>, part of the Agency for Specialized Educational Institutions.",
+      eco_p2:"The main goal of the memorandum is to exchange knowledge and experience between the parties, to work jointly on new projects, and to jointly promote ecological culture.",
+      eco_p3:"During the visit, a presentation on the Eco-Union team's activities was held for the Eco-Zamin team. In addition, a campus tour of the school grounds was organized, during which the guests learned about the school's greenhouse activities and green zone.",
+      eco_badge2:"Second partnership",
+      eco_title2:"\"Eco Zamin\" and \"Summit School\"",
+      eco_sub2:"A partnership aimed at improving the effectiveness of environmental education and upbringing, and developing the exchange of experience",
+      eco_p4:"A cooperation memorandum was signed between our school's <strong>\"Eco Zamin\" ecological team</strong> and the eco-committee of <strong>\"Summit School\"</strong>. This memorandum aims to raise students' ecological culture, foster a responsible attitude toward environmental protection, improve the effectiveness of environmental education and upbringing, and develop the exchange of experience between educational institutions.",
+      eco_h3_7steps:"The \"7 Steps\" Methodology",
+      eco_p5:"During a meeting held as part of the partnership, members of our school's \"Eco Zamin\" ecological team presented in detail the <strong>\"7 Steps\" methodology</strong>, which serves to develop ecological thinking and a sustainable lifestyle in students. This methodology helps organize environmental education systematically, develop students' conscious attitude toward nature, and build skills for solving environmental problems.",
+      eco_li1:"Joint environmental projects, practical seminars and trainings, tree-planting events",
+      eco_li2:"Landscaping and greening of areas, and promoting a culture of waste sorting and recycling",
+      eco_li3:"Studying best practices, mutual exchange of experience, and supporting environmental initiatives",
+      eco_li4:"Fostering the rational use of natural resources and commitment to the principles of sustainable development",
+      eco_p6:"This partnership serves to develop students' ecological knowledge and competencies, fostering their care for nature, rational use of natural resources, and commitment to the principles of sustainable development. The joint projects carried out under the memorandum are important for raising the ecological culture of the younger generation, strengthening civic responsibility, and further developing effective cooperation between educational institutions.",
+      eco_badge3:"Green Flag Award",
+      eco_title3:"Our Achievements",
+      eco_sub3:"Events and awards within the Eco-Schools Uzbekistan program",
+      eco_cap1:"Green Flag Award Ceremony",
+      eco_cap2:"Certificate Award Ceremony",
+      eco_cap3:"\"Eco Zamin\" team — Green Flag",
+      eco_cap4:"Individual certificate",
+      eco_cap5:"Educational visit",
+      navMaktabHayoti:"School Life",
+      navIqtidorli:"Talented Students",
+      navLoyiha:"Project Work",
+      navMemorandum:"Memorandums",
+      navEco:"Eco School"
+    }
+  };
+  function applyLang(lang){
+    const dict=I18N[lang]||I18N.uz;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(dict[k]!==undefined){el.innerHTML=dict[k];}});
+    document.documentElement.setAttribute('lang',lang);
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    localStorage.setItem('lang',lang);
+  }
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>applyLang(btn.dataset.lang)));
+  applyLang(localStorage.getItem('lang')||'uz');
+  const themeBtn=document.getElementById('themeToggle');
+  const themeIcon=document.getElementById('themeIcon');
+  function applyTheme(t){document.body.classList.toggle('dark',t==='dark');document.documentElement.classList.toggle('dark',t==='dark');if(themeIcon)themeIcon.className=t==='dark'?'fa-solid fa-sun':'fa-solid fa-moon';localStorage.setItem('theme',t);}
+  if(themeBtn)themeBtn.addEventListener('click',()=>applyTheme(document.body.classList.contains('dark')?'light':'dark'));
+  applyTheme(localStorage.getItem('theme')||'light');
+  const menuBtn=document.getElementById('menuBtn');
+  const closeMenu=document.getElementById('closeMenu');
+  const mobileMenu=document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click',()=>mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+  document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+  const back=document.getElementById('backTop');
+  window.addEventListener('scroll',()=>back.classList.toggle('show',window.scrollY>500));
+  back.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const counters=document.querySelectorAll('[data-target]');
+  const cObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target;const target=+el.dataset.target;let cur=0;const step=Math.max(1,Math.ceil(target/40));const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=cur;},30);cObs.unobserve(el);}});},{threshold:.5});
+  counters.forEach(c=>cObs.observe(c));
+
+  // Manzil items staggered entrance
+  const manzilObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('anim-in');manzilObs.unobserve(e.target);}});},{threshold:.2});
+  document.querySelectorAll('.manzil-item').forEach(el=>manzilObs.observe(el));
+
+  // Map wrapper entrance
+  const mapEl=document.querySelector('.map-wrapper');
+  if(mapEl){const mapObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('anim-in');mapObs.unobserve(e.target);}});},{threshold:.15});mapObs.observe(mapEl);}
+
+  // Footer columns staggered entrance
+  const footerColObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('anim-in');footerColObs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('footer .grid>div').forEach(el=>footerColObs.observe(el));
+</script>
+
+<script>
+  // VISIBILITY FALLBACK: ensure all content visible even if IntersectionObserver fails
+  (function(){
+    function forceVisible(){
+      var selectors = ['.reveal','.manzil-item','.map-wrapper','footer .grid > div',
+        '.team-card','.leader-card','.stagger-item','.stat-item','.dir-card',
+        '.contact-card','.anim-in','.hero-stat','.about-img-wrap'];
+      selectors.forEach(function(sel){
+        document.querySelectorAll(sel).forEach(function(el){
+          el.style.opacity='1';
+          el.style.transform='none';
+          el.style.visibility='visible';
+          el.classList.add('in','anim-in','visible');
+        });
+      });
+    }
+    // Run immediately and after short delay
+    if(document.readyState==='loading'){
+      document.addEventListener('DOMContentLoaded', forceVisible);
+    } else { forceVisible(); }
+    setTimeout(forceVisible, 100);
+    setTimeout(forceVisible, 500);
+  })();
+</script>
+
+<script>
+  // "Ko'proq" dropdown toggle
+  (function(){
+    const btn = document.getElementById('moreDropdownBtn');
+    const menu = document.getElementById('moreDropdownMenu');
+    const chevron = document.getElementById('moreChevron');
+    if(!btn || !menu) return;
+    function openMenu(){
+      menu.style.opacity = '1'; menu.style.visibility = 'visible'; menu.style.transform = 'translateY(0)';
+      btn.setAttribute('aria-expanded','true');
+      if(chevron) chevron.style.transform = 'rotate(180deg)';
+    }
+    function closeMenu(){
+      menu.style.opacity = '0'; menu.style.visibility = 'hidden'; menu.style.transform = 'translateY(4px)';
+      btn.setAttribute('aria-expanded','false');
+      if(chevron) chevron.style.transform = 'rotate(0deg)';
+    }
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
+    });
+    document.addEventListener('click', (e) => {
+      if(!menu.contains(e.target) && e.target !== btn) closeMenu();
+    });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMenu(); });
+  })();
+</script>
+<script>
+  // Generic lightbox for .lb-trigger images
+  (function(){
+    const imgs = Array.from(document.querySelectorAll('.lb-trigger'));
+    if(!imgs.length) return;
+    const lb = document.getElementById('genericLightbox');
+    const lbImg = document.getElementById('glbImg');
+    const counter = document.getElementById('glbCounter');
+    let idx = 0;
+    function show(i){ idx = (i + imgs.length) % imgs.length; lbImg.src = imgs[idx].src; counter.textContent = (idx+1) + ' / ' + imgs.length; }
+    function openLb(i){ show(i); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeLb(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+    imgs.forEach((img,i) => img.addEventListener('click', () => openLb(i)));
+    document.getElementById('glbClose').addEventListener('click', closeLb);
+    document.getElementById('glbPrev').addEventListener('click', () => show(idx-1));
+    document.getElementById('glbNext').addEventListener('click', () => show(idx+1));
+    lb.addEventListener('click', (e) => { if(e.target === lb) closeLb(); });
+    document.addEventListener('keydown', (e) => {
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLb();
+      if(e.key === 'ArrowLeft') show(idx-1);
+      if(e.key === 'ArrowRight') show(idx+1);
+    });
+  })();
+</script>
+<script>
+  // Safety: force-close mobile menu when viewport crosses desktop breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1280) {
+      const mm = document.getElementById('mobileMenu');
+      if (mm) mm.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+<script>
+  // ===== Hero photo carousel engine (big image + thumbnail strip) =====
+  window.__pcInstances = window.__pcInstances || {};
+  function initPhotoCarousel(id, images){
+    const mainImg = document.getElementById('pcMain-'+id);
+    const thumbsWrap = document.getElementById('pcThumbs-'+id);
+    const counter = document.getElementById('pcCounter-'+id);
+    const prevBtn = document.getElementById('pcPrev-'+id);
+    const nextBtn = document.getElementById('pcNext-'+id);
+    const thumbPrevBtn = document.getElementById('pcThumbPrev-'+id);
+    const thumbNextBtn = document.getElementById('pcThumbNext-'+id);
+    if(!mainImg) return;
+    let idx = 0;
+    window.__pcInstances[id] = images;
+    thumbsWrap.innerHTML = images.map((src,i) => `<img class="pc-thumb${i===0?' active':''}" src="${src}" data-idx="${i}" alt="" loading="lazy">`).join('');
+    function show(i){
+      idx = (i + images.length) % images.length;
+      mainImg.style.opacity = '0';
+      setTimeout(() => { mainImg.src = images[idx]; mainImg.style.opacity = '1'; }, 120);
+      if(counter) counter.textContent = (idx+1) + ' / ' + images.length;
+      thumbsWrap.querySelectorAll('.pc-thumb').forEach((t,i2) => t.classList.toggle('active', i2===idx));
+      const activeThumb = thumbsWrap.children[idx];
+      if(activeThumb) activeThumb.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    }
+    if(prevBtn) prevBtn.addEventListener('click', () => show(idx-1));
+    if(nextBtn) nextBtn.addEventListener('click', () => show(idx+1));
+    thumbsWrap.addEventListener('click', (e) => {
+      const t = e.target.closest('.pc-thumb');
+      if(t) show(parseInt(t.dataset.idx, 10));
+    });
+    if(thumbPrevBtn) thumbPrevBtn.addEventListener('click', () => thumbsWrap.scrollBy({left:-220, behavior:'smooth'}));
+    if(thumbNextBtn) thumbNextBtn.addEventListener('click', () => thumbsWrap.scrollBy({left:220, behavior:'smooth'}));
+    mainImg.addEventListener('click', () => openPcLightbox(id, idx));
+    show(0);
+  }
+  (function setupPcLightbox(){
+    if(document.getElementById('pcLightbox')) return;
+    const lb = document.createElement('div');
+    lb.id = 'pcLightbox';
+    lb.setAttribute('role','dialog');
+    lb.innerHTML = `
+      <button class="pclb-close" id="pclbClose" aria-label="Yopish"><i class="fa-solid fa-xmark"></i></button>
+      <button class="pc-main-nav" id="pclbPrev" style="left:1.5rem;background:rgba(255,255,255,.15);color:#fff;"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="pc-main-nav" id="pclbNext" style="right:1.5rem;background:rgba(255,255,255,.15);color:#fff;"><i class="fa-solid fa-chevron-right"></i></button>
+      <img id="pclbImg" src="" alt="">
+    `;
+    document.body.appendChild(lb);
+    document.getElementById('pclbClose').addEventListener('click', closePcLightbox);
+    lb.addEventListener('click', (e) => { if(e.target === lb) closePcLightbox(); });
+    document.addEventListener('keydown', (e) => {
+      if(!lb.classList.contains('open')) return;
+      if(e.key === 'Escape') closePcLightbox();
+      if(e.key === 'ArrowLeft') pcLbNav(-1);
+      if(e.key === 'ArrowRight') pcLbNav(1);
+    });
+    document.getElementById('pclbPrev').addEventListener('click', () => pcLbNav(-1));
+    document.getElementById('pclbNext').addEventListener('click', () => pcLbNav(1));
+  })();
+  window.__pcLbState = {id:null, idx:0};
+  function openPcLightbox(id, idx){
+    window.__pcLbState = {id, idx};
+    const images = window.__pcInstances[id];
+    document.getElementById('pclbImg').src = images[idx];
+    document.getElementById('pcLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function pcLbNav(dir){
+    const st = window.__pcLbState;
+    const images = window.__pcInstances[st.id];
+    st.idx = (st.idx + dir + images.length) % images.length;
+    document.getElementById('pclbImg').src = images[st.idx];
+  }
+  function closePcLightbox(){
+    document.getElementById('pcLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>
